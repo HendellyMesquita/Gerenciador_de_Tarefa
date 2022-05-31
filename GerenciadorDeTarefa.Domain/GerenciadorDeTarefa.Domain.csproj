@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Message\**" />
+    <EmbeddedResource Remove="Message\**" />
+    <None Remove="Message\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GerenciadorDeTarefa.Infra\GerenciadorDeTarefa.Infra.csproj" />
   </ItemGroup>
 

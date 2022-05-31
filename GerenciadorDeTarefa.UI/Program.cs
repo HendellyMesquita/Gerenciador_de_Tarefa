@@ -1,3 +1,4 @@
+using GerenciadorDeTarefa.UI.Contador;
 using GerenciadorDeTarefa.UI.Linq2DB;
 using System;
 using System.Windows.Forms;
