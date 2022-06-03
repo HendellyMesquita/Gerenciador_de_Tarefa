@@ -98,18 +98,6 @@ namespace GerenciadorDeTarefa.Domain.GerenciadorHoras
 
             }
         }
-
-        public string Alerta()
-        {
-            var alerta = "";
-            DateTime meioDia = new DateTime(15, 15, 0);
-
-            if (DateTime.Now == meioDia)
-                alerta = DateTime.Now.ToString();
-
-            return alerta;
-        }
-
     }
 }
 

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using GerenciadorDeTarefa.Domain.Alertas;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
-using GerenciadorDeTarefa.UI.Alertas;
-using GerenciadorDeTarefa.UI.Linq2DB;
 using Microsoft.VisualBasic;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
@@ -11,15 +10,18 @@ namespace GerenciadorDeTarefa.UI.Contador
     public partial class FormTarefa : Form
     {
         private GerenciadorHora _gerenciadorHora;
+        private Alerta _alerta;
         private IServicoGerenciamentoHora _servicoGerenciamento;
         int cont = 0;
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
-            GerenciadorHora gerenciadorHora)
+            GerenciadorHora gerenciadorHora,
+            Alerta alerta)
         {
             InitializeComponent();
             _servicoGerenciamento = servicoGerenciamento;
             _gerenciadorHora = gerenciadorHora;
+            _alerta = alerta;
 
         }
 
@@ -71,7 +73,7 @@ namespace GerenciadorDeTarefa.UI.Contador
                     break;
                 case 5:
                     lbSaida3.Text = contador.ToString("t");
-                    btnEntrada.Text = "LIMPAR";
+                    btnEntrada.Text = "Limpar";
                     cont++;
                     break;
                 case 6:
@@ -125,13 +127,8 @@ namespace GerenciadorDeTarefa.UI.Contador
                 lbTotalHora.Text = limpar;
                 cont = 0;
 
-                btnEntrada.Text = "NOVO";
+                btnEntrada.Text = "Novo";
             }
-        }
-        private void btnAlerta_Click(object sender, EventArgs e)
-        {
-            var alerta = LinqResolve.Resolve<FormAlerta>();
-            alerta.ShowDialog(this);
         }
 
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
@@ -147,8 +144,62 @@ namespace GerenciadorDeTarefa.UI.Contador
             catch (ClousingException ex)
             {
 
-                throw new Exception($"Erro Ao Encerrar Sistema.  Erro:{ex}");
+                throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
 
+            }
+        }
+
+        private void mtkHoraIntervalo_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    string[] intervalo = mtkHoraIntervalo.Text.Split(':');
+                    _alerta.HoraIntervalo = int.Parse(intervalo[0]);
+                    _alerta.MinutoIntervalo = int.Parse(intervalo[1]);
+
+                    timer1.Enabled = true;
+                    mtkHoraIntervalo.Enabled = false;
+                }
+                mtkHoraIntervalo.Enabled = true;
+
+            }
+            catch (AlertaException ex)
+            {
+                throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_alerta.HoraIntervalo == DateTime.Now.Hour && _alerta.MinutoIntervalo == DateTime.Now.Minute)
+                {
+                    timer1.Enabled = false;
+
+                    if (MessageBox.Show($"Já são {DateTime.Now.ToString("t")}, Voce Fará uma pausa?", " Pausa Para Descanço",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    {
+                        _alerta.MinutoIntervalo = _alerta.DezMinutos.Minute;
+                        timer1.Enabled = true;
+
+                        MessageBox.Show($"Alarme Alterado para daqui 10 minutos, Proximo alarme acontecerá as" +
+                            $" {DateTime.Now.AddMinutes(10).ToString("t")} Horas. ", " Pausa Para Descanço");
+                        return;
+                    }
+
+                    if (cont == 1 || cont == 3 || cont == 5)
+                    {
+                        MessageBox.Show($" Marcando Hora de saida...");
+                        MarcarHoraAtual();
+                    }
+                }
+            }
+            catch (AlertaException ex)
+            {
+                throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
             }
         }
     }

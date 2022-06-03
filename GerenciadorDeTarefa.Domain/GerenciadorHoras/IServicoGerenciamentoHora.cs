@@ -7,7 +7,5 @@ namespace GerenciadorDeTarefa.Domain.GerenciadorHoras
         DateTime MarcadorHoras(int contador, GerenciadorHora gerenteHora);
         string TotalHorasTrabalhada(int contador, GerenciadorHora gerenteHora);
         string LimparFiltro(int contador, GerenciadorHora gerenteHora);
-        string Alerta();
-
     }
 }
