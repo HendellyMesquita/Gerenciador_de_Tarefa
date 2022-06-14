@@ -12,14 +12,17 @@ namespace GerenciadorDeTarefa.UI.Contador
         private GerenciadorHora _gerenciadorHora;
         private Alerta _alerta;
         private IServicoGerenciamentoHora _servicoGerenciamento;
+        private IServicoDeAlerta _servicoDeAlerta;
         int cont = 0;
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
+            IServicoDeAlerta servicoDeAlerta,
             GerenciadorHora gerenciadorHora,
             Alerta alerta)
         {
             InitializeComponent();
             _servicoGerenciamento = servicoGerenciamento;
+            _servicoDeAlerta = servicoDeAlerta;
             _gerenciadorHora = gerenciadorHora;
             _alerta = alerta;
 
@@ -149,28 +152,6 @@ namespace GerenciadorDeTarefa.UI.Contador
             }
         }
 
-        private void mtkHoraIntervalo_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    string[] intervalo = mtkHoraIntervalo.Text.Split(':');
-                    _alerta.HoraIntervalo = int.Parse(intervalo[0]);
-                    _alerta.MinutoIntervalo = int.Parse(intervalo[1]);
-
-                    timer1.Enabled = true;
-                    mtkHoraIntervalo.Enabled = false;
-                }
-                mtkHoraIntervalo.Enabled = true;
-
-            }
-            catch (AlertaException ex)
-            {
-                throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
-            }
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
@@ -196,6 +177,26 @@ namespace GerenciadorDeTarefa.UI.Contador
                         MarcarHoraAtual();
                     }
                 }
+            }
+            catch (AlertaException ex)
+            {
+                throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
+            }
+        }
+
+        private void teIntervalo_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _servicoDeAlerta.ObterHorasEMinutos(teIntervalo.Text);
+
+                ActiveControl = null;
+                timer1.Enabled = true;
+
+               var intervalo = _servicoDeAlerta.ObterIntervaloDeHoras(teIntervalo.Time);
+
+                MessageBox.Show($" O Alerta disparará em {intervalo.ToString("hh' Horas e 'mm' Minutos'")}");
+
             }
             catch (AlertaException ex)
             {

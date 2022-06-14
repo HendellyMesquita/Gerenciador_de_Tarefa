@@ -10,6 +10,7 @@ namespace GerenciadorDeTarefa.UI.Linq2DB
         public override void Load()
         {
             Bind(typeof(IServicoGerenciamentoHora)).To(typeof(ServicoGerenciamentoHora));
+            Bind(typeof(IServicoDeAlerta)).To(typeof(ServicoDeAlerta));
         }
         public static CentralDeLinq2DB Create()
         {
