@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using GerenciadorDeTarefa.Domain.Alertas;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
+using GerenciadorDeTarefa.Infra.TodosBlocoDeNotas;
 using Microsoft.VisualBasic;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
@@ -13,7 +15,12 @@ namespace GerenciadorDeTarefa.UI.Contador
         private Alerta _alerta;
         private IServicoGerenciamentoHora _servicoGerenciamento;
         private IServicoDeAlerta _servicoDeAlerta;
-        int cont = 0;
+        private int cont = 0;
+        private DialogResult AcaoArquivo;
+        private string lastpath;
+        private string salvarTexto;
+
+
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
             IServicoDeAlerta servicoDeAlerta,
@@ -28,25 +35,6 @@ namespace GerenciadorDeTarefa.UI.Contador
 
         }
 
-        private void btnEntrada_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MarcarHoraAtual();
-                AtualizarTotal();
-
-                if (cont == 7)
-                {
-                    LimparFiltro();
-                }
-            }
-            catch (EntradaException ex)
-            {
-
-                throw new Exception($"Erro Ao atualizar Sistema.  Erro:{ex}");
-
-            }
-        }
 
         private void MarcarHoraAtual()
         {
@@ -85,10 +73,32 @@ namespace GerenciadorDeTarefa.UI.Contador
 
             }
         }
+
         private void AtualizarTotal()
         {
             string totalHora = _servicoGerenciamento.TotalHorasTrabalhada(cont, _gerenciadorHora);
             lbTotalHora.Text = totalHora;
+        }
+
+        private void LimparFiltro()
+        {
+
+            var limpar = _servicoGerenciamento.LimparFiltro(cont, _gerenciadorHora);
+
+            if (MessageBox.Show("Você tem certeza? Após Esta Ação Todos Os Dados Serão Perdidos", "Limpar Solução!",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                lbEntrada1.Text = limpar;
+                lbSaida1.Text = limpar;
+                lbEntrada2.Text = limpar;
+                lbSaida2.Text = limpar;
+                lbEntrada3.Text = limpar;
+                lbSaida3.Text = limpar;
+                lbTotalHora.Text = limpar;
+                cont = 0;
+
+                btnEntrada.Text = "Novo";
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -113,42 +123,44 @@ namespace GerenciadorDeTarefa.UI.Contador
 
             }
         }
-        private void LimparFiltro()
-        {
 
-            var limpar = _servicoGerenciamento.LimparFiltro(cont, _gerenciadorHora);
-
-            if (MessageBox.Show("Você tem certeza? Após Esta Ação Todos Os Dados Serão Perdidos", "Limpar Solução!",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                lbEntrada1.Text = limpar;
-                lbSaida1.Text = limpar;
-                lbEntrada2.Text = limpar;
-                lbSaida2.Text = limpar;
-                lbEntrada3.Text = limpar;
-                lbSaida3.Text = limpar;
-                lbTotalHora.Text = limpar;
-                cont = 0;
-
-                btnEntrada.Text = "Novo";
-            }
-        }
-
-        private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnEntrada_Click(object sender, EventArgs e)
         {
             try
             {
-                if (MessageBox.Show("Você tem certeza? Após Esta Ação Todos Os Dados Serão Perdidos", "Atenção!",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                MarcarHoraAtual();
+                AtualizarTotal();
+
+                if (cont == 7)
                 {
-                    e.Cancel = true;
+                    LimparFiltro();
                 }
             }
-            catch (ClousingException ex)
+            catch (EntradaException ex)
             {
 
-                throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
+                throw new Exception($"Erro Ao atualizar Sistema.  Erro:{ex}");
 
+            }
+        }
+
+        private void teIntervalo_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _servicoDeAlerta.ObterHorasEMinutos(teIntervalo.Text);
+
+                ActiveControl = null;
+                timer1.Enabled = true;
+
+                var intervalo = _servicoDeAlerta.ObterIntervaloDeHoras(teIntervalo.Time);
+
+                MessageBox.Show($" O Alerta disparará em {intervalo.ToString("hh' Horas e 'mm' Minutos'")}");
+
+            }
+            catch (AlertaException ex)
+            {
+                throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
             }
         }
 
@@ -184,23 +196,113 @@ namespace GerenciadorDeTarefa.UI.Contador
             }
         }
 
-        private void teIntervalo_EditValueChanged(object sender, EventArgs e)
+        private void ObterTitulo(string tituloArquivo)
+        {
+            Text = $"{tituloArquivo}";
+        }
+
+        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO: criar serviço para abrir arquivo
+            openFileDialog1.DefaultExt = ".txt";
+            openFileDialog1.Filter = "Text Files(*.txt)|*.txt";
+
+            AcaoArquivo = openFileDialog1.ShowDialog();
+            if (AcaoArquivo.Equals(DialogResult.OK))
+            {
+                lastpath = openFileDialog1.FileName;
+
+            /**/     ObterTitulo(TodosServicoBlocoDeNota.ObterNomeArquivo(lastpath));
+                TbAnotacao.Text = TodosServicoBlocoDeNota.LerArquivo(lastpath);
+                salvarTexto = TbAnotacao.Text;
+            }
+        }
+
+        private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(lastpath))
+            {
+            /**/    TodosServicoBlocoDeNota.EscreverArquivo(lastpath, TbAnotacao.Text);
+                salvarTexto = TbAnotacao.Text;
+            }
+            else
+            {
+                //TODO: criar serviço para salvar arquivo
+                saveFileDialog1.Filter = "Text Files(*.txt)|*.txt";
+                AcaoArquivo = saveFileDialog1.ShowDialog();
+
+                if (AcaoArquivo.Equals(DialogResult.OK))
+                {
+                    lastpath = saveFileDialog1.FileName;
+            /**/        TodosServicoBlocoDeNota.EscreverArquivo(lastpath, TbAnotacao.Text);
+            /**/        ObterTitulo(TodosServicoBlocoDeNota.ObterNomeArquivo(lastpath));
+                    salvarTexto = TbAnotacao.Text;
+                }
+            }
+        }
+
+        private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "Text Files(*.txt)|*.txt";
+            AcaoArquivo = saveFileDialog1.ShowDialog();
+
+            if (AcaoArquivo.Equals(DialogResult.OK))
+            {
+                lastpath = saveFileDialog1.FileName;
+
+                //TODO: Fazer serviço de bloco de notas para chamar funções todosServicoDeNotas
+        /**/        TodosServicoBlocoDeNota.EscreverArquivo(lastpath, TbAnotacao.Text);
+        /**/        ObterTitulo(TodosServicoBlocoDeNota.ObterNomeArquivo(lastpath));
+                salvarTexto = TbAnotacao.Text;
+            }
+        }
+
+        private void TsNegrito_Click(object sender, EventArgs e)
+        {
+            //TODO: criar função negrito
+        }
+
+        private void TsItalico_Click(object sender, EventArgs e)
+        {
+            //TODO: criar função italico
+        }
+
+        private void TsSublinhado_Click(object sender, EventArgs e)
+        {
+            //TODO: criar função sublinhado
+        }
+
+        private void TsCorTexto_Click(object sender, EventArgs e)
+        {
+            //TODO: criar função cor do Texto
+        }
+
+        private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                _servicoDeAlerta.ObterHorasEMinutos(teIntervalo.Text);
+                if (cont != 0 || _gerenciadorHora.Tarefa != null)
+                {
+                    if (MessageBox.Show("Você tem certeza? Após Esta Ação Todos Os Dados Serão Perdidos", "Atenção!",
+                       MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
 
-                ActiveControl = null;
-                timer1.Enabled = true;
-
-               var intervalo = _servicoDeAlerta.ObterIntervaloDeHoras(teIntervalo.Time);
-
-                MessageBox.Show($" O Alerta disparará em {intervalo.ToString("hh' Horas e 'mm' Minutos'")}");
-
+                if (TbAnotacao.Text != salvarTexto)
+                {
+                    if (MessageBox.Show("Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia", "Salvar?",
+                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        SalvarToolStripMenuItem_Click(sender, e);
+                    }
+                }
             }
-            catch (AlertaException ex)
+            catch (ClousingException ex)
             {
-                throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
+                throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
             }
         }
     }
