@@ -1,4 +1,4 @@
-﻿namespace GerenciadorDeTarefa.UI.Contador
+﻿namespace GerenciadorDeTarefa.UI
 {
     partial class FormTarefa
     {
@@ -68,7 +68,6 @@
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
             this.separatorControl5 = new DevExpress.XtraEditors.SeparatorControl();
-            this.TbAnotacao = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsArquivo = new System.Windows.Forms.ToolStripDropDownButton();
             this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +82,8 @@
             this.nUpTamanho = new System.Windows.Forms.NumericUpDown();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.TbAnotacao = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.teIntervalo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).BeginInit();
@@ -97,7 +98,7 @@
             // 
             this.btnEntrada.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEntrada.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEntrada.Location = new System.Drawing.Point(590, 226);
+            this.btnEntrada.Location = new System.Drawing.Point(590, 228);
             this.btnEntrada.Name = "btnEntrada";
             this.btnEntrada.Size = new System.Drawing.Size(53, 25);
             this.btnEntrada.TabIndex = 0;
@@ -109,7 +110,7 @@
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEditar.Location = new System.Drawing.Point(649, 226);
+            this.btnEditar.Location = new System.Drawing.Point(649, 228);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(53, 25);
             this.btnEditar.TabIndex = 1;
@@ -200,12 +201,12 @@
             // 
             this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTotal.AutoSize = true;
-            this.lbTotal.Font = new System.Drawing.Font("Sylfaen", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbTotal.Location = new System.Drawing.Point(625, 275);
+            this.lbTotal.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.lbTotal.Location = new System.Drawing.Point(625, 279);
             this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(46, 14);
+            this.lbTotal.Size = new System.Drawing.Size(41, 18);
             this.lbTotal.TabIndex = 11;
-            this.lbTotal.Text = "TOTAL:";
+            this.lbTotal.Text = "Total:";
             // 
             // lbEntrada
             // 
@@ -244,10 +245,10 @@
             // 
             this.lbTotalHora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTotalHora.AutoSize = true;
-            this.lbTotalHora.Font = new System.Drawing.Font("Sylfaen", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbTotalHora.Location = new System.Drawing.Point(668, 274);
+            this.lbTotalHora.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.lbTotalHora.Location = new System.Drawing.Point(662, 279);
             this.lbTotalHora.Name = "lbTotalHora";
-            this.lbTotalHora.Size = new System.Drawing.Size(34, 16);
+            this.lbTotalHora.Size = new System.Drawing.Size(40, 18);
             this.lbTotalHora.TabIndex = 18;
             this.lbTotalHora.Text = "00:00";
             // 
@@ -272,7 +273,7 @@
             this.lbIntAlmoco.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbIntAlmoco.AutoSize = true;
             this.lbIntAlmoco.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbIntAlmoco.Location = new System.Drawing.Point(494, 274);
+            this.lbIntAlmoco.Location = new System.Drawing.Point(494, 279);
             this.lbIntAlmoco.Name = "lbIntAlmoco";
             this.lbIntAlmoco.Size = new System.Drawing.Size(62, 18);
             this.lbIntAlmoco.TabIndex = 26;
@@ -281,8 +282,8 @@
             // teIntervalo
             // 
             this.teIntervalo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.teIntervalo.EditValue = new System.DateTime(2022, 6, 14, 0, 0, 0, 0);
-            this.teIntervalo.Location = new System.Drawing.Point(556, 272);
+            this.teIntervalo.EditValue = new System.DateTime(2022, 6, 21, 0, 0, 0, 0);
+            this.teIntervalo.Location = new System.Drawing.Point(556, 279);
             this.teIntervalo.Name = "teIntervalo";
             this.teIntervalo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -294,7 +295,7 @@
             // separatorControl4
             // 
             this.separatorControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorControl4.Location = new System.Drawing.Point(484, 251);
+            this.separatorControl4.Location = new System.Drawing.Point(484, 259);
             this.separatorControl4.Name = "separatorControl4";
             this.separatorControl4.Size = new System.Drawing.Size(229, 18);
             this.separatorControl4.TabIndex = 35;
@@ -331,19 +332,8 @@
             this.separatorControl5.LineOrientation = System.Windows.Forms.Orientation.Vertical;
             this.separatorControl5.Location = new System.Drawing.Point(469, 2);
             this.separatorControl5.Name = "separatorControl5";
-            this.separatorControl5.Size = new System.Drawing.Size(19, 320);
+            this.separatorControl5.Size = new System.Drawing.Size(19, 310);
             this.separatorControl5.TabIndex = 39;
-            // 
-            // TbAnotacao
-            // 
-            this.TbAnotacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TbAnotacao.Location = new System.Drawing.Point(2, 30);
-            this.TbAnotacao.Multiline = true;
-            this.TbAnotacao.Name = "TbAnotacao";
-            this.TbAnotacao.Size = new System.Drawing.Size(463, 290);
-            this.TbAnotacao.TabIndex = 40;
             // 
             // toolStrip1
             // 
@@ -357,7 +347,7 @@
             this.tsCorTexto});
             this.toolStrip1.Location = new System.Drawing.Point(0, 2);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(139, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(170, 25);
             this.toolStrip1.TabIndex = 41;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -373,32 +363,39 @@
             this.tsArquivo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsArquivo.Name = "tsArquivo";
             this.tsArquivo.Size = new System.Drawing.Size(29, 22);
-            this.tsArquivo.Text = "toolStripDropDownButton1";
+            this.tsArquivo.Text = "Arquivo";
+            this.tsArquivo.ToolTipText = "Arquivo";
             // 
             // novoToolStripMenuItem
             // 
             this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.novoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.novoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.novoToolStripMenuItem.Text = "Novo";
+            this.novoToolStripMenuItem.Click += new System.EventHandler(this.novoToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.abrirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
             // salvarToolStripMenuItem
             // 
             this.salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.salvarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.salvarToolStripMenuItem.Text = "Salvar";
             this.salvarToolStripMenuItem.Click += new System.EventHandler(this.SalvarToolStripMenuItem_Click);
             // 
             // salvarComoToolStripMenuItem
             // 
             this.salvarComoToolStripMenuItem.Name = "salvarComoToolStripMenuItem";
-            this.salvarComoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.salvarComoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.salvarComoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.salvarComoToolStripMenuItem.Text = "Salvar Como";
             this.salvarComoToolStripMenuItem.Click += new System.EventHandler(this.SalvarComoToolStripMenuItem_Click);
             // 
@@ -409,8 +406,9 @@
             this.tsNegrito.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNegrito.Name = "tsNegrito";
             this.tsNegrito.Size = new System.Drawing.Size(23, 22);
-            this.tsNegrito.Text = "toolStripButton1";
-            this.tsNegrito.Click += new System.EventHandler(this.TsNegrito_Click);
+            this.tsNegrito.Text = "Negrito";
+            this.tsNegrito.ToolTipText = "Negrito";
+            this.tsNegrito.Click += new System.EventHandler(this.tsNegrito_Click);
             // 
             // tsItalico
             // 
@@ -419,8 +417,8 @@
             this.tsItalico.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsItalico.Name = "tsItalico";
             this.tsItalico.Size = new System.Drawing.Size(23, 22);
-            this.tsItalico.Text = "toolStripButton2";
-            this.tsItalico.Click += new System.EventHandler(this.TsItalico_Click);
+            this.tsItalico.Text = "Italico";
+            this.tsItalico.Click += new System.EventHandler(this.tsItalico_Click);
             // 
             // tsSublinhado
             // 
@@ -429,8 +427,8 @@
             this.tsSublinhado.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSublinhado.Name = "tsSublinhado";
             this.tsSublinhado.Size = new System.Drawing.Size(23, 22);
-            this.tsSublinhado.Text = "toolStripButton3";
-            this.tsSublinhado.Click += new System.EventHandler(this.TsSublinhado_Click);
+            this.tsSublinhado.Text = "Sublinhado";
+            this.tsSublinhado.Click += new System.EventHandler(this.tsSublinhado_Click);
             // 
             // toolStripSeparator1
             // 
@@ -444,7 +442,7 @@
             this.tsCorTexto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsCorTexto.Name = "tsCorTexto";
             this.tsCorTexto.Size = new System.Drawing.Size(23, 22);
-            this.tsCorTexto.Text = "toolStripButton4";
+            this.tsCorTexto.Text = "Cor do Texto";
             this.tsCorTexto.Click += new System.EventHandler(this.TsCorTexto_Click);
             // 
             // nUpTamanho
@@ -469,20 +467,32 @@
             0,
             0,
             0});
+            this.nUpTamanho.ValueChanged += new System.EventHandler(this.nUpTamanho_ValueChanged);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // TbAnotacao
+            // 
+            this.TbAnotacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbAnotacao.Location = new System.Drawing.Point(0, 30);
+            this.TbAnotacao.Name = "TbAnotacao";
+            this.TbAnotacao.Size = new System.Drawing.Size(475, 282);
+            this.TbAnotacao.TabIndex = 43;
+            this.TbAnotacao.Text = "";
             // 
             // FormTarefa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(714, 322);
+            this.ClientSize = new System.Drawing.Size(714, 312);
+            this.Controls.Add(this.TbAnotacao);
             this.Controls.Add(this.nUpTamanho);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.TbAnotacao);
             this.Controls.Add(this.separatorControl5);
             this.Controls.Add(this.separatorControl2);
             this.Controls.Add(this.separatorControl1);
@@ -551,7 +561,6 @@
         private DevExpress.XtraEditors.SeparatorControl separatorControl1;
         private DevExpress.XtraEditors.SeparatorControl separatorControl2;
         private DevExpress.XtraEditors.SeparatorControl separatorControl5;
-        private System.Windows.Forms.TextBox TbAnotacao;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton tsArquivo;
      
@@ -567,5 +576,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.RichTextBox TbAnotacao;
     }
 }

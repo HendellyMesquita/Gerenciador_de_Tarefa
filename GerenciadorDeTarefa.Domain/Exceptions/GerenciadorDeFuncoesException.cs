@@ -28,5 +28,12 @@ namespace GerenciadorDeTarefa.Domain.Exceptions
             public AlertaException(string message) : base(message) { }
             public AlertaException(string message, Exception inner) : base(message, inner) { }
         }
+
+        public class NewException : Exception
+        {
+            public NewException() : base() { }
+            public NewException(string message) : base(message) { }
+            public NewException(string message, Exception inner) : base(message, inner) { }
+        }
     }
 }

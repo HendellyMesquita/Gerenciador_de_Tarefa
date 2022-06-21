@@ -1,41 +1,54 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using GerenciadorDeTarefa.Domain.Alertas;
+using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
+using GerenciadorDeTarefa.Domain.BlocoDeNotas;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
-using GerenciadorDeTarefa.Infra.TodosBlocoDeNotas;
 using Microsoft.VisualBasic;
+using static System.Windows.Forms.ListView;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
-namespace GerenciadorDeTarefa.UI.Contador
+namespace GerenciadorDeTarefa.UI
 {
     public partial class FormTarefa : Form
     {
-        private GerenciadorHora _gerenciadorHora;
-        private Alerta _alerta;
+        private void Send() => ColorUpdated?.Invoke(BackColor, ForeColor);
+        internal delegate void UpdatrColor(Color backcolor, Color forecolor);
+        internal event UpdatrColor ColorUpdated;
+
         private IServicoGerenciamentoHora _servicoGerenciamento;
         private IServicoDeAlerta _servicoDeAlerta;
-        private int cont = 0;
+        private IServicoBlocoDeNota _servicoBlocoDeNotas;
+        private GerenciadorHora _gerenciadorHora;
+        private Alerta _alerta;
+        private Fonte _fonte;
         private DialogResult AcaoArquivo;
+        private int cont = 0;
         private string lastpath;
         private string salvarTexto;
-
 
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
             IServicoDeAlerta servicoDeAlerta,
+            IServicoBlocoDeNota servicoBlocoDeNota,
             GerenciadorHora gerenciadorHora,
-            Alerta alerta)
+            Alerta alerta,
+            Fonte fonte)
         {
             InitializeComponent();
             _servicoGerenciamento = servicoGerenciamento;
             _servicoDeAlerta = servicoDeAlerta;
+            _servicoBlocoDeNotas = servicoBlocoDeNota;
             _gerenciadorHora = gerenciadorHora;
             _alerta = alerta;
+            _fonte = fonte;
 
         }
 
 
+        /*GERENCIADOR*/
         private void MarcarHoraAtual()
         {
             var contador = _servicoGerenciamento.MarcadorHoras(cont, _gerenciadorHora);
@@ -144,6 +157,7 @@ namespace GerenciadorDeTarefa.UI.Contador
             }
         }
 
+        /*ALERTA*/
         private void teIntervalo_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -196,24 +210,59 @@ namespace GerenciadorDeTarefa.UI.Contador
             }
         }
 
-        private void ObterTitulo(string tituloArquivo)
+        /*NOTAS*/
+        private void ObterTituloDoArquivo(string tituloArquivo)
         {
             Text = $"{tituloArquivo}";
         }
 
+        private void novoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /*DRY*/
+                if (TbAnotacao.Text != "")
+                {
+                    if (TbAnotacao.Text != salvarTexto)
+                    {
+                        if (MessageBox.Show("Deseja salvar suas Anotações antes de Criar um novo arquivo?", "Salvar?",
+                            MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            SalvarToolStripMenuItem_Click(sender, e);
+                            MessageBox.Show("Salvo com Sucesso");
+                        }
+                    }
+                }
+                /*DRY*/
+                if (!string.IsNullOrEmpty(this.TbAnotacao.Text))
+                {
+                    this.Text = "Sem Título - Gerente de Horas";
+                    this.TbAnotacao.Text = string.Empty;
+                    return;
+                }
+
+
+            }
+            catch (NewException ex)
+            {
+                throw new Exception($"Erro Ao Abrir Novo Arquivo. Erro:{ex}");
+            }
+        }
+
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO: criar serviço para abrir arquivo
+
             openFileDialog1.DefaultExt = ".txt";
             openFileDialog1.Filter = "Text Files(*.txt)|*.txt";
 
             AcaoArquivo = openFileDialog1.ShowDialog();
+
             if (AcaoArquivo.Equals(DialogResult.OK))
             {
                 lastpath = openFileDialog1.FileName;
 
-            /**/     ObterTitulo(TodosServicoBlocoDeNota.ObterNomeArquivo(lastpath));
-                TbAnotacao.Text = TodosServicoBlocoDeNota.LerArquivo(lastpath);
+                ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo(lastpath));
+                TbAnotacao.Text = _servicoBlocoDeNotas.AbrirArquivo(lastpath);
                 salvarTexto = TbAnotacao.Text;
             }
         }
@@ -222,27 +271,30 @@ namespace GerenciadorDeTarefa.UI.Contador
         {
             if (File.Exists(lastpath))
             {
-            /**/    TodosServicoBlocoDeNota.EscreverArquivo(lastpath, TbAnotacao.Text);
+                _servicoBlocoDeNotas.SalvarArquivo(lastpath, TbAnotacao.Text);
                 salvarTexto = TbAnotacao.Text;
             }
             else
             {
-                //TODO: criar serviço para salvar arquivo
+                /*DRY*/
                 saveFileDialog1.Filter = "Text Files(*.txt)|*.txt";
                 AcaoArquivo = saveFileDialog1.ShowDialog();
 
                 if (AcaoArquivo.Equals(DialogResult.OK))
                 {
                     lastpath = saveFileDialog1.FileName;
-            /**/        TodosServicoBlocoDeNota.EscreverArquivo(lastpath, TbAnotacao.Text);
-            /**/        ObterTitulo(TodosServicoBlocoDeNota.ObterNomeArquivo(lastpath));
+
+                    ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo(lastpath));
+                    _servicoBlocoDeNotas.SalvarArquivo(lastpath, TbAnotacao.Text);
                     salvarTexto = TbAnotacao.Text;
                 }
+                /*DRY*/
             }
         }
 
         private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*DRY*/
             saveFileDialog1.Filter = "Text Files(*.txt)|*.txt";
             AcaoArquivo = saveFileDialog1.ShowDialog();
 
@@ -250,31 +302,85 @@ namespace GerenciadorDeTarefa.UI.Contador
             {
                 lastpath = saveFileDialog1.FileName;
 
-                //TODO: Fazer serviço de bloco de notas para chamar funções todosServicoDeNotas
-        /**/        TodosServicoBlocoDeNota.EscreverArquivo(lastpath, TbAnotacao.Text);
-        /**/        ObterTitulo(TodosServicoBlocoDeNota.ObterNomeArquivo(lastpath));
+                ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo(lastpath));
+                _servicoBlocoDeNotas.SalvarArquivo(lastpath, TbAnotacao.Text);
                 salvarTexto = TbAnotacao.Text;
+            }
+            /*DRY*/
+        }
+
+        //TODO: Colocar alterar cor em servico
+        //TODO: Corrigir cor desfaz configurações de fonte
+        private void TsCorTexto_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                TbAnotacao.SelectionColor = colorDialog1.Color;
+                Send();
             }
         }
 
-        private void TsNegrito_Click(object sender, EventArgs e)
+        private void nUpTamanho_ValueChanged(object sender, EventArgs e)
         {
-            //TODO: criar função negrito
+
+            _servicoBlocoDeNotas.DefinirTamanhoTexto(TbAnotacao, nUpTamanho);
+
+            //var fonte = TbAnotacao.Font.Name;
+            //var tamanho = (float)nUpTamanho.Value;
+            //var estilo = TbAnotacao.Font.Style;
+            //if (TbAnotacao.Font.Size != tamanho)
+            //{
+            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, estilo);
+            //}
+
+        }
+       
+        private void tsNegrito_Click(object sender, EventArgs e)
+        {
+            _servicoBlocoDeNotas.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
+
+            //var fonte = TbAnotacao.Font.Name;
+            //var tamanho = TbAnotacao.Font.Size;
+            //if (TbAnotacao.Font.Style != FontStyle.Bold)
+            //{
+            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Bold);
+            //}
+            //else
+            //{
+            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
+            //}
         }
 
-        private void TsItalico_Click(object sender, EventArgs e)
+        private void tsItalico_Click(object sender, EventArgs e)
         {
-            //TODO: criar função italico
+            _servicoBlocoDeNotas.DefinirTextoComoItalico(TbAnotacao, nUpTamanho);
+
+            //var fonte = TbAnotacao.Font.Name;
+            //var tamanho = TbAnotacao.Font.Size;
+            //if (TbAnotacao.Font.Style != FontStyle.Italic)
+
+            //{
+            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Italic);
+            //}
+            //else
+            //{
+            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
+            //}
         }
 
-        private void TsSublinhado_Click(object sender, EventArgs e)
+        private void tsSublinhado_Click(object sender, EventArgs e)
         {
-            //TODO: criar função sublinhado
-        }
-
-        private void TsCorTexto_Click(object sender, EventArgs e)
-        {
-            //TODO: criar função cor do Texto
+            _servicoBlocoDeNotas.DefinirTextoComoSublinhado(TbAnotacao, nUpTamanho);
+            //var fonte = TbAnotacao.Font.Name;
+            //var tamanho = TbAnotacao.Font.Size;
+            //if (TbAnotacao.Font.Style != FontStyle.Underline)
+            //{
+            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Underline);
+            //}
+            //else
+            //{
+            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
+            //}
         }
 
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
@@ -291,12 +397,15 @@ namespace GerenciadorDeTarefa.UI.Contador
                     }
                 }
 
-                if (TbAnotacao.Text != salvarTexto)
+                if (TbAnotacao.Text != "")
                 {
-                    if (MessageBox.Show("Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia", "Salvar?",
-                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (TbAnotacao.Text != salvarTexto)
                     {
-                        SalvarToolStripMenuItem_Click(sender, e);
+                        if (MessageBox.Show("Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia", "Salvar?",
+                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            SalvarToolStripMenuItem_Click(sender, e);
+                        }
                     }
                 }
             }
@@ -305,5 +414,6 @@ namespace GerenciadorDeTarefa.UI.Contador
                 throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
             }
         }
+
     }
 }

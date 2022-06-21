@@ -88,7 +88,6 @@ C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Deb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\GerenciadorDeTarefa.Domain.pdb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\GerenciadorDeTarefa.Infra.pdb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.csproj.AssemblyReference.cache
-C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.Contador.FormTarefa.resources
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.Properties.Resources.resources
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.csproj.GenerateResource.cache
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.GeneratedMSBuildEditorConfig.editorconfig
@@ -100,3 +99,4 @@ C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Deb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\ref\GerenciadorDeTarefa.UI.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.pdb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.genruntimeconfig.cache
+C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.FormTarefa.resources
