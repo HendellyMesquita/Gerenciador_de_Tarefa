@@ -1,4 +1,6 @@
-﻿namespace GerenciadorDeTarefa.UI
+﻿using System;
+
+namespace GerenciadorDeTarefa.UI
 {
     partial class FormTarefa
     {
@@ -282,7 +284,7 @@
             // teIntervalo
             // 
             this.teIntervalo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.teIntervalo.EditValue = new System.DateTime(2022, 6, 21, 0, 0, 0, 0);
+            this.teIntervalo.EditValue = DateTime.Today;
             this.teIntervalo.Location = new System.Drawing.Point(556, 279);
             this.teIntervalo.Name = "teIntervalo";
             this.teIntervalo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -290,6 +292,7 @@
             this.teIntervalo.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.teIntervalo.Size = new System.Drawing.Size(67, 20);
             this.teIntervalo.TabIndex = 28;
+
             this.teIntervalo.EditValueChanged += new System.EventHandler(this.teIntervalo_EditValueChanged);
             // 
             // separatorControl4
@@ -347,7 +350,7 @@
             this.tsCorTexto});
             this.toolStrip1.Location = new System.Drawing.Point(0, 2);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(170, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(139, 25);
             this.toolStrip1.TabIndex = 41;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -478,6 +481,7 @@
             this.TbAnotacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbAnotacao.Font = new System.Drawing.Font("Sylfaen", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TbAnotacao.Location = new System.Drawing.Point(0, 30);
             this.TbAnotacao.Name = "TbAnotacao";
             this.TbAnotacao.Size = new System.Drawing.Size(475, 282);

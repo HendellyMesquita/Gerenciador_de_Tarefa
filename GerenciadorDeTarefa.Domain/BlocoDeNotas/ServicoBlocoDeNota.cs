@@ -2,11 +2,17 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public class ServicoBlocoDeNota : IServicoBlocoDeNota
     {
+        FonteDeNota _fonte = new FonteDeNota();
+        private void Send() => ColorUpdated?.Invoke(_fonte.BackColor, _fonte.ForeColor);
+        internal delegate void UpdatrColor(Color backcolor, Color forecolor);
+        internal event UpdatrColor ColorUpdated;
+        //TODO: Passar informações do form por parametro em Fonte
 
         public void SalvarArquivo(string path, string texto)
         {
@@ -40,61 +46,63 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             return $"{nomeEstencao[0]} - Gerente de Horas";
         }
 
-        public void DefinirCorTexto(RichTextBox TbAnotacao)
+        public void DefinirCorTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho, ColorDialog colorDialog)
         {
-            throw new NotImplementedException();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                TbAnotacao.SelectionColor = colorDialog.Color;
+                Send();
+            }
+            ConfiguracaoFonte(TbAnotacao, nUpTamanho);
         }
 
-        //TODO: Criar serviço para funçoes de fonte
-        //TODO: Entender ao clicar no ts o texto n altera entre regular e fonte selecionada
-        //TODO: Possibilitar adicionar a um texto duas ou mais fulções de estilo
+        //TODO:Corrigir btn ts não alterando entre finção e regular
         //TODO: Verificar Porque alterações de Fonte não estao sendo salvas
-        
 
         public void DefinirTextoComoItalico(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
         {
-            var fonte = TbAnotacao.Font.Name;
-            var tamanho = (float)nUpTamanho.Value;
             if (TbAnotacao.Font.Style != FontStyle.Italic)
 
             {
-                TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Italic);
+                _fonte.Italico = FontStyle.Italic;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
             }
             else
             {
-                TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
+                _fonte.Italico = FontStyle.Regular;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
             }
         }
 
         public void DefinirTextoComoNegrito(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
         {
-            var fonte = TbAnotacao.Font.Name;
-            var tamanho = (float)nUpTamanho.Value;
             if (TbAnotacao.Font.Style != FontStyle.Bold)
             {
-                TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Bold);
+                _fonte.Negrito = FontStyle.Bold;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
             }
             else
             {
-                TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
+                _fonte.Negrito = FontStyle.Regular;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
             }
         }
 
         public void DefinirTextoComoSublinhado(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
         {
-            var fonte = TbAnotacao.Font.Name;
-            var tamanho = (float)nUpTamanho.Value;
             if (TbAnotacao.Font.Style != FontStyle.Underline)
             {
-                TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Underline);
+                _fonte.Sublinhado = FontStyle.Underline;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
+
             }
             else
             {
-                TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
+                _fonte.Sublinhado = FontStyle.Regular;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
             }
         }
 
-        //TODO: Passar nUpTamanho por parametro em Fonte
         public void DefinirTamanhoTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
         {
             var fonte = TbAnotacao.Font.Name;
@@ -104,6 +112,13 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             {
                 TbAnotacao.SelectionFont = new Font(fonte, tamanho, estilo);
             }
+        }
+
+        public void ConfiguracaoFonte(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
+        {
+            var fonte = TbAnotacao.Font.Name;
+            var tamanho = (float)nUpTamanho.Value;
+            TbAnotacao.SelectionFont = new Font(fonte, tamanho, _fonte.Sublinhado | _fonte.Negrito | _fonte.Italico);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using GerenciadorDeTarefa.Domain.Alertas;
@@ -7,23 +6,19 @@ using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
 using Microsoft.VisualBasic;
-using static System.Windows.Forms.ListView;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
 namespace GerenciadorDeTarefa.UI
 {
     public partial class FormTarefa : Form
     {
-        private void Send() => ColorUpdated?.Invoke(BackColor, ForeColor);
-        internal delegate void UpdatrColor(Color backcolor, Color forecolor);
-        internal event UpdatrColor ColorUpdated;
 
         private IServicoGerenciamentoHora _servicoGerenciamento;
         private IServicoDeAlerta _servicoDeAlerta;
         private IServicoBlocoDeNota _servicoBlocoDeNotas;
         private GerenciadorHora _gerenciadorHora;
         private Alerta _alerta;
-        private Fonte _fonte;
+        private FonteDeNota _fonte;
         private DialogResult AcaoArquivo;
         private int cont = 0;
         private string lastpath;
@@ -35,7 +30,7 @@ namespace GerenciadorDeTarefa.UI
             IServicoBlocoDeNota servicoBlocoDeNota,
             GerenciadorHora gerenciadorHora,
             Alerta alerta,
-            Fonte fonte)
+            FonteDeNota fonte)
         {
             InitializeComponent();
             _servicoGerenciamento = servicoGerenciamento;
@@ -46,7 +41,6 @@ namespace GerenciadorDeTarefa.UI
             _fonte = fonte;
 
         }
-
 
         /*GERENCIADOR*/
         private void MarcarHoraAtual()
@@ -309,78 +303,31 @@ namespace GerenciadorDeTarefa.UI
             /*DRY*/
         }
 
-        //TODO: Colocar alterar cor em servico
-        //TODO: Corrigir cor desfaz configurações de fonte
         private void TsCorTexto_Click(object sender, EventArgs e)
         {
-            if (colorDialog1.ShowDialog() == DialogResult.OK)
-            {
-                TbAnotacao.SelectionColor = colorDialog1.Color;
-                Send();
-            }
+            _fonte.BackColor = BackColor;
+            _fonte.ForeColor = ForeColor; 
+            _servicoBlocoDeNotas.DefinirCorTexto(TbAnotacao, nUpTamanho, colorDialog1);
         }
 
         private void nUpTamanho_ValueChanged(object sender, EventArgs e)
         {
-
             _servicoBlocoDeNotas.DefinirTamanhoTexto(TbAnotacao, nUpTamanho);
-
-            //var fonte = TbAnotacao.Font.Name;
-            //var tamanho = (float)nUpTamanho.Value;
-            //var estilo = TbAnotacao.Font.Style;
-            //if (TbAnotacao.Font.Size != tamanho)
-            //{
-            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, estilo);
-            //}
-
         }
-       
+
         private void tsNegrito_Click(object sender, EventArgs e)
         {
             _servicoBlocoDeNotas.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
-
-            //var fonte = TbAnotacao.Font.Name;
-            //var tamanho = TbAnotacao.Font.Size;
-            //if (TbAnotacao.Font.Style != FontStyle.Bold)
-            //{
-            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Bold);
-            //}
-            //else
-            //{
-            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
-            //}
         }
 
         private void tsItalico_Click(object sender, EventArgs e)
         {
             _servicoBlocoDeNotas.DefinirTextoComoItalico(TbAnotacao, nUpTamanho);
-
-            //var fonte = TbAnotacao.Font.Name;
-            //var tamanho = TbAnotacao.Font.Size;
-            //if (TbAnotacao.Font.Style != FontStyle.Italic)
-
-            //{
-            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Italic);
-            //}
-            //else
-            //{
-            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
-            //}
         }
 
         private void tsSublinhado_Click(object sender, EventArgs e)
         {
             _servicoBlocoDeNotas.DefinirTextoComoSublinhado(TbAnotacao, nUpTamanho);
-            //var fonte = TbAnotacao.Font.Name;
-            //var tamanho = TbAnotacao.Font.Size;
-            //if (TbAnotacao.Font.Style != FontStyle.Underline)
-            //{
-            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Underline);
-            //}
-            //else
-            //{
-            //    TbAnotacao.SelectionFont = new Font(fonte, tamanho, FontStyle.Regular);
-            //}
         }
 
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
