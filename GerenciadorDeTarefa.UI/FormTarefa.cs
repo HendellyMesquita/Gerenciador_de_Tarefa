@@ -361,6 +361,5 @@ namespace GerenciadorDeTarefa.UI
                 throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
             }
         }
-
     }
 }
