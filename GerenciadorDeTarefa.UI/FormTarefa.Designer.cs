@@ -285,6 +285,7 @@ namespace GerenciadorDeTarefa.UI
             // 
             this.teIntervalo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.teIntervalo.EditValue = new System.DateTime(2022, 6, 24, 0, 0, 0, 0);
+            this.teIntervalo.EditValue = DateTime.Today;
             this.teIntervalo.Location = new System.Drawing.Point(556, 279);
             this.teIntervalo.Name = "teIntervalo";
             this.teIntervalo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

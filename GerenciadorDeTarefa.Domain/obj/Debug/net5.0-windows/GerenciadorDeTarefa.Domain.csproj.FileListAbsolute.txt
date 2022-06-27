@@ -1,5 +1,6 @@
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\bin\Debug\net5.0-windows\GerenciadorDeTarefa.Domain.deps.json
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\bin\Debug\net5.0-windows\GerenciadorDeTarefa.Domain.dll
+C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\bin\Debug\net5.0-windows\ref\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\bin\Debug\net5.0-windows\GerenciadorDeTarefa.Domain.pdb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\bin\Debug\net5.0-windows\GerenciadorDeTarefa.Infra.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\bin\Debug\net5.0-windows\GerenciadorDeTarefa.Infra.pdb
@@ -12,4 +13,3 @@ C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\obj
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\obj\Debug\net5.0-windows\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\obj\Debug\net5.0-windows\ref\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\obj\Debug\net5.0-windows\GerenciadorDeTarefa.Domain.pdb
-C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.Domain\obj\Debug\net5.0-windows\refint\GerenciadorDeTarefa.Domain.dll

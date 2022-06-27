@@ -12,13 +12,16 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         private void Send() => ColorUpdated?.Invoke(_fonte.BackColor, _fonte.ForeColor);
         internal delegate void UpdatrColor(Color backcolor, Color forecolor);
         internal event UpdatrColor ColorUpdated;
+     
         //TODO: Passar informações do form por parametro em Fonte
+        //TODO: Verificar Porque alterações de Fonte não estao sendo salvas
 
         public void SalvarArquivo(string path, string texto)
         {
             try
             {
                 File.WriteAllText(path, texto);
+               
             }
             catch (Exception ex)
             {
@@ -46,6 +49,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             return $"{nomeEstencao[0]} - Gerente de Horas";
         }
 
+        //Configuração de Fonte
         public void DefinirCorTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho, ColorDialog colorDialog)
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
@@ -56,12 +60,26 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             ConfiguracaoFonte(TbAnotacao, nUpTamanho);
         }
 
-        //TODO:Corrigir btn ts não alterando entre finção e regular
-        //TODO: Verificar Porque alterações de Fonte não estao sendo salvas
+        public void DefinirTextoComoNegrito(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
+        {
+            var ContemNegrito = TbAnotacao.SelectionFont.Style.ToString().Contains("Bold");
+
+            if (ContemNegrito == false)
+            {
+                _fonte.Negrito = FontStyle.Bold;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
+            }
+            else
+            {
+                _fonte.Negrito = FontStyle.Regular;
+                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
+            }
+        }
 
         public void DefinirTextoComoItalico(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
         {
-            if (TbAnotacao.Font.Style != FontStyle.Italic)
+            var ContemItalico = TbAnotacao.SelectionFont.Style.ToString().Contains("Italic");
+            if (ContemItalico == false)
 
             {
                 _fonte.Italico = FontStyle.Italic;
@@ -74,27 +92,14 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             }
         }
 
-        public void DefinirTextoComoNegrito(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
-        {
-            if (TbAnotacao.Font.Style != FontStyle.Bold)
-            {
-                _fonte.Negrito = FontStyle.Bold;
-                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
-            }
-            else
-            {
-                _fonte.Negrito = FontStyle.Regular;
-                ConfiguracaoFonte(TbAnotacao, nUpTamanho);
-            }
-        }
-
         public void DefinirTextoComoSublinhado(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
         {
-            if (TbAnotacao.Font.Style != FontStyle.Underline)
+            var ContemSublinhado = TbAnotacao.SelectionFont.Style.ToString().Contains("Underline");
+
+            if (ContemSublinhado == false)
             {
                 _fonte.Sublinhado = FontStyle.Underline;
                 ConfiguracaoFonte(TbAnotacao, nUpTamanho);
-
             }
             else
             {

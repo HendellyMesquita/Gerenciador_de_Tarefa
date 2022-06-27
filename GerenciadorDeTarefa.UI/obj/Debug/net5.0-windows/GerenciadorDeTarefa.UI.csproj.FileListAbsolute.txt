@@ -3,6 +3,7 @@ C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Deb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\GerenciadorDeTarefa.UI.runtimeconfig.json
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\GerenciadorDeTarefa.UI.runtimeconfig.dev.json
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\GerenciadorDeTarefa.UI.dll
+C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\ref\GerenciadorDeTarefa.UI.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\GerenciadorDeTarefa.UI.pdb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\DevExpress.XtraCharts.v21.2.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\bin\Debug\net5.0-windows\DevExpress.Charts.v21.2.Core.dll
@@ -99,4 +100,3 @@ C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Deb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\ref\GerenciadorDeTarefa.UI.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.pdb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.genruntimeconfig.cache
-C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\refint\GerenciadorDeTarefa.UI.dll

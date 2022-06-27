@@ -33,6 +33,7 @@ namespace GerenciadorDeTarefa.UI
             FonteDeNota fonte)
         {
             InitializeComponent();
+
             _servicoGerenciamento = servicoGerenciamento;
             _servicoDeAlerta = servicoDeAlerta;
             _servicoBlocoDeNotas = servicoBlocoDeNota;
@@ -303,18 +304,7 @@ namespace GerenciadorDeTarefa.UI
             /*DRY*/
         }
 
-        private void TsCorTexto_Click(object sender, EventArgs e)
-        {
-            _fonte.BackColor = BackColor;
-            _fonte.ForeColor = ForeColor; 
-            _servicoBlocoDeNotas.DefinirCorTexto(TbAnotacao, nUpTamanho, colorDialog1);
-        }
-
-        private void nUpTamanho_ValueChanged(object sender, EventArgs e)
-        {
-            _servicoBlocoDeNotas.DefinirTamanhoTexto(TbAnotacao, nUpTamanho);
-        }
-
+      
         private void tsNegrito_Click(object sender, EventArgs e)
         {
             _servicoBlocoDeNotas.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
@@ -328,6 +318,18 @@ namespace GerenciadorDeTarefa.UI
         private void tsSublinhado_Click(object sender, EventArgs e)
         {
             _servicoBlocoDeNotas.DefinirTextoComoSublinhado(TbAnotacao, nUpTamanho);
+        }
+
+        private void nUpTamanho_ValueChanged(object sender, EventArgs e)
+        {
+            _servicoBlocoDeNotas.DefinirTamanhoTexto(TbAnotacao, nUpTamanho);
+        }
+
+        private void TsCorTexto_Click(object sender, EventArgs e)
+        {
+            _fonte.BackColor = BackColor;
+            _fonte.ForeColor = ForeColor;
+            _servicoBlocoDeNotas.DefinirCorTexto(TbAnotacao, nUpTamanho, colorDialog1);
         }
 
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
