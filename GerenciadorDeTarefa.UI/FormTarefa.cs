@@ -215,7 +215,6 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-
                 VerificarSaveDoArquivo(sender, e);
 
                 lastpath = null;
@@ -234,28 +233,16 @@ namespace GerenciadorDeTarefa.UI
         }
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            openFileDialog1.DefaultExt = ".txt";
-            openFileDialog1.Filter = "Text Files(*.txt)|*.txt";
-
-            AcaoArquivo = openFileDialog1.ShowDialog();
-
-            if (AcaoArquivo.Equals(DialogResult.OK))
-            {
-                lastpath = openFileDialog1.FileName;
-
-                ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo(lastpath));
-                TbAnotacao.Text = _servicoBlocoDeNotas.AbrirArquivo(lastpath);
-                salvarTexto = TbAnotacao.Text;
-            }
+            TbAnotacao.Text = _servicoBlocoDeNotas.AbrirArquivo();
+            ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo());
+            salvarTexto = TbAnotacao.Text;
         }
 
-        //TODO: verificar nescessidade de criar serviço para salvar novo
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (File.Exists(lastpath))
             {
-                _servicoBlocoDeNotas.SalvarArquivo(lastpath, TbAnotacao.Text);
+                _servicoBlocoDeNotas.SalvarArquivo(TbAnotacao.Text);
                 salvarTexto = TbAnotacao.Text;
             }
             else
@@ -266,18 +253,9 @@ namespace GerenciadorDeTarefa.UI
 
         private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.Filter = "Text Files(*.txt)|*.txt";
-            AcaoArquivo = saveFileDialog1.ShowDialog();
-
-            if (AcaoArquivo.Equals(DialogResult.OK))
-            {
-                lastpath = saveFileDialog1.FileName;
-
-                ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo(lastpath));
-                _servicoBlocoDeNotas.SalvarArquivo(lastpath, TbAnotacao.Text);
-                salvarTexto = TbAnotacao.Text;
-            }
-
+            _servicoBlocoDeNotas.SalvarArquivo(TbAnotacao.Text);
+            ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo());
+            salvarTexto = TbAnotacao.Text;
         }
 
         private void tsNegrito_Click(object sender, EventArgs e)

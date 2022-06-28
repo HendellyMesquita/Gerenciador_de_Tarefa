@@ -4,6 +4,9 @@ using System.IO;
 using System.Windows.Forms;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 
+//TODO: Passar informações do form por parametro em Fonte
+//TODO: Verificar Porque alterações de Fonte não estao sendo salvas
+//TODO: Adicionar verificador ortografico https://www.macoratti.net/vbn_wrde.htm    https://social.msdn.microsoft.com/Forums/pt-BR/4c40182d-f4fe-4d1e-b486-0305de8078d9/corretor-ortografico-csharp?forum=vscsharppt
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public class ServicoBlocoDeNota : IServicoBlocoDeNota
@@ -12,42 +15,71 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         private void Send() => ColorUpdated?.Invoke(_fonte.BackColor, _fonte.ForeColor);
         internal delegate void UpdatrColor(Color backcolor, Color forecolor);
         internal event UpdatrColor ColorUpdated;
+        SaveFileDialog salvarArquivo = new SaveFileDialog();
+        OpenFileDialog abrirArquivo = new OpenFileDialog();
 
-        //TODO: Passar informações do form por parametro em Fonte
-        //TODO: Verificar Porque alterações de Fonte não estao sendo salvas
-        //TODO: Adicionar verificador ortografico https://www.macoratti.net/vbn_wrde.htm    https://social.msdn.microsoft.com/Forums/pt-BR/4c40182d-f4fe-4d1e-b486-0305de8078d9/corretor-ortografico-csharp?forum=vscsharppt
-        public void SalvarArquivo(string path, string texto)
+        public void SalvarArquivo(string texto)
         {
             try
             {
-                File.WriteAllText(path, texto);
-               
+                salvarArquivo = new SaveFileDialog { Filter = @"Arquivo txt.(*.txt)|*.txt|Todos os arquivos (*.*)|*.*" };
+                salvarArquivo.FileName = $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}.txt";
+                if (salvarArquivo.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(salvarArquivo.FileName, texto);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Houve um erro ao escrever o arquivo {path}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
+                MessageBox.Show($"Houve um erro ao escrever o arquivo {salvarArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
             }
         }
 
-        public string AbrirArquivo(string path)
+        public string AbrirArquivo()
         {
-            if (!File.Exists(path))
-                return null;
-
-            return File.ReadAllText(path);
+            try
+            {
+                if (abrirArquivo.ShowDialog() == DialogResult.OK)
+                {
+                    return File.ReadAllText(abrirArquivo.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Houve um erro ao abrir o arquivo {abrirArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
+            }
+            return null;
         }
 
-        public string ObterNomeArquivo(string path)
+        public string ObterNomeArquivo()
         {
-            var parts = path.Split('\\');
+
+            var heNovoArquivo = !string.IsNullOrEmpty(salvarArquivo.FileName);
+            var nomeArquivo = heNovoArquivo ? salvarArquivo.FileName : abrirArquivo.FileName;
+
+            var parts = nomeArquivo.Split('\\');
             Console.WriteLine(parts);
 
             var nomeEstencao = parts[parts.Length - 1].Split('.');
-            Console.WriteLine(nomeEstencao);
-            Console.WriteLine(nomeEstencao[0]);
-
             return $"{nomeEstencao[0]} - Gerente de Horas";
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //Configuração de Fonte
         public void DefinirCorTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho, ColorDialog colorDialog)

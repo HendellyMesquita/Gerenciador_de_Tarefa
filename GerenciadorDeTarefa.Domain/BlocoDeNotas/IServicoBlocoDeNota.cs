@@ -4,11 +4,11 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public interface IServicoBlocoDeNota
     {
-        void SalvarArquivo(string path, string texto);
+        void SalvarArquivo(string texto);
 
-        string AbrirArquivo(string path);
+        string AbrirArquivo();
 
-        string ObterNomeArquivo(string path);
+        string ObterNomeArquivo();
         
         void DefinirTextoComoNegrito(RichTextBox TbAnotacao, NumericUpDown nUpTamanho);
 
