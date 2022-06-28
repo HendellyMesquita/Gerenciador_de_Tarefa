@@ -12,10 +12,10 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         private void Send() => ColorUpdated?.Invoke(_fonte.BackColor, _fonte.ForeColor);
         internal delegate void UpdatrColor(Color backcolor, Color forecolor);
         internal event UpdatrColor ColorUpdated;
-     
+
         //TODO: Passar informações do form por parametro em Fonte
         //TODO: Verificar Porque alterações de Fonte não estao sendo salvas
-
+        //TODO: Adicionar verificador ortografico https://www.macoratti.net/vbn_wrde.htm    https://social.msdn.microsoft.com/Forums/pt-BR/4c40182d-f4fe-4d1e-b486-0305de8078d9/corretor-ortografico-csharp?forum=vscsharppt
         public void SalvarArquivo(string path, string texto)
         {
             try

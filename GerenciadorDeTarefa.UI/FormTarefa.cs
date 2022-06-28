@@ -21,7 +21,7 @@ namespace GerenciadorDeTarefa.UI
         private FonteDeNota _fonte;
         private DialogResult AcaoArquivo;
         private int cont = 0;
-        private string lastpath;
+        private string? lastpath;
         private string salvarTexto;
 
         public FormTarefa(
@@ -90,12 +90,12 @@ namespace GerenciadorDeTarefa.UI
 
         private void LimparFiltro()
         {
-
-            var limpar = _servicoGerenciamento.LimparFiltro(cont, _gerenciadorHora);
-
             if (MessageBox.Show("Você tem certeza? Após Esta Ação Todos Os Dados Serão Perdidos", "Limpar Solução!",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+                _servicoGerenciamento.LimparFiltro(cont, _gerenciadorHora);
+                var limpar = "00:00";
+
                 lbEntrada1.Text = limpar;
                 lbSaida1.Text = limpar;
                 lbEntrada2.Text = limpar;
@@ -215,35 +215,23 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                /*DRY*/
-                if (TbAnotacao.Text != "")
-                {
-                    if (TbAnotacao.Text != salvarTexto)
-                    {
-                        if (MessageBox.Show("Deseja salvar suas Anotações antes de Criar um novo arquivo?", "Salvar?",
-                            MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            SalvarToolStripMenuItem_Click(sender, e);
-                            MessageBox.Show("Salvo com Sucesso");
-                        }
-                    }
-                }
-                /*DRY*/
+
+                VerificarSaveDoArquivo(sender, e);
+
+                lastpath = null;
+
                 if (!string.IsNullOrEmpty(this.TbAnotacao.Text))
                 {
                     this.Text = "Sem Título - Gerente de Horas";
                     this.TbAnotacao.Text = string.Empty;
                     return;
                 }
-
-
             }
             catch (NewException ex)
             {
                 throw new Exception($"Erro Ao Abrir Novo Arquivo. Erro:{ex}");
             }
         }
-
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -262,6 +250,7 @@ namespace GerenciadorDeTarefa.UI
             }
         }
 
+        //TODO: verificar nescessidade de criar serviço para salvar novo
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (File.Exists(lastpath))
@@ -271,25 +260,12 @@ namespace GerenciadorDeTarefa.UI
             }
             else
             {
-                /*DRY*/
-                saveFileDialog1.Filter = "Text Files(*.txt)|*.txt";
-                AcaoArquivo = saveFileDialog1.ShowDialog();
-
-                if (AcaoArquivo.Equals(DialogResult.OK))
-                {
-                    lastpath = saveFileDialog1.FileName;
-
-                    ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo(lastpath));
-                    _servicoBlocoDeNotas.SalvarArquivo(lastpath, TbAnotacao.Text);
-                    salvarTexto = TbAnotacao.Text;
-                }
-                /*DRY*/
+                SalvarComoToolStripMenuItem_Click(sender, e);
             }
         }
 
         private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*DRY*/
             saveFileDialog1.Filter = "Text Files(*.txt)|*.txt";
             AcaoArquivo = saveFileDialog1.ShowDialog();
 
@@ -301,10 +277,9 @@ namespace GerenciadorDeTarefa.UI
                 _servicoBlocoDeNotas.SalvarArquivo(lastpath, TbAnotacao.Text);
                 salvarTexto = TbAnotacao.Text;
             }
-            /*DRY*/
+
         }
 
-      
         private void tsNegrito_Click(object sender, EventArgs e)
         {
             _servicoBlocoDeNotas.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
@@ -345,22 +320,35 @@ namespace GerenciadorDeTarefa.UI
                         return;
                     }
                 }
+                VerificarSaveDoArquivo(sender, e);
 
-                if (TbAnotacao.Text != "")
-                {
-                    if (TbAnotacao.Text != salvarTexto)
-                    {
-                        if (MessageBox.Show("Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia", "Salvar?",
-                        MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            SalvarToolStripMenuItem_Click(sender, e);
-                        }
-                    }
-                }
             }
             catch (ClousingException ex)
             {
                 throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
+            }
+        }
+
+        //TODO: mover verificarSaveDoArquivoPara Serviço
+        private void VerificarSaveDoArquivo(object sender, EventArgs e)
+        {
+            var MensagemNovo = "Deseja salvar suas Anotações antes de Criar um novo arquivo?";
+            var MensagemClose = "Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia";
+
+            var verificaSender = sender.ToString() == "Novo";
+            var mensagemAlerta = verificaSender ? MensagemNovo : MensagemClose;
+
+            if (TbAnotacao.Text != "")
+            {
+                if (TbAnotacao.Text != salvarTexto)
+                {
+                    if (MessageBox.Show(mensagemAlerta, "Salvar?",
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        SalvarToolStripMenuItem_Click(sender, e);
+                        MessageBox.Show("Salvo com Sucesso");
+                    }
+                }
             }
         }
     }
