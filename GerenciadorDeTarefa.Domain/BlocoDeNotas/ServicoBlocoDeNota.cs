@@ -4,19 +4,15 @@ using System.IO;
 using System.Windows.Forms;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 
-//TODO: Passar informações do form por parametro em Fonte
-//TODO: Verificar Porque alterações de Fonte não estao sendo salvas
-//TODO: Adicionar verificador ortografico https://www.macoratti.net/vbn_wrde.htm    https://social.msdn.microsoft.com/Forums/pt-BR/4c40182d-f4fe-4d1e-b486-0305de8078d9/corretor-ortografico-csharp?forum=vscsharppt
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public class ServicoBlocoDeNota : IServicoBlocoDeNota
     {
         FonteDeNota _fonte = new FonteDeNota();
-        private void Send() => ColorUpdated?.Invoke(_fonte.BackColor, _fonte.ForeColor);
-        internal delegate void UpdatrColor(Color backcolor, Color forecolor);
-        internal event UpdatrColor ColorUpdated;
         SaveFileDialog salvarArquivo = new SaveFileDialog();
         OpenFileDialog abrirArquivo = new OpenFileDialog();
+        internal delegate void UpdatrColor(Color backcolor, Color forecolor);
+        internal event UpdatrColor ColorUpdated;
 
         public void SalvarArquivo(string texto)
         {
@@ -53,7 +49,6 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 
         public string ObterNomeArquivo()
         {
-
             var heNovoArquivo = !string.IsNullOrEmpty(salvarArquivo.FileName);
             var nomeArquivo = heNovoArquivo ? salvarArquivo.FileName : abrirArquivo.FileName;
 
@@ -63,25 +58,32 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             var nomeEstencao = parts[parts.Length - 1].Split('.');
             return $"{nomeEstencao[0]} - Gerente de Horas";
         }
+       
+        public void VerificarSaveDoArquivo(string texto, string sender, string salvarTexto = null)
+        {
+            var MensagemNovo = "Deseja salvar suas Anotações antes de Criar um novo arquivo?";
+            var MensagemClose = "Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia";
 
+            var verificaSender = sender.ToString() == "Novo";
+            var mensagemAlerta = verificaSender ? MensagemNovo : MensagemClose;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if (!string.IsNullOrEmpty(texto))
+            {
+                if (texto != salvarTexto)
+                {
+                    if (MessageBox.Show(mensagemAlerta, "Salvar?",
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        SalvarArquivo(texto);
+                        MessageBox.Show("Salvo com Sucesso");
+                    }
+                }
+            }
+        }
 
         //Configuração de Fonte
+        private void Send() => ColorUpdated?.Invoke(_fonte.BackColor, _fonte.ForeColor);
+
         public void DefinirCorTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho, ColorDialog colorDialog)
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
@@ -96,7 +98,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         {
             var ContemNegrito = TbAnotacao.SelectionFont.Style.ToString().Contains("Bold");
 
-            if (ContemNegrito == false)
+            if (!ContemNegrito)
             {
                 _fonte.Negrito = FontStyle.Bold;
                 ConfiguracaoFonte(TbAnotacao, nUpTamanho);
@@ -111,7 +113,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         public void DefinirTextoComoItalico(RichTextBox TbAnotacao, NumericUpDown nUpTamanho)
         {
             var ContemItalico = TbAnotacao.SelectionFont.Style.ToString().Contains("Italic");
-            if (ContemItalico == false)
+            if (!ContemItalico)
 
             {
                 _fonte.Italico = FontStyle.Italic;
@@ -128,7 +130,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         {
             var ContemSublinhado = TbAnotacao.SelectionFont.Style.ToString().Contains("Underline");
 
-            if (ContemSublinhado == false)
+            if (!ContemSublinhado)
             {
                 _fonte.Sublinhado = FontStyle.Underline;
                 ConfiguracaoFonte(TbAnotacao, nUpTamanho);
@@ -159,3 +161,6 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         }
     }
 }
+//TODO: Passar informações do form por parametro em Fonte
+//TODO: Adicionar verificador ortografico https://www.macoratti.net/vbn_wrde.htm    https://social.msdn.microsoft.com/Forums/pt-BR/4c40182d-f4fe-4d1e-b486-0305de8078d9/corretor-ortografico-csharp?forum=vscsharppt
+//TODO: usar Save File para salvar formatação do arquivo https://www.youtube.com/watch?v=7er96RwzvRc    https://imasters.com.br/back-end/editor-de-texto-com-richtextbox-e-printdocument-parte-01

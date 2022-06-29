@@ -9,6 +9,8 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         string AbrirArquivo();
 
         string ObterNomeArquivo();
+
+        void VerificarSaveDoArquivo(string texto, string sender, string salvarTexto);
         
         void DefinirTextoComoNegrito(RichTextBox TbAnotacao, NumericUpDown nUpTamanho);
 
