@@ -15,7 +15,8 @@ namespace GerenciadorDeTarefa.UI
 
         private IServicoGerenciamentoHora _servicoGerenciamento;
         private IServicoDeAlerta _servicoDeAlerta;
-        private IServicoBlocoDeNota _servicoBlocoDeNotas;
+        private IServicoDeGerrenciamentoDeArquivos _servicoDeGerrenciamentoDeArquivos;
+        private IServicoDeFontes _servicoDeFontes;
         private GerenciadorHora _gerenciadorHora;
         private Alerta _alerta;
         private FonteDeNota _fonte;
@@ -25,7 +26,8 @@ namespace GerenciadorDeTarefa.UI
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
             IServicoDeAlerta servicoDeAlerta,
-            IServicoBlocoDeNota servicoBlocoDeNota,
+            IServicoDeGerrenciamentoDeArquivos servicoDeGerrenciamentoDeArquivos,
+            IServicoDeFontes servicoDeFontes,
             GerenciadorHora gerenciadorHora,
             Alerta alerta,
             FonteDeNota fonte)
@@ -34,7 +36,8 @@ namespace GerenciadorDeTarefa.UI
 
             _servicoGerenciamento = servicoGerenciamento;
             _servicoDeAlerta = servicoDeAlerta;
-            _servicoBlocoDeNotas = servicoBlocoDeNota;
+            _servicoDeGerrenciamentoDeArquivos = servicoDeGerrenciamentoDeArquivos;
+            _servicoDeFontes = servicoDeFontes;
             _gerenciadorHora = gerenciadorHora;
             _alerta = alerta;
             _fonte = fonte;
@@ -213,7 +216,7 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                _servicoBlocoDeNotas.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
+                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
 
                 if (!string.IsNullOrEmpty(this.TbAnotacao.Text))
                 {
@@ -229,9 +232,9 @@ namespace GerenciadorDeTarefa.UI
         }
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _servicoBlocoDeNotas.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
-            TbAnotacao.Text = _servicoBlocoDeNotas.AbrirArquivo();
-            ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo());
+            _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
+            TbAnotacao.Text = _servicoDeGerrenciamentoDeArquivos.AbrirArquivo();
+            ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
 
@@ -239,7 +242,7 @@ namespace GerenciadorDeTarefa.UI
         {
             if (File.Exists(lastpath))
             {
-                _servicoBlocoDeNotas.SalvarArquivo(TbAnotacao.Text);
+                _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text);
                 salvarTexto = TbAnotacao.Text;
             }
             else
@@ -250,36 +253,36 @@ namespace GerenciadorDeTarefa.UI
 
         private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _servicoBlocoDeNotas.SalvarArquivo(TbAnotacao.Text);
-            ObterTituloDoArquivo(_servicoBlocoDeNotas.ObterNomeArquivo());
+            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text);
+            ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
 
         private void tsNegrito_Click(object sender, EventArgs e)
         {
-            _servicoBlocoDeNotas.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
+            _servicoDeFontes.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
         }
 
         private void tsItalico_Click(object sender, EventArgs e)
         {
-            _servicoBlocoDeNotas.DefinirTextoComoItalico(TbAnotacao, nUpTamanho);
+            _servicoDeFontes.DefinirTextoComoItalico(TbAnotacao, nUpTamanho);
         }
 
         private void tsSublinhado_Click(object sender, EventArgs e)
         {
-            _servicoBlocoDeNotas.DefinirTextoComoSublinhado(TbAnotacao, nUpTamanho);
+            _servicoDeFontes.DefinirTextoComoSublinhado(TbAnotacao, nUpTamanho);
         }
 
         private void nUpTamanho_ValueChanged(object sender, EventArgs e)
         {
-            _servicoBlocoDeNotas.DefinirTamanhoTexto(TbAnotacao, nUpTamanho);
+            _servicoDeFontes.DefinirTamanhoTexto(TbAnotacao, nUpTamanho);
         }
 
         private void TsCorTexto_Click(object sender, EventArgs e)
         {
             _fonte.BackColor = BackColor;
             _fonte.ForeColor = ForeColor;
-            _servicoBlocoDeNotas.DefinirCorTexto(TbAnotacao, nUpTamanho, colorDialog1);
+            _servicoDeFontes.DefinirCorTexto(TbAnotacao, nUpTamanho, colorDialog1);
         }
 
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
@@ -295,7 +298,7 @@ namespace GerenciadorDeTarefa.UI
                         return;
                     }
                 }
-                _servicoBlocoDeNotas.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
+                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
 
             }
             catch (ClousingException ex)

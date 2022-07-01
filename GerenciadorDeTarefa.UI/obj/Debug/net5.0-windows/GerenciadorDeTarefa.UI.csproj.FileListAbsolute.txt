@@ -96,7 +96,7 @@ C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Deb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.csproj.CoreCompileInputs.cache
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.csproj.CopyComplete
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.dll
-C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\ref\GerenciadorDeTarefa.UI.dll
+C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\refint\GerenciadorDeTarefa.UI.dll
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.pdb
 C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\GerenciadorDeTarefa.UI.genruntimeconfig.cache
-C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\refint\GerenciadorDeTarefa.UI.dll
+C:\Users\usuario\source\repos\GerenciadorDeTarefa\GerenciadorDeTarefa.UI\obj\Debug\net5.0-windows\ref\GerenciadorDeTarefa.UI.dll

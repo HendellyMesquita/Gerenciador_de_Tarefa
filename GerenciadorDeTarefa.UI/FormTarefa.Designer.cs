@@ -86,6 +86,11 @@ namespace GerenciadorDeTarefa.UI
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.TbAnotacao = new System.Windows.Forms.RichTextBox();
+            this.tsAlinhaEsquerda = new System.Windows.Forms.ToolStripButton();
+            this.tsAlinhaCentro = new System.Windows.Forms.ToolStripButton();
+            this.tsAlinhaDireira = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.teIntervalo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).BeginInit();
@@ -346,10 +351,15 @@ namespace GerenciadorDeTarefa.UI
             this.tsItalico,
             this.tsSublinhado,
             this.toolStripSeparator1,
-            this.tsCorTexto});
+            this.tsCorTexto,
+            this.toolStripSeparator2,
+            this.tsAlinhaEsquerda,
+            this.tsAlinhaCentro,
+            this.tsAlinhaDireira,
+            this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 2);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(139, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(220, 25);
             this.toolStrip1.TabIndex = 41;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -450,7 +460,7 @@ namespace GerenciadorDeTarefa.UI
             // nUpTamanho
             // 
             this.nUpTamanho.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nUpTamanho.Location = new System.Drawing.Point(142, 4);
+            this.nUpTamanho.Location = new System.Drawing.Point(223, 4);
             this.nUpTamanho.Maximum = new decimal(new int[] {
             72,
             0,
@@ -486,6 +496,43 @@ namespace GerenciadorDeTarefa.UI
             this.TbAnotacao.Size = new System.Drawing.Size(633, 391);
             this.TbAnotacao.TabIndex = 43;
             this.TbAnotacao.Text = "";
+            // 
+            // tsAlinhaEsquerda
+            // 
+            this.tsAlinhaEsquerda.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsAlinhaEsquerda.Image = ((System.Drawing.Image)(resources.GetObject("tsAlinhaEsquerda.Image")));
+            this.tsAlinhaEsquerda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsAlinhaEsquerda.Name = "tsAlinhaEsquerda";
+            this.tsAlinhaEsquerda.Size = new System.Drawing.Size(23, 22);
+            this.tsAlinhaEsquerda.Text = "Alinhar à Esquerda";
+            // 
+            // tsAlinhaCentro
+            // 
+            this.tsAlinhaCentro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsAlinhaCentro.Image = ((System.Drawing.Image)(resources.GetObject("tsAlinhaCentro.Image")));
+            this.tsAlinhaCentro.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsAlinhaCentro.Name = "tsAlinhaCentro";
+            this.tsAlinhaCentro.Size = new System.Drawing.Size(23, 22);
+            this.tsAlinhaCentro.Text = "Centralizar";
+            // 
+            // tsAlinhaDireira
+            // 
+            this.tsAlinhaDireira.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsAlinhaDireira.Image = ((System.Drawing.Image)(resources.GetObject("tsAlinhaDireira.Image")));
+            this.tsAlinhaDireira.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsAlinhaDireira.Name = "tsAlinhaDireira";
+            this.tsAlinhaDireira.Size = new System.Drawing.Size(23, 22);
+            this.tsAlinhaDireira.Text = "Alinhar à Direira";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // FormTarefa
             // 
@@ -580,5 +627,10 @@ namespace GerenciadorDeTarefa.UI
         private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.RichTextBox TbAnotacao;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsAlinhaEsquerda;
+        private System.Windows.Forms.ToolStripButton tsAlinhaCentro;
+        private System.Windows.Forms.ToolStripButton tsAlinhaDireira;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

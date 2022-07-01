@@ -12,7 +12,8 @@ namespace GerenciadorDeTarefa.UI.Linq2DB
         {
             Bind(typeof(IServicoGerenciamentoHora)).To(typeof(ServicoGerenciamentoHora));
             Bind(typeof(IServicoDeAlerta)).To(typeof(ServicoDeAlerta));
-            Bind(typeof(IServicoBlocoDeNota)).To(typeof(ServicoBlocoDeNota));
+            Bind(typeof(IServicoDeGerrenciamentoDeArquivos)).To(typeof(ServicoDeGerrenciamentoDeArquivos));
+            Bind(typeof(IServicoDeFontes)).To(typeof(ServicoDeFontes));
         }
         public static CentralDeLinq2DB Create()
         {
