@@ -88,10 +88,8 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 
     }
 }
-//TODO: Adicionar verificador ortografico https://pt.answacode.com/stackoverflow/23834001/como-ativar-a-verificacao-ortografica-em-c-windows-form-application
-//https://docs.microsoft.com/pt-br/dotnet/desktop/wpf/controls/how-to-use-spell-checking-with-a-context-menu?view=netframeworkdesktop-4.8
-//https://www.macoratti.net/vbn_wrde.htm
-//https://social.msdn.microsoft.com/Forums/pt-BR/4c40182d-f4fe-4d1e-b486-0305de8078d9/corretor-ortografico-csharp?forum=vscsharppt
+//TODO: Adicionar verificador ortografico
+//https://help-syncfusion-com.translate.goog/windowsforms/spell-checker/getting-started?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc
 
 //TODO: usar Save File para salvar formatação do arquivo https://www.youtube.com/watch?v=7er96RwzvRc
 //https://imasters.com.br/back-end/editor-de-texto-com-richtextbox-e-printdocument-parte-01
