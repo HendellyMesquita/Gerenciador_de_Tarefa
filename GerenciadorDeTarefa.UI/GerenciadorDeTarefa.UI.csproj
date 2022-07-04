@@ -8,23 +8,41 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\alinhar-a-direita.png" />
+    <None Remove="Icons\alinhar-a-esquerda.png" />
+    <None Remove="Icons\alinhar-centro.png" />
     <None Remove="Icons\Arquivo.png" />
+    <None Remove="Icons\Colar.png" />
+    <None Remove="Icons\Copiar.png" />
     <None Remove="Icons\CorDaFonte.png" />
+    <None Remove="Icons\fonte.png" />
     <None Remove="Icons\Gerenciamento.ico" />
     <None Remove="Icons\Gerenciamento.png" />
     <None Remove="Icons\Italico.png" />
     <None Remove="Icons\Negrito.png" />
+    <None Remove="Icons\novo-arquivo.png" />
+    <None Remove="Icons\salve-.png" />
     <None Remove="Icons\Sublinhado.png" />
+    <None Remove="Icons\tamanho-da-fonte.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Icons\alinhar-a-direita.png" />
+    <EmbeddedResource Include="Icons\alinhar-a-esquerda.png" />
+    <EmbeddedResource Include="Icons\alinhar-centro.png" />
     <EmbeddedResource Include="Icons\Arquivo.png" />
+    <EmbeddedResource Include="Icons\Colar.png" />
+    <EmbeddedResource Include="Icons\Copiar.png" />
     <EmbeddedResource Include="Icons\CorDaFonte.png" />
+    <EmbeddedResource Include="Icons\fonte.png" />
     <EmbeddedResource Include="Icons\Gerenciamento.ico" />
     <EmbeddedResource Include="Icons\Gerenciamento.png" />
     <EmbeddedResource Include="Icons\Italico.png" />
     <EmbeddedResource Include="Icons\Negrito.png" />
+    <EmbeddedResource Include="Icons\novo-arquivo.png" />
+    <EmbeddedResource Include="Icons\salve-.png" />
     <EmbeddedResource Include="Icons\Sublinhado.png" />
+    <EmbeddedResource Include="Icons\tamanho-da-fonte.png" />
   </ItemGroup>
 
   <ItemGroup>
