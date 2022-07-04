@@ -76,20 +76,18 @@ namespace GerenciadorDeTarefa.Domain.GerenciadorHoras
             }
         }
 
-        public string LimparFiltro(int contador, GerenciadorHora gerenteHora)
+        public void LimparFiltro(int contador, GerenciadorHora gerenteHora)
         {
 
             try
             {
-                var limpar = "00:00";
                 gerenteHora.EntradaServico = DateTime.MinValue;
                 gerenteHora.SaidaAlmoco = DateTime.MinValue;
                 gerenteHora.EntradaAlmoco = DateTime.MinValue;
                 gerenteHora.SaidaReserva = DateTime.MinValue;
                 gerenteHora.EntradaReserva = DateTime.MinValue;
                 gerenteHora.SaidaServico = DateTime.MinValue;
-
-                return limpar;
+                gerenteHora.Total = TimeSpan.Zero;
             }
             catch (LimparFiltroException ex)
             {

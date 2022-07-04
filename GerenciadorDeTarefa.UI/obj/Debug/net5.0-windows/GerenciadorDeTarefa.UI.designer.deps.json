@@ -1052,6 +1052,37 @@
           }
         }
       },
+      "Syncfusion.Licensing/19.3.0.48": {
+        "runtime": {
+          "lib/net5.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "19.3.0.48",
+            "fileVersion": "19.3.0.48"
+          }
+        }
+      },
+      "Syncfusion.Shared.Base/19.3.0.48": {
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.48"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/Syncfusion.Shared.Base.dll": {
+            "assemblyVersion": "19.3500.0.48",
+            "fileVersion": "19.3500.0.48"
+          }
+        }
+      },
+      "Syncfusion.Shared.Windows/19.3.0.48": {
+        "dependencies": {
+          "Syncfusion.Licensing": "19.3.0.48",
+          "Syncfusion.Shared.Base": "19.3.0.48"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/Syncfusion.Shared.Windows.dll": {
+            "assemblyVersion": "19.3500.0.48",
+            "fileVersion": "19.3500.0.48"
+          }
+        }
+      },
       "System.CodeDom/4.4.0": {
         "runtime": {
           "lib/netstandard2.0/System.CodeDom.dll": {
@@ -1984,6 +2015,27 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/19.3.0.48": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SwXgwDO7Fv7MWD8ILjXryTdTGhRAT0+uBCZ5LekGTlfQj9wrivEyZhghEegV0f+8cnlpj7uAQcMRijqBYZqR3g==",
+      "path": "syncfusion.licensing/19.3.0.48",
+      "hashPath": "syncfusion.licensing.19.3.0.48.nupkg.sha512"
+    },
+    "Syncfusion.Shared.Base/19.3.0.48": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZqGXJjsvEN/7magLM7fpmAWXL0W0mpBMyb+A5Aj3EmeCfh3uGShL4+zP++XXTKBQNuwIGzmMHfAjUK7TAaqE1g==",
+      "path": "syncfusion.shared.base/19.3.0.48",
+      "hashPath": "syncfusion.shared.base.19.3.0.48.nupkg.sha512"
+    },
+    "Syncfusion.Shared.Windows/19.3.0.48": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ynlMZlitbyKOJY1+xjSA8WbV6EoTYgJz+FcIGrXPQIxNgV4pt2Qt4OMWxpv7Nc5z+vTK4Bpua+88DpuQd+4Upg==",
+      "path": "syncfusion.shared.windows/19.3.0.48",
+      "hashPath": "syncfusion.shared.windows.19.3.0.48.nupkg.sha512"
     },
     "System.CodeDom/4.4.0": {
       "type": "package",

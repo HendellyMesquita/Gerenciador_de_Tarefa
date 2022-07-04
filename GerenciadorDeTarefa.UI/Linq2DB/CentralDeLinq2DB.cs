@@ -1,7 +1,8 @@
 ﻿using Ninject.Modules;
-using GerenciadorDeTarefa.Domain.GerenciadorHoras;
 using Ninject;
+using GerenciadorDeTarefa.Domain.GerenciadorHoras;
 using GerenciadorDeTarefa.Domain.Alertas;
+using GerenciadorDeTarefa.Domain.BlocoDeNotas;
 
 namespace GerenciadorDeTarefa.UI.Linq2DB
 {
@@ -10,6 +11,9 @@ namespace GerenciadorDeTarefa.UI.Linq2DB
         public override void Load()
         {
             Bind(typeof(IServicoGerenciamentoHora)).To(typeof(ServicoGerenciamentoHora));
+            Bind(typeof(IServicoDeAlerta)).To(typeof(ServicoDeAlerta));
+            Bind(typeof(IServicoDeGerrenciamentoDeArquivos)).To(typeof(ServicoDeGerrenciamentoDeArquivos));
+            Bind(typeof(IServicoDeFontes)).To(typeof(ServicoDeFontes));
         }
         public static CentralDeLinq2DB Create()
         {

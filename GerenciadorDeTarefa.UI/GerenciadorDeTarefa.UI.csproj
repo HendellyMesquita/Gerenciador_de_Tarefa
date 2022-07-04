@@ -8,6 +8,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\Arquivo.png" />
+    <None Remove="Icons\CorDaFonte.png" />
+    <None Remove="Icons\Gerenciamento.ico" />
+    <None Remove="Icons\Gerenciamento.png" />
+    <None Remove="Icons\Italico.png" />
+    <None Remove="Icons\Negrito.png" />
+    <None Remove="Icons\Sublinhado.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Arquivo.png" />
+    <EmbeddedResource Include="Icons\CorDaFonte.png" />
+    <EmbeddedResource Include="Icons\Gerenciamento.ico" />
+    <EmbeddedResource Include="Icons\Gerenciamento.png" />
+    <EmbeddedResource Include="Icons\Italico.png" />
+    <EmbeddedResource Include="Icons\Negrito.png" />
+    <EmbeddedResource Include="Icons\Sublinhado.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="devexpress.win.design" Version="21.2.6" />
     <PackageReference Include="Ninject" Version="3.3.5" />
   </ItemGroup>
@@ -22,6 +42,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +54,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
