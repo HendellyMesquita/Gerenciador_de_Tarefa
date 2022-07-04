@@ -4,7 +4,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public interface IServicoDeGerrenciamentoDeArquivos
     {
-        void SalvarArquivo(string texto);
+        void SalvarArquivo(string texto, string sender);
 
         string AbrirArquivo();
 

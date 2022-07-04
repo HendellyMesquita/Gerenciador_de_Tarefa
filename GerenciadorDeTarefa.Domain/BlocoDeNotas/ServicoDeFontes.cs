@@ -11,7 +11,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         FonteDeNota _fonte = new FonteDeNota();
         internal delegate void UpdatrColor(Color backcolor, Color forecolor);
         internal event UpdatrColor ColorUpdated;
-      
+
         private void Send() => ColorUpdated?.Invoke(_fonte.BackColor, _fonte.ForeColor);
 
         public void DefinirCorTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho, ColorDialog colorDialog)
@@ -89,7 +89,25 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             var tamanho = (float)nUpTamanho.Value;
             TbAnotacao.SelectionFont = new Font(fonte, tamanho, _fonte.Sublinhado | _fonte.Negrito | _fonte.Italico);
         }
+
+        public void Alinhamento(RichTextBox TbAnotacao, string sender)
+        {
+
+            switch (sender)
+            {
+                case "Alinhar à Esquerda":
+                    TbAnotacao.SelectionAlignment = HorizontalAlignment.Left;
+                    break;
+
+                case "Centralizar":
+                    TbAnotacao.SelectionAlignment = HorizontalAlignment.Center;
+                    break;
+
+                case "Alinhar à Direita":
+                    TbAnotacao.SelectionAlignment = HorizontalAlignment.Right;
+                    break;
+            }
+        }
     }
 }
-//TODO: Passar informações do form por parametro em Fonte
 

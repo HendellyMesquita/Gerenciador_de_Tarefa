@@ -13,5 +13,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
         void DefinirTamanhoTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho);
 
         void DefinirCorTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho, ColorDialog colorDialog);
+
+        void Alinhamento(RichTextBox TbAnotacao, string sender);
     }
 }

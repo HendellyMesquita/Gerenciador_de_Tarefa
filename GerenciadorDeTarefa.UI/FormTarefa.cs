@@ -1,12 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using GerenciadorDeTarefa.Domain.Alertas;
-using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
+﻿using GerenciadorDeTarefa.Domain.Alertas;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas;
+using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
+using System.Windows.Controls;
 using Microsoft.VisualBasic;
+using System;
+using System.Windows.Forms;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
+using System.Collections;
 
 namespace GerenciadorDeTarefa.UI
 {
@@ -21,7 +22,6 @@ namespace GerenciadorDeTarefa.UI
         private Alerta _alerta;
         private FonteDeNota _fonte;
         private int cont = 0;
-        private string? lastpath;
         private string salvarTexto;
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
@@ -41,7 +41,6 @@ namespace GerenciadorDeTarefa.UI
             _gerenciadorHora = gerenciadorHora;
             _alerta = alerta;
             _fonte = fonte;
-
         }
 
         /*GERENCIADOR*/
@@ -240,24 +239,10 @@ namespace GerenciadorDeTarefa.UI
 
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(lastpath))
-            {
-                _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text);
-                salvarTexto = TbAnotacao.Text;
-            }
-            else
-            {
-                SalvarComoToolStripMenuItem_Click(sender, e);
-            }
-        }
-
-        private void SalvarComoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text);
+            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text, sender.ToString());
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
-
         private void tsNegrito_Click(object sender, EventArgs e)
         {
             _servicoDeFontes.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
@@ -305,6 +290,11 @@ namespace GerenciadorDeTarefa.UI
             {
                 throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
             }
+        }
+
+        private void tsAlinhaCentro_Click(object sender, EventArgs e)
+        {
+            _servicoDeFontes.Alinhamento(TbAnotacao, sender.ToString());
         }
     }
 }
