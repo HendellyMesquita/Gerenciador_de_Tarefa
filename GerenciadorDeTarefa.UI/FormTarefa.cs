@@ -158,9 +158,8 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                ActiveControl = null;
                 timer1.Enabled = true;
-
+                ActiveControl = null;
 
                 ObterHorasEMinutos();
                 //   _servicoDeAlerta.ObterHorasEMinutos(teIntervalo.Text);
@@ -194,7 +193,7 @@ namespace GerenciadorDeTarefa.UI
                     if (MessageBox.Show($"Já são {DateTime.Now.ToString("t")}, Voce Fará uma pausa?", " Pausa Para Descanço",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
-                        _alerta.MinutoIntervalo = DateTime.Now.AddMinutes(10).Minute;
+                        MinutoIntervalo = DateTime.Now.AddMinutes(10).Minute;
 
                         MessageBox.Show($"Alarme Alterado para daqui 10 minutos, Proximo alarme acontecerá as" +
                             $" {DateTime.Now.AddMinutes(10).ToString("t")} Horas. ", " Pausa Para Descanço");
