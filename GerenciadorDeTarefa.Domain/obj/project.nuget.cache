@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uDgR+cxxM9/7ULdi6zGMW4fHvgIGbycY/0HphUgbdeLQ2rZF/1a5SujZOKw5GGqDzqUZIciuThi2Xdhma2ep2A==",
+  "dgSpecHash": "bRQZHdK8Gjp0RPDQJAHoDlVd+zw1LgjE+Ows8o4L7Z0JV+iMSDfTlcy9cboCw/7V0/v3siES4nUMLAWSY5fxWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\GerenciadorDeTarefa\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

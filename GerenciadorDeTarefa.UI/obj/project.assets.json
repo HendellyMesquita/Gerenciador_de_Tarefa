@@ -4840,11 +4840,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\GerenciadorDeTarefa\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
       "projectName": "GerenciadorDeTarefa.UI",
-      "projectPath": "C:\\Users\\usuario\\source\\repos\\GerenciadorDeTarefa\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
+      "projectPath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\source\\repos\\GerenciadorDeTarefa\\GerenciadorDeTarefa.UI\\obj\\",
+      "outputPath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -4868,8 +4868,8 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "C:\\Users\\usuario\\source\\repos\\GerenciadorDeTarefa\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj": {
-              "projectPath": "C:\\Users\\usuario\\source\\repos\\GerenciadorDeTarefa\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj"
+            "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj": {
+              "projectPath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj"
             }
           }
         }
@@ -4911,7 +4911,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

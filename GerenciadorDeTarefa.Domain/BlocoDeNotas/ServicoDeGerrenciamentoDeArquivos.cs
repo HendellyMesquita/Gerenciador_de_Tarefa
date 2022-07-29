@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
