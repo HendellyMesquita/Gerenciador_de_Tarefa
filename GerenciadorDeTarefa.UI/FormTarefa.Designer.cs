@@ -46,7 +46,7 @@ namespace GerenciadorDeTarefa.UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraSpellChecker.OptionsSpelling optionsSpelling1 = new DevExpress.XtraSpellChecker.OptionsSpelling();
+            DevExpress.XtraSpellChecker.OptionsSpelling optionsSpelling2 = new DevExpress.XtraSpellChecker.OptionsSpelling();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTarefa));
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -134,13 +134,15 @@ namespace GerenciadorDeTarefa.UI
             this.TbAnotacao.Location = new System.Drawing.Point(3, 35);
             this.TbAnotacao.Name = "TbAnotacao";
             this.TbAnotacao.Size = new System.Drawing.Size(682, 376);
-            this.spellChecker1.SetSpellCheckerOptions(this.TbAnotacao, optionsSpelling1);
+            this.spellChecker1.SetSpellCheckerOptions(this.TbAnotacao, optionsSpelling2);
             this.TbAnotacao.TabIndex = 72;
             this.TbAnotacao.Text = "";
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // nUpTamanho
             // 
@@ -441,11 +443,11 @@ namespace GerenciadorDeTarefa.UI
             // 
             this.HorasContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.HorasContainer.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.HorasContainer.Panel2Collapsed = true;
             this.HorasContainer.Size = new System.Drawing.Size(257, 416);
             this.HorasContainer.SplitterDistance = 283;
             this.HorasContainer.SplitterWidth = 3;
             this.HorasContainer.TabIndex = 0;
-            this.HorasContainer.Panel2Collapsed = true;
             // 
             // lbTitulo
             // 
@@ -463,7 +465,7 @@ namespace GerenciadorDeTarefa.UI
             this.splitter2.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.splitter2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 276);
+            this.splitter2.Location = new System.Drawing.Point(0, 409);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(255, 5);
             this.splitter2.TabIndex = 126;
@@ -589,7 +591,7 @@ namespace GerenciadorDeTarefa.UI
             // teIntervalo
             // 
             this.teIntervalo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.teIntervalo.EditValue = DateTime.Today;
+            this.teIntervalo.EditValue = new System.DateTime(2022, 7, 29, 0, 0, 0, 0);
             this.teIntervalo.Location = new System.Drawing.Point(85, 251);
             this.teIntervalo.Name = "teIntervalo";
             this.teIntervalo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
