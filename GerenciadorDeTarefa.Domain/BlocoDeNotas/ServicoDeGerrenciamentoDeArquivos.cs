@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GerenciadorDeTarefa.Domain.GerenciadorHoras;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -6,19 +7,20 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public class ServicoDeGerrenciamentoDeArquivos : IServicoDeGerrenciamentoDeArquivos
     {
+        GerenciamentoDeArquivo _gerenciamentoDeArquivo = new GerenciamentoDeArquivo();
+        GerenciadorHora _gerenciadorHora = new GerenciadorHora();
         SaveFileDialog salvarArquivo = new SaveFileDialog();
         OpenFileDialog abrirArquivo = new OpenFileDialog();
 
-
-        public void SalvarArquivo(string texto, string sender)
+        public void SalvarArquivo(string texto, string moduloExecucao)
         {
             try
             {
-                var verificaSender = sender.ToString() == "Salvar Como";
+                var verificaModulo = moduloExecucao == "Salvar Como";
 
-                if (!File.Exists(salvarArquivo.FileName)|| verificaSender)
+                if (!File.Exists(salvarArquivo.FileName)|| verificaModulo && _gerenciamentoDeArquivo.Novo)
                 {
-                    salvarArquivo = new SaveFileDialog { Filter = @"Arquivo txt.(*.txt)|*.txt|Todos os arquivos (*.*)|*.*" };
+                    salvarArquivo = new SaveFileDialog { Filter = @"Arquivo txt.(*.txt)|*.txt|Todos os arquivos (*.*)|*.*", OverwritePrompt = true };
                     salvarArquivo.FileName = $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}.txt";
                     if (salvarArquivo.ShowDialog() == DialogResult.OK)
                     {
@@ -33,7 +35,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
                 MessageBox.Show($"Houve um erro ao escrever o arquivo {salvarArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
             }
         }
-
+        
         public string AbrirArquivo()
         {
             try
@@ -47,7 +49,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             {
                 MessageBox.Show($"Houve um erro ao abrir o arquivo {abrirArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
             }
-            return null;
+            return string.Empty;
         }
 
         public string ObterNomeArquivo()
@@ -62,13 +64,13 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             return $"{nomeEstencao[0]} - Gerente de Horas";
         }
 
-        public void VerificarSaveDoArquivo(string texto, string sender, string salvarTexto = null)
+        public void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto)
         {
             var MensagemNovo = "Deseja salvar suas Anotações antes de Criar um novo arquivo?";
             var MensagemClose = "Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia";
 
-            var verificaSender = sender.ToString() == "Novo";
-            var mensagemAlerta = verificaSender ? MensagemNovo : MensagemClose;
+            var verificaModulo = moduloExecucao == "Novo";
+            var mensagemAlerta = verificaModulo ? MensagemNovo : MensagemClose;
 
             if (!string.IsNullOrEmpty(texto))
             {
@@ -77,7 +79,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
                     if (MessageBox.Show(mensagemAlerta, "Salvar?",
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        SalvarArquivo(texto, sender);
+                        SalvarArquivo(texto, moduloExecucao);
                         MessageBox.Show("Salvo com Sucesso");
                     }
                 }

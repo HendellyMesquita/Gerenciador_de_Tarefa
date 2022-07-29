@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Timers;
 
 namespace GerenciadorDeTarefa.Domain.Alertas
 {
     public interface IServicoDeAlerta
     {
         void ObterHorasEMinutos(string intervalo);
-
-        TimeSpan ObterIntervaloDeHoras(DateTime HoraIntervalo);
-
+        TimeSpan ObterIntervaloDeHoras( DateTime HoraIntervalo);
         bool VerificaTimer(bool timeAtivado);
+
     }
 }

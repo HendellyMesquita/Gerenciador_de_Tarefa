@@ -2,12 +2,10 @@
 using GerenciadorDeTarefa.Domain.BlocoDeNotas;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
-using System.Windows.Controls;
 using Microsoft.VisualBasic;
 using System;
 using System.Windows.Forms;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
-using System.Collections;
 
 namespace GerenciadorDeTarefa.UI
 {
@@ -19,16 +17,21 @@ namespace GerenciadorDeTarefa.UI
         private IServicoDeGerrenciamentoDeArquivos _servicoDeGerrenciamentoDeArquivos;
         private IServicoDeFontes _servicoDeFontes;
         private GerenciadorHora _gerenciadorHora;
+        private GerenciamentoDeArquivo _gerenciamentoDeArquivo;
         private Alerta _alerta;
         private FonteDeNota _fonte;
-        private int cont = 0;
         private string salvarTexto;
+        private int cont = 0;
+        private int HoraIntervalo;
+        private int MinutoIntervalo;
+
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
             IServicoDeAlerta servicoDeAlerta,
             IServicoDeGerrenciamentoDeArquivos servicoDeGerrenciamentoDeArquivos,
             IServicoDeFontes servicoDeFontes,
             GerenciadorHora gerenciadorHora,
+            GerenciamentoDeArquivo gerenciamentoDeArquivo,
             Alerta alerta,
             FonteDeNota fonte)
         {
@@ -39,6 +42,7 @@ namespace GerenciadorDeTarefa.UI
             _servicoDeGerrenciamentoDeArquivos = servicoDeGerrenciamentoDeArquivos;
             _servicoDeFontes = servicoDeFontes;
             _gerenciadorHora = gerenciadorHora;
+            _gerenciamentoDeArquivo = gerenciamentoDeArquivo;
             _alerta = alerta;
             _fonte = fonte;
         }
@@ -46,32 +50,32 @@ namespace GerenciadorDeTarefa.UI
         /*GERENCIADOR*/
         private void MarcarHoraAtual()
         {
-            var contador = _servicoGerenciamento.MarcadorHoras(cont, _gerenciadorHora);
+            var contador = _servicoGerenciamento.MarcadorHoras(cont, _gerenciadorHora).ToString("t");
 
             switch (cont)
             {
                 case 0:
-                    lbEntrada1.Text = contador.ToString("t");
+                    lbEntrada1.Text = contador;
                     cont++;
                     break;
                 case 1:
-                    lbSaida1.Text = contador.ToString("t");
+                    lbSaida1.Text = contador;
                     cont++;
                     break;
                 case 2:
-                    lbEntrada2.Text = contador.ToString("t");
+                    lbEntrada2.Text = contador;
                     cont++;
                     break;
                 case 3:
-                    lbSaida2.Text = contador.ToString("t");
+                    lbSaida2.Text = contador;
                     cont++;
                     break;
                 case 4:
-                    lbEntrada3.Text = contador.ToString("t");
+                    lbEntrada3.Text = contador;
                     cont++;
                     break;
                 case 5:
-                    lbSaida3.Text = contador.ToString("t");
+                    lbSaida3.Text = contador;
                     btnEntrada.Text = "Limpar";
                     cont++;
                     break;
@@ -113,17 +117,14 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                var titulo = Interaction.InputBox(
+                _gerenciadorHora.Tarefa = Interaction.InputBox(
                     "Informe Um Título Para A Tarefa Ou o " +
                     "                                     " +
                     "Nome Da Branch Do Projeto Atual: ",
                     "Edição Título. Projeto BANCKPLUS");
 
-                if (!string.IsNullOrEmpty(titulo))
-                {
-                    _gerenciadorHora.Tarefa = titulo;
-                    lbTarefa.Text = _gerenciadorHora.Tarefa;
-                }
+                if (!string.IsNullOrEmpty(_gerenciadorHora.Tarefa))
+                        lbTarefa.Text = _gerenciadorHora.Tarefa;
             }
             catch (EdicaoException ex)
             {
@@ -157,13 +158,14 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                _servicoDeAlerta.ObterHorasEMinutos(teIntervalo.Text);
-
                 ActiveControl = null;
                 timer1.Enabled = true;
 
-                var intervalo = _servicoDeAlerta.ObterIntervaloDeHoras(teIntervalo.Time);
 
+                ObterHorasEMinutos();
+                //   _servicoDeAlerta.ObterHorasEMinutos(teIntervalo.Text);
+
+                var intervalo = _servicoDeAlerta.ObterIntervaloDeHoras(teIntervalo.Time);
                 MessageBox.Show($" O Alerta disparará em {intervalo.ToString("hh' Horas e 'mm' Minutos'")}");
 
             }
@@ -172,32 +174,41 @@ namespace GerenciadorDeTarefa.UI
                 throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
             }
         }
-
+        private void ObterHorasEMinutos()
+        {
+            string[] Horaintervalo = teIntervalo.Text.Split(':');
+            HoraIntervalo = int.Parse(Horaintervalo[0]);
+            MinutoIntervalo = int.Parse(Horaintervalo[1]);
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
             {
-                if (_alerta.HoraIntervalo == DateTime.Now.Hour && _alerta.MinutoIntervalo == DateTime.Now.Minute)
+                //TODO: Encontrar maneira para passar essa função para serviço
+                /**/
+                //  timer1.Enabled = _servicoDeAlerta.VerificaTimer(timer1.Enabled);
+
+                if (HoraIntervalo == DateTime.Now.Hour && MinutoIntervalo == DateTime.Now.Minute)
                 {
                     timer1.Enabled = false;
-
                     if (MessageBox.Show($"Já são {DateTime.Now.ToString("t")}, Voce Fará uma pausa?", " Pausa Para Descanço",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
-                        _alerta.MinutoIntervalo = _alerta.DezMinutos.Minute;
-                        timer1.Enabled = true;
+                        _alerta.MinutoIntervalo = DateTime.Now.AddMinutes(10).Minute;
 
                         MessageBox.Show($"Alarme Alterado para daqui 10 minutos, Proximo alarme acontecerá as" +
                             $" {DateTime.Now.AddMinutes(10).ToString("t")} Horas. ", " Pausa Para Descanço");
+                        timer1.Enabled = true;
                         return;
                     }
-
                     if (cont == 1 || cont == 3 || cont == 5)
                     {
                         MessageBox.Show($" Marcando Hora de saida...");
                         MarcarHoraAtual();
                     }
                 }
+                /**/
+
             }
             catch (AlertaException ex)
             {
@@ -210,11 +221,11 @@ namespace GerenciadorDeTarefa.UI
         {
             Text = $"{tituloArquivo}";
         }
-
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
+                _gerenciamentoDeArquivo.Novo = true;
                 _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
 
                 if (!string.IsNullOrEmpty(this.TbAnotacao.Text))
@@ -236,10 +247,10 @@ namespace GerenciadorDeTarefa.UI
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
-
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text, sender.ToString());
+            var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text, moduloExecucao);
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
@@ -270,6 +281,12 @@ namespace GerenciadorDeTarefa.UI
             _servicoDeFontes.DefinirCorTexto(TbAnotacao, nUpTamanho, colorDialog1);
         }
 
+        private void tsAlinhaCentro_Click(object sender, EventArgs e)
+        {
+            var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+            _servicoDeFontes.Alinhamento(TbAnotacao, moduloExecucao);
+        }
+
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -283,7 +300,8 @@ namespace GerenciadorDeTarefa.UI
                         return;
                     }
                 }
-                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
+                var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto);
 
             }
             catch (ClousingException ex)
@@ -292,9 +310,24 @@ namespace GerenciadorDeTarefa.UI
             }
         }
 
-        private void tsAlinhaCentro_Click(object sender, EventArgs e)
+        /*FORMULÁRIO*/
+        private void splitter1_DoubleClick(object sender, EventArgs e)
         {
-            _servicoDeFontes.Alinhamento(TbAnotacao, sender.ToString());
+            if (GerenteContainer.Panel2Collapsed)
+            {
+                GerenteContainer.Panel2Collapsed = false;
+                return;
+            }
+            GerenteContainer.Panel2Collapsed = true;
+        }
+        private void splitter2_DoubleClick(object sender, EventArgs e)
+        {
+            if (HorasContainer.Panel2Collapsed)
+            {
+                HorasContainer.Panel2Collapsed = false;
+                return;
+            }
+            HorasContainer.Panel2Collapsed = true;
         }
     }
 }

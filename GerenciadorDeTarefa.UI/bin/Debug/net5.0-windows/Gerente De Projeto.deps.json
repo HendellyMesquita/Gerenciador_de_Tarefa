@@ -6,6 +6,16 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
+      "Gerente De Projeto/1.0.0": {
+        "dependencies": {
+          "GerenciadorDeTarefa.Domain": "1.0.0",
+          "Ninject": "3.3.5",
+          "DevExpress.Win.Design": "21.2.6"
+        },
+        "runtime": {
+          "Gerente De Projeto.dll": {}
+        }
+      },
       "DevExpress.Charts/21.2.6": {
         "dependencies": {
           "DevExpress.Charts.Core": "21.2.6",
@@ -589,27 +599,7 @@
           "System.Text.Json": "4.6.0"
         },
         "runtime": {
-          "lib/net5.0-windows/DevExpress.Data.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.DataAccess.v21.2.UI.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.DataAccess.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
           "lib/net5.0-windows/DevExpress.Mvvm.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.Utils.v21.2.UI.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.Utils.v21.2.dll": {
             "assemblyVersion": "21.2.6.0",
             "fileVersion": "21.2.6.0"
           },
@@ -618,14 +608,6 @@
             "fileVersion": "21.2.6.0"
           },
           "lib/net5.0-windows/DevExpress.XtraBars.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.XtraCharts.v21.2.UI.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.XtraCharts.v21.2.Wizard.dll": {
             "assemblyVersion": "21.2.6.0",
             "fileVersion": "21.2.6.0"
           },
@@ -662,10 +644,6 @@
             "fileVersion": "21.2.6.0"
           },
           "lib/net5.0-windows/DevExpress.XtraMap.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.XtraNavBar.v21.2.dll": {
             "assemblyVersion": "21.2.6.0",
             "fileVersion": "21.2.6.0"
           },
@@ -720,10 +698,6 @@
           "lib/net5.0-windows/DevExpress.XtraVerticalGrid.v21.2.dll": {
             "assemblyVersion": "21.2.6.0",
             "fileVersion": "21.2.6.0"
-          },
-          "lib/net5.0-windows/DevExpress.XtraWizard.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
           }
         }
       },
@@ -739,12 +713,6 @@
           "DevExpress.Win.Navigation": "21.2.6",
           "DevExpress.Win.Printing": "21.2.6",
           "DevExpress.Win.VerticalGrid": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraDiagram.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.Dialogs.Core/21.2.6": {
@@ -766,12 +734,6 @@
           "DevExpress.Utils": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6",
           "DevExpress.Win.Printing": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraGrid.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.Navigation/21.2.6": {
@@ -781,20 +743,6 @@
           "DevExpress.Printing.Core": "21.2.6",
           "DevExpress.Sparkline.Core": "21.2.6",
           "DevExpress.Utils": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraBars.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/netcoreapp3.0/DevExpress.XtraEditors.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          },
-          "lib/netcoreapp3.0/DevExpress.XtraLayout.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.PivotGrid/21.2.6": {
@@ -804,12 +752,6 @@
           "DevExpress.Printing.Core": "21.2.6",
           "DevExpress.Utils": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraPivotGrid.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.Printing/21.2.6": {
@@ -821,12 +763,6 @@
           "DevExpress.Utils": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6",
           "DevExpress.Win.TreeList": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraPrinting.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.RichEdit/21.2.6": {
@@ -842,12 +778,6 @@
           "DevExpress.Win.Grid": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6",
           "DevExpress.Win.Printing": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraRichEdit.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.Scheduler/21.2.6": {
@@ -861,12 +791,6 @@
           "DevExpress.Win.Grid": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6",
           "DevExpress.Win.Printing": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraScheduler.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.SpellChecker/21.2.6": {
@@ -875,12 +799,6 @@
           "DevExpress.SpellChecker.Core": "21.2.6",
           "DevExpress.Utils": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraSpellChecker.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.TreeList/21.2.6": {
@@ -890,12 +808,6 @@
           "DevExpress.Printing.Core": "21.2.6",
           "DevExpress.Utils": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraTreeList.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Win.VerticalGrid/21.2.6": {
@@ -906,12 +818,6 @@
           "DevExpress.Utils": "21.2.6",
           "DevExpress.Win.Navigation": "21.2.6",
           "DevExpress.Win.Printing": "21.2.6"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/DevExpress.XtraVerticalGrid.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "DevExpress.Xpo/21.2.6": {
@@ -927,12 +833,6 @@
           "System.ServiceModel.NetTcp": "4.4.4",
           "System.ServiceModel.Security": "4.4.4",
           "System.Text.Json": "4.6.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/DevExpress.Xpo.v21.2.dll": {
-            "assemblyVersion": "21.2.6.0",
-            "fileVersion": "21.2.6.0"
-          }
         }
       },
       "Microsoft.Extensions.DependencyInjection/2.0.0": {
@@ -960,45 +860,11 @@
         "dependencies": {
           "System.Security.AccessControl": "4.6.0",
           "System.Security.Principal.Windows": "4.6.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
-            "rid": "unix",
-            "assetType": "runtime",
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          },
-          "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
         }
       },
       "Microsoft.Win32.SystemEvents/4.6.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.46214"
-          }
         }
       },
       "NETStandard.Library/2.0.3": {
@@ -1052,14 +918,7 @@
           }
         }
       },
-      "System.CodeDom/4.4.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.CodeDom.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.6.25519.3"
-          }
-        }
-      },
+      "System.CodeDom/4.4.0": {},
       "System.Collections/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0",
@@ -1067,25 +926,12 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Collections.Immutable/1.5.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {
-            "assemblyVersion": "1.2.3.0",
-            "fileVersion": "4.6.26515.6"
-          }
-        }
-      },
+      "System.Collections.Immutable/1.5.0": {},
       "System.ComponentModel.Annotations/4.4.0": {},
       "System.Configuration.ConfigurationManager/4.6.0": {
         "dependencies": {
           "System.Security.Cryptography.ProtectedData": "4.6.0",
           "System.Security.Permissions": "4.6.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
         }
       },
       "System.Data.Common/4.3.0": {
@@ -1098,12 +944,6 @@
           "System.Runtime.Extensions": "4.3.0",
           "System.Text.RegularExpressions": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.2/System.Data.Common.dll": {
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.6.24705.1"
-          }
         }
       },
       "System.Data.OleDb/4.6.0": {
@@ -1162,46 +1002,12 @@
           "Microsoft.Win32.Registry": "4.6.0",
           "System.Configuration.ConfigurationManager": "4.6.0",
           "System.Security.Principal.Windows": "4.6.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Diagnostics.PerformanceCounter.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp2.0/System.Diagnostics.PerformanceCounter.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.46214"
-          }
         }
       },
       "System.Drawing.Common/4.6.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0",
           "Microsoft.Win32.SystemEvents": "4.6.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Drawing.Common.dll": {
-            "assemblyVersion": "4.0.0.1",
-            "fileVersion": "4.6.26919.2"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "rid": "unix",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.46214"
-          },
-          "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.46214"
-          }
         }
       },
       "System.Globalization/4.3.0": {
@@ -1250,14 +1056,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Reflection.DispatchProxy/4.5.0": {
-        "runtime": {
-          "lib/netcoreapp2.0/System.Reflection.DispatchProxy.dll": {
-            "assemblyVersion": "4.0.4.0",
-            "fileVersion": "4.6.26515.6"
-          }
-        }
-      },
+      "System.Reflection.DispatchProxy/4.5.0": {},
       "System.Reflection.Emit/4.3.0": {
         "dependencies": {
           "System.IO": "4.3.0",
@@ -1265,12 +1064,6 @@
           "System.Reflection.Emit.ILGeneration": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
           "System.Runtime": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Reflection.Emit.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
         }
       },
       "System.Reflection.Emit.ILGeneration/4.3.0": {
@@ -1278,12 +1071,6 @@
           "System.Reflection": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
           "System.Runtime": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Reflection.Emit.ILGeneration.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
         }
       },
       "System.Reflection.Emit.Lightweight/4.3.0": {
@@ -1292,12 +1079,6 @@
           "System.Reflection.Emit.ILGeneration": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
           "System.Runtime": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
         }
       },
       "System.Reflection.Primitives/4.3.0": {
@@ -1322,14 +1103,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.5.0": {
-        "runtime": {
-          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "assemblyVersion": "4.0.4.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
+      "System.Runtime.CompilerServices.Unsafe/4.5.0": {},
       "System.Runtime.Extensions/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0",
@@ -1342,131 +1116,34 @@
           "System.IO": "4.3.0",
           "System.Reflection": "4.3.0",
           "System.Runtime": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.5/System.Runtime.Loader.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.6.24705.1"
-          }
         }
       },
       "System.Security.AccessControl/4.6.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0",
           "System.Security.Principal.Windows": "4.6.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Security.AccessControl.dll": {
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
         }
       },
-      "System.Security.Cryptography.Cng/4.5.0": {
-        "runtime": {
-          "lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {
-            "assemblyVersion": "4.3.1.0",
-            "fileVersion": "4.6.26515.6"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.3.1.0",
-            "fileVersion": "4.6.26515.6"
-          }
-        }
-      },
+      "System.Security.Cryptography.Cng/4.5.0": {},
       "System.Security.Cryptography.Pkcs/4.5.2": {
         "dependencies": {
           "System.Security.Cryptography.Cng": "4.5.0"
-        },
-        "runtime": {
-          "lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {
-            "assemblyVersion": "4.0.3.2",
-            "fileVersion": "4.6.27129.4"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.3.2",
-            "fileVersion": "4.6.27129.4"
-          }
         }
       },
-      "System.Security.Cryptography.ProtectedData/4.6.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
-            "assemblyVersion": "4.0.4.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.4.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        }
-      },
+      "System.Security.Cryptography.ProtectedData/4.6.0": {},
       "System.Security.Cryptography.Xml/4.5.0": {
         "dependencies": {
           "System.Security.Cryptography.Pkcs": "4.5.2",
           "System.Security.Permissions": "4.6.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Security.Cryptography.Xml.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.6.26515.6"
-          }
         }
       },
       "System.Security.Permissions/4.6.0": {
         "dependencies": {
           "System.Security.AccessControl": "4.6.0",
           "System.Windows.Extensions": "4.6.0"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Security.Permissions.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
         }
       },
-      "System.Security.Principal.Windows/4.6.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netcoreapp2.1/System.Security.Principal.Windows.dll": {
-            "rid": "unix",
-            "assetType": "runtime",
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          },
-          "runtimes/win/lib/netcoreapp2.1/System.Security.Principal.Windows.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.1.2.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        }
-      },
+      "System.Security.Principal.Windows/4.6.0": {},
       "System.ServiceModel.Http/4.5.3": {
         "dependencies": {
           "System.Private.ServiceModel": "4.5.3",
@@ -1529,39 +1206,12 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.0.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.6.26515.6"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.6.26515.6"
-          }
         }
       },
-      "System.Text.Json/4.6.0": {
-        "runtime": {
-          "lib/netcoreapp3.0/System.Text.Json.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        }
-      },
+      "System.Text.Json/4.6.0": {},
       "System.Text.RegularExpressions/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.6/System.Text.RegularExpressions.dll": {
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.6.24705.1"
-          }
         }
       },
       "System.Threading.Tasks/4.3.0": {
@@ -1574,25 +1224,29 @@
       "System.Windows.Extensions/4.6.0": {
         "dependencies": {
           "System.Drawing.Common": "4.6.0"
+        }
+      },
+      "GerenciadorDeTarefa.Domain/1.0.0": {
+        "dependencies": {
+          "GerenciadorDeTarefa.Infra": "1.0.0"
         },
         "runtime": {
-          "lib/netcoreapp3.0/System.Windows.Extensions.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.700.19.46214"
-          }
+          "GerenciadorDeTarefa.Domain.dll": {}
+        }
+      },
+      "GerenciadorDeTarefa.Infra/1.0.0": {
+        "runtime": {
+          "GerenciadorDeTarefa.Infra.dll": {}
         }
       }
     }
   },
   "libraries": {
+    "Gerente De Projeto/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "DevExpress.Charts/21.2.6": {
       "type": "package",
       "serviceable": true,
@@ -2271,6 +1925,16 @@
       "sha512": "sha512-GL4izk0KgeyXklUOHViAk7y1IOYVYcn8nDpJZgcCqNzTGv2xd+8rgGgMKMo8G9nvfEuRCrNxWnGc74EiuYH2YA==",
       "path": "system.windows.extensions/4.6.0",
       "hashPath": "system.windows.extensions.4.6.0.nupkg.sha512"
+    },
+    "GerenciadorDeTarefa.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GerenciadorDeTarefa.Infra/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
