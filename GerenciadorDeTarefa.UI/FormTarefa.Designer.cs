@@ -46,13 +46,15 @@ namespace GerenciadorDeTarefa.UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraSpellChecker.OptionsSpelling optionsSpelling2 = new DevExpress.XtraSpellChecker.OptionsSpelling();
+            DevExpress.XtraSpellChecker.OptionsSpelling optionsSpelling3 = new DevExpress.XtraSpellChecker.OptionsSpelling();
+            DevExpress.XtraSpellChecker.OptionsSpelling optionsSpelling4 = new DevExpress.XtraSpellChecker.OptionsSpelling();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTarefa));
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.spellChecker1 = new DevExpress.XtraSpellChecker.SpellChecker(this.components);
             this.TbAnotacao = new System.Windows.Forms.RichTextBox();
+            this.TxtTarefa = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.nUpTamanho = new System.Windows.Forms.NumericUpDown();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -71,6 +73,7 @@ namespace GerenciadorDeTarefa.UI
             this.tsSublinhado = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsCorTexto = new System.Windows.Forms.ToolStripButton();
+            this.tsImagem = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsAlinhaEsquerda = new System.Windows.Forms.ToolStripButton();
             this.tsAlinhaCentro = new System.Windows.Forms.ToolStripButton();
@@ -78,6 +81,7 @@ namespace GerenciadorDeTarefa.UI
             this.GerenteContainer = new System.Windows.Forms.SplitContainer();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.HorasContainer = new System.Windows.Forms.SplitContainer();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.lbTitulo = new System.Windows.Forms.Label();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.lbHoraTrabalhada = new System.Windows.Forms.Label();
@@ -85,7 +89,6 @@ namespace GerenciadorDeTarefa.UI
             this.lbSaida3 = new System.Windows.Forms.Label();
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.lbTotal = new System.Windows.Forms.Label();
-            this.lbTarefa = new System.Windows.Forms.Label();
             this.lbSaida2 = new System.Windows.Forms.Label();
             this.separatorControl4 = new DevExpress.XtraEditors.SeparatorControl();
             this.lbEntrada = new System.Windows.Forms.Label();
@@ -93,13 +96,14 @@ namespace GerenciadorDeTarefa.UI
             this.lbSaida1 = new System.Windows.Forms.Label();
             this.teIntervalo = new DevExpress.XtraEditors.TimeEdit();
             this.lbSaida = new System.Windows.Forms.Label();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.lbEntrada3 = new System.Windows.Forms.Label();
             this.lbIntAlmoco = new System.Windows.Forms.Label();
             this.lbEntrada2 = new System.Windows.Forms.Label();
             this.lbEntrada1 = new System.Windows.Forms.Label();
             this.lbTotalHora = new System.Windows.Forms.Label();
             this.separatorControl3 = new DevExpress.XtraEditors.SeparatorControl();
+            this.RelogioDigital = new System.Windows.Forms.Timer(this.components);
+            this.lbRelogioDigital = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUpTamanho)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GerenteContainer)).BeginInit();
@@ -127,16 +131,26 @@ namespace GerenciadorDeTarefa.UI
             // 
             // TbAnotacao
             // 
-            this.TbAnotacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.TbAnotacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TbAnotacao.Font = new System.Drawing.Font("Sylfaen", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TbAnotacao.Location = new System.Drawing.Point(3, 35);
             this.TbAnotacao.Name = "TbAnotacao";
             this.TbAnotacao.Size = new System.Drawing.Size(682, 376);
-            this.spellChecker1.SetSpellCheckerOptions(this.TbAnotacao, optionsSpelling2);
+            this.spellChecker1.SetSpellCheckerOptions(this.TbAnotacao, optionsSpelling3);
             this.TbAnotacao.TabIndex = 72;
             this.TbAnotacao.Text = "";
+            // 
+            // TxtTarefa
+            // 
+            this.TxtTarefa.BackColor = System.Drawing.SystemColors.Control;
+            this.TxtTarefa.Location = new System.Drawing.Point(19, 53);
+            this.TxtTarefa.Multiline = true;
+            this.TxtTarefa.Name = "TxtTarefa";
+            this.TxtTarefa.Size = new System.Drawing.Size(208, 47);
+            this.spellChecker1.SetSpellCheckerOptions(this.TxtTarefa, optionsSpelling4);
+            this.TxtTarefa.TabIndex = 129;
             // 
             // timer1
             // 
@@ -147,7 +161,7 @@ namespace GerenciadorDeTarefa.UI
             // nUpTamanho
             // 
             this.nUpTamanho.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nUpTamanho.Location = new System.Drawing.Point(307, 7);
+            this.nUpTamanho.Location = new System.Drawing.Point(330, 9);
             this.nUpTamanho.Maximum = new decimal(new int[] {
             72,
             0,
@@ -183,13 +197,14 @@ namespace GerenciadorDeTarefa.UI
             this.tsSublinhado,
             this.toolStripSeparator1,
             this.tsCorTexto,
+            this.tsImagem,
             this.toolStripSeparator2,
             this.tsAlinhaEsquerda,
             this.tsAlinhaCentro,
             this.tsAlinhaDireita});
             this.toolStrip1.Location = new System.Drawing.Point(9, 6);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(295, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(318, 25);
             this.toolStrip1.TabIndex = 70;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -235,7 +250,7 @@ namespace GerenciadorDeTarefa.UI
             // salvarComoToolStripMenuItem
             // 
             this.salvarComoToolStripMenuItem.Name = "salvarComoToolStripMenuItem";
-            this.salvarComoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.salvarComoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.S)));
             this.salvarComoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.salvarComoToolStripMenuItem.Text = "Salvar Como";
@@ -327,6 +342,16 @@ namespace GerenciadorDeTarefa.UI
             this.tsCorTexto.Text = "Cor do Texto";
             this.tsCorTexto.Click += new System.EventHandler(this.TsCorTexto_Click);
             // 
+            // tsImagem
+            // 
+            this.tsImagem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsImagem.Image = ((System.Drawing.Image)(resources.GetObject("tsImagem.Image")));
+            this.tsImagem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsImagem.Name = "tsImagem";
+            this.tsImagem.Size = new System.Drawing.Size(23, 22);
+            this.tsImagem.Text = "Anexar Imagem";
+            this.tsImagem.Click += new System.EventHandler(this.tsImagem_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -415,6 +440,9 @@ namespace GerenciadorDeTarefa.UI
             // HorasContainer.Panel1
             // 
             this.HorasContainer.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.HorasContainer.Panel1.Controls.Add(this.lbRelogioDigital);
+            this.HorasContainer.Panel1.Controls.Add(this.btnLimpar);
+            this.HorasContainer.Panel1.Controls.Add(this.TxtTarefa);
             this.HorasContainer.Panel1.Controls.Add(this.lbTitulo);
             this.HorasContainer.Panel1.Controls.Add(this.splitter2);
             this.HorasContainer.Panel1.Controls.Add(this.lbHoraTrabalhada);
@@ -422,7 +450,6 @@ namespace GerenciadorDeTarefa.UI
             this.HorasContainer.Panel1.Controls.Add(this.lbSaida3);
             this.HorasContainer.Panel1.Controls.Add(this.separatorControl1);
             this.HorasContainer.Panel1.Controls.Add(this.lbTotal);
-            this.HorasContainer.Panel1.Controls.Add(this.lbTarefa);
             this.HorasContainer.Panel1.Controls.Add(this.lbSaida2);
             this.HorasContainer.Panel1.Controls.Add(this.separatorControl4);
             this.HorasContainer.Panel1.Controls.Add(this.lbEntrada);
@@ -430,7 +457,6 @@ namespace GerenciadorDeTarefa.UI
             this.HorasContainer.Panel1.Controls.Add(this.lbSaida1);
             this.HorasContainer.Panel1.Controls.Add(this.teIntervalo);
             this.HorasContainer.Panel1.Controls.Add(this.lbSaida);
-            this.HorasContainer.Panel1.Controls.Add(this.btnEditar);
             this.HorasContainer.Panel1.Controls.Add(this.lbEntrada3);
             this.HorasContainer.Panel1.Controls.Add(this.lbIntAlmoco);
             this.HorasContainer.Panel1.Controls.Add(this.lbEntrada2);
@@ -449,12 +475,24 @@ namespace GerenciadorDeTarefa.UI
             this.HorasContainer.SplitterWidth = 3;
             this.HorasContainer.TabIndex = 0;
             // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLimpar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLimpar.Location = new System.Drawing.Point(178, 191);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(62, 25);
+            this.btnLimpar.TabIndex = 130;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
             // lbTitulo
             // 
             this.lbTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTitulo.AutoSize = true;
             this.lbTitulo.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbTitulo.Location = new System.Drawing.Point(10, 29);
+            this.lbTitulo.Location = new System.Drawing.Point(10, 31);
             this.lbTitulo.Name = "lbTitulo";
             this.lbTitulo.Size = new System.Drawing.Size(53, 19);
             this.lbTitulo.TabIndex = 118;
@@ -488,7 +526,7 @@ namespace GerenciadorDeTarefa.UI
             // separatorControl2
             // 
             this.separatorControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorControl2.Location = new System.Drawing.Point(8, 111);
+            this.separatorControl2.Location = new System.Drawing.Point(8, 101);
             this.separatorControl2.Name = "separatorControl2";
             this.separatorControl2.Size = new System.Drawing.Size(240, 18);
             this.separatorControl2.TabIndex = 125;
@@ -498,7 +536,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbSaida3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSaida3.AutoSize = true;
             this.lbSaida3.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbSaida3.Location = new System.Drawing.Point(182, 160);
+            this.lbSaida3.Location = new System.Drawing.Point(182, 150);
             this.lbSaida3.Name = "lbSaida3";
             this.lbSaida3.Size = new System.Drawing.Size(45, 19);
             this.lbSaida3.TabIndex = 114;
@@ -507,7 +545,7 @@ namespace GerenciadorDeTarefa.UI
             // separatorControl1
             // 
             this.separatorControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorControl1.Location = new System.Drawing.Point(8, 183);
+            this.separatorControl1.Location = new System.Drawing.Point(8, 173);
             this.separatorControl1.Name = "separatorControl1";
             this.separatorControl1.Size = new System.Drawing.Size(240, 18);
             this.separatorControl1.TabIndex = 124;
@@ -517,30 +555,18 @@ namespace GerenciadorDeTarefa.UI
             this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTotal.AutoSize = true;
             this.lbTotal.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbTotal.Location = new System.Drawing.Point(163, 252);
+            this.lbTotal.Location = new System.Drawing.Point(163, 242);
             this.lbTotal.Name = "lbTotal";
             this.lbTotal.Size = new System.Drawing.Size(41, 18);
             this.lbTotal.TabIndex = 115;
             this.lbTotal.Text = "Total:";
-            // 
-            // lbTarefa
-            // 
-            this.lbTarefa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbTarefa.Font = new System.Drawing.Font("Sylfaen", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.lbTarefa.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lbTarefa.Location = new System.Drawing.Point(7, 48);
-            this.lbTarefa.Name = "lbTarefa";
-            this.lbTarefa.Size = new System.Drawing.Size(241, 60);
-            this.lbTarefa.TabIndex = 120;
-            this.lbTarefa.Text = resources.GetString("lbTarefa.Text");
             // 
             // lbSaida2
             // 
             this.lbSaida2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSaida2.AutoSize = true;
             this.lbSaida2.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbSaida2.Location = new System.Drawing.Point(133, 160);
+            this.lbSaida2.Location = new System.Drawing.Point(133, 150);
             this.lbSaida2.Name = "lbSaida2";
             this.lbSaida2.Size = new System.Drawing.Size(45, 19);
             this.lbSaida2.TabIndex = 113;
@@ -549,7 +575,7 @@ namespace GerenciadorDeTarefa.UI
             // separatorControl4
             // 
             this.separatorControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorControl4.Location = new System.Drawing.Point(9, 232);
+            this.separatorControl4.Location = new System.Drawing.Point(9, 222);
             this.separatorControl4.Name = "separatorControl4";
             this.separatorControl4.Size = new System.Drawing.Size(240, 18);
             this.separatorControl4.TabIndex = 123;
@@ -559,7 +585,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbEntrada.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEntrada.AutoSize = true;
             this.lbEntrada.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbEntrada.Location = new System.Drawing.Point(19, 134);
+            this.lbEntrada.Location = new System.Drawing.Point(19, 124);
             this.lbEntrada.Name = "lbEntrada";
             this.lbEntrada.Size = new System.Drawing.Size(61, 19);
             this.lbEntrada.TabIndex = 116;
@@ -569,7 +595,7 @@ namespace GerenciadorDeTarefa.UI
             // 
             this.btnEntrada.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEntrada.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEntrada.Location = new System.Drawing.Point(97, 204);
+            this.btnEntrada.Location = new System.Drawing.Point(110, 191);
             this.btnEntrada.Name = "btnEntrada";
             this.btnEntrada.Size = new System.Drawing.Size(62, 25);
             this.btnEntrada.TabIndex = 106;
@@ -582,7 +608,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbSaida1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSaida1.AutoSize = true;
             this.lbSaida1.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbSaida1.Location = new System.Drawing.Point(84, 160);
+            this.lbSaida1.Location = new System.Drawing.Point(84, 150);
             this.lbSaida1.Name = "lbSaida1";
             this.lbSaida1.Size = new System.Drawing.Size(45, 19);
             this.lbSaida1.TabIndex = 112;
@@ -591,8 +617,8 @@ namespace GerenciadorDeTarefa.UI
             // teIntervalo
             // 
             this.teIntervalo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.teIntervalo.EditValue = new System.DateTime(2022, 7, 29, 0, 0, 0, 0);
-            this.teIntervalo.Location = new System.Drawing.Point(85, 251);
+            this.teIntervalo.EditValue = DateTime.Today;
+            this.teIntervalo.Location = new System.Drawing.Point(85, 241);
             this.teIntervalo.Name = "teIntervalo";
             this.teIntervalo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -606,30 +632,18 @@ namespace GerenciadorDeTarefa.UI
             this.lbSaida.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSaida.AutoSize = true;
             this.lbSaida.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbSaida.Location = new System.Drawing.Point(19, 160);
+            this.lbSaida.Location = new System.Drawing.Point(19, 150);
             this.lbSaida.Name = "lbSaida";
             this.lbSaida.Size = new System.Drawing.Size(45, 19);
             this.lbSaida.TabIndex = 117;
             this.lbSaida.Text = "Saida:";
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEditar.Location = new System.Drawing.Point(165, 204);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(62, 25);
-            this.btnEditar.TabIndex = 107;
-            this.btnEditar.Text = "Titulo";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // lbEntrada3
             // 
             this.lbEntrada3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEntrada3.AutoSize = true;
             this.lbEntrada3.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbEntrada3.Location = new System.Drawing.Point(182, 133);
+            this.lbEntrada3.Location = new System.Drawing.Point(182, 123);
             this.lbEntrada3.Name = "lbEntrada3";
             this.lbEntrada3.Size = new System.Drawing.Size(45, 19);
             this.lbEntrada3.TabIndex = 111;
@@ -640,7 +654,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbIntAlmoco.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbIntAlmoco.AutoSize = true;
             this.lbIntAlmoco.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbIntAlmoco.Location = new System.Drawing.Point(18, 253);
+            this.lbIntAlmoco.Location = new System.Drawing.Point(18, 243);
             this.lbIntAlmoco.Name = "lbIntAlmoco";
             this.lbIntAlmoco.Size = new System.Drawing.Size(62, 18);
             this.lbIntAlmoco.TabIndex = 121;
@@ -651,7 +665,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbEntrada2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEntrada2.AutoSize = true;
             this.lbEntrada2.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbEntrada2.Location = new System.Drawing.Point(133, 133);
+            this.lbEntrada2.Location = new System.Drawing.Point(133, 123);
             this.lbEntrada2.Name = "lbEntrada2";
             this.lbEntrada2.Size = new System.Drawing.Size(45, 19);
             this.lbEntrada2.TabIndex = 110;
@@ -662,7 +676,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbEntrada1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbEntrada1.AutoSize = true;
             this.lbEntrada1.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbEntrada1.Location = new System.Drawing.Point(84, 133);
+            this.lbEntrada1.Location = new System.Drawing.Point(84, 123);
             this.lbEntrada1.Name = "lbEntrada1";
             this.lbEntrada1.Size = new System.Drawing.Size(45, 19);
             this.lbEntrada1.TabIndex = 109;
@@ -673,7 +687,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbTotalHora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTotalHora.AutoSize = true;
             this.lbTotalHora.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbTotalHora.Location = new System.Drawing.Point(201, 252);
+            this.lbTotalHora.Location = new System.Drawing.Point(201, 242);
             this.lbTotalHora.Name = "lbTotalHora";
             this.lbTotalHora.Size = new System.Drawing.Size(40, 18);
             this.lbTotalHora.TabIndex = 119;
@@ -686,6 +700,24 @@ namespace GerenciadorDeTarefa.UI
             this.separatorControl3.Name = "separatorControl3";
             this.separatorControl3.Size = new System.Drawing.Size(240, 18);
             this.separatorControl3.TabIndex = 127;
+            // 
+            // RelogioDigital
+            // 
+            this.RelogioDigital.Enabled = true;
+            this.RelogioDigital.Interval = 1000;
+            this.RelogioDigital.Tick += new System.EventHandler(this.RelogioDigital_Tick);
+            // 
+            // lbRelogioDigital
+            // 
+            this.lbRelogioDigital.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbRelogioDigital.AutoSize = true;
+            this.lbRelogioDigital.Font = new System.Drawing.Font("Sylfaen", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.lbRelogioDigital.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lbRelogioDigital.Location = new System.Drawing.Point(191, 260);
+            this.lbRelogioDigital.Name = "lbRelogioDigital";
+            this.lbRelogioDigital.Size = new System.Drawing.Size(49, 16);
+            this.lbRelogioDigital.TabIndex = 131;
+            this.lbRelogioDigital.Text = "00:00:00";
             // 
             // FormTarefa
             // 
@@ -758,7 +790,6 @@ namespace GerenciadorDeTarefa.UI
         private System.Windows.Forms.Label lbSaida3;
         private DevExpress.XtraEditors.SeparatorControl separatorControl1;
         private System.Windows.Forms.Label lbTotal;
-        private System.Windows.Forms.Label lbTarefa;
         private System.Windows.Forms.Label lbSaida2;
         private DevExpress.XtraEditors.SeparatorControl separatorControl4;
         private System.Windows.Forms.Label lbEntrada;
@@ -766,14 +797,18 @@ namespace GerenciadorDeTarefa.UI
         private System.Windows.Forms.Label lbSaida1;
         private DevExpress.XtraEditors.TimeEdit teIntervalo;
         private System.Windows.Forms.Label lbSaida;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Label lbEntrada3;
         private System.Windows.Forms.Label lbIntAlmoco;
-        private System.Windows.Forms.Label lbTitulo;
         private System.Windows.Forms.Label lbEntrada2;
         private System.Windows.Forms.Label lbEntrada1;
         private System.Windows.Forms.Label lbTotalHora;
         private System.Windows.Forms.Splitter splitter2;
         private DevExpress.XtraEditors.SeparatorControl separatorControl3;
+        private System.Windows.Forms.TextBox TxtTarefa;
+        private System.Windows.Forms.Label lbTitulo;
+        private System.Windows.Forms.Timer RelogioDigital;
+        private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.ToolStripButton tsImagem;
+        private System.Windows.Forms.Label lbRelogioDigital;
     }
 }

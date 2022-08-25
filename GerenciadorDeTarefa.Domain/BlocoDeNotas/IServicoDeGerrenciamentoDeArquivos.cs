@@ -4,14 +4,14 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public interface IServicoDeGerrenciamentoDeArquivos
     {
-        void SalvarArquivo(string texto, string moduloExecucao);
+        void SalvarArquivo(RichTextBox tbAnotacao);
 
-        string AbrirArquivo();
+        RichTextBox AbrirArquivo(RichTextBox tbAnotacao);
 
         string ObterNomeArquivo();
 
-        void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto);
-        
-       
+        void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto, RichTextBox tbAnotacao);
+
+
     }
 }

@@ -8,48 +8,45 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
     public class ServicoDeGerrenciamentoDeArquivos : IServicoDeGerrenciamentoDeArquivos
     {
         GerenciamentoDeArquivo _gerenciamentoDeArquivo = new GerenciamentoDeArquivo();
-        GerenciadorHora _gerenciadorHora = new GerenciadorHora();
         SaveFileDialog salvarArquivo = new SaveFileDialog();
         OpenFileDialog abrirArquivo = new OpenFileDialog();
 
-        public void SalvarArquivo(string texto, string moduloExecucao)
+        public void SalvarArquivo(RichTextBox tbAnotacao)
         {
             try
             {
-                var verificaModulo = moduloExecucao == "Salvar Como";
+                salvarArquivo = new SaveFileDialog { Filter = @"Arquivos rtf.(*.rtf)|*.rtf", OverwritePrompt = true };
+                salvarArquivo.FileName = $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}.rtf";
 
-                if (!File.Exists(salvarArquivo.FileName)|| verificaModulo && _gerenciamentoDeArquivo.Novo)
+                if (salvarArquivo.ShowDialog() == DialogResult.OK)
                 {
-                    salvarArquivo = new SaveFileDialog { Filter = @"Arquivo txt.(*.txt)|*.txt|Todos os arquivos (*.*)|*.*", OverwritePrompt = true };
-                    salvarArquivo.FileName = $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}.txt";
-                    if (salvarArquivo.ShowDialog() == DialogResult.OK)
-                    {
-                        File.WriteAllText(salvarArquivo.FileName, texto);
-                    }
-                    return;
+                    tbAnotacao.SaveFile(salvarArquivo.FileName);
                 }
-                File.WriteAllText(salvarArquivo.FileName, texto);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Houve um erro ao escrever o arquivo {salvarArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
             }
         }
-        
-        public string AbrirArquivo()
+
+        public RichTextBox AbrirArquivo(RichTextBox tbAnotacao)
         {
             try
             {
+                abrirArquivo.DefaultExt = "*.rtf";
+                abrirArquivo.Filter = "Arquivos rtf.(*.rtf)|*.rtf";
+
                 if (abrirArquivo.ShowDialog() == DialogResult.OK)
                 {
-                    return File.ReadAllText(abrirArquivo.FileName);
+                    tbAnotacao.LoadFile(abrirArquivo.FileName, RichTextBoxStreamType.RichText);
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Houve um erro ao abrir o arquivo {abrirArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
             }
-            return string.Empty;
+            return tbAnotacao;
         }
 
         public string ObterNomeArquivo()
@@ -64,7 +61,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             return $"{nomeEstencao[0]} - Gerente de Horas";
         }
 
-        public void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto)
+        public void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto, RichTextBox tbAnotacao)
         {
             var MensagemNovo = "Deseja salvar suas Anotações antes de Criar um novo arquivo?";
             var MensagemClose = "Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia";
@@ -79,7 +76,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
                     if (MessageBox.Show(mensagemAlerta, "Salvar?",
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        SalvarArquivo(texto, moduloExecucao);
+                        SalvarArquivo(tbAnotacao);
                         MessageBox.Show("Salvo com Sucesso");
                     }
                 }
@@ -90,9 +87,6 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 }
 //TODO: Adicionar verificador ortografico
 //https://help-syncfusion-com.translate.goog/windowsforms/spell-checker/getting-started?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc
-
-//TODO: usar Save File para salvar formatação do arquivo https://www.youtube.com/watch?v=7er96RwzvRc
-//https://imasters.com.br/back-end/editor-de-texto-com-richtextbox-e-printdocument-parte-01
 
 //Criar tela de historico de notas
 
