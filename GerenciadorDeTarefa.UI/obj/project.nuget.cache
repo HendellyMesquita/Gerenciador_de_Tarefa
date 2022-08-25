@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FVLDKZuwoNSxUEalmMGV68gBf309JCpOhkFODBAJLkdszkaEiCIdvUu0RLBzdQ/QBmXeDRqbF2UKzfZLPkHwDQ==",
+  "dgSpecHash": "/5N2NuCBgaMWnuD1Ke8H9BMZvFi1zFhSVPnL87gIYfGaqz/FOE8e1DzQLqrL5IvVfn/ouZhmPUD0oVg16z+V1g==",
   "success": true,
   "projectFilePath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
   "expectedPackageFiles": [
@@ -48,6 +48,7 @@
     "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages\\devexpress.win.treelist\\21.2.6\\devexpress.win.treelist.21.2.6.nupkg.sha512",
     "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages\\devexpress.win.verticalgrid\\21.2.6\\devexpress.win.verticalgrid.21.2.6.nupkg.sha512",
     "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages\\devexpress.xpo\\21.2.6\\devexpress.xpo.21.2.6.nupkg.sha512",
+    "C:\\Users\\usuario\\.nuget\\packages\\linq2db\\4.1.1\\linq2db.4.1.1.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\2.0.0\\microsoft.extensions.dependencyinjection.2.0.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",

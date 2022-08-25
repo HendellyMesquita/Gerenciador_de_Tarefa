@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GerenciadorDeTarefa.Infra\GerenciadorDeTarefa.Infra.csproj" />
+    <PackageReference Include="linq2db" Version="4.1.1" />
   </ItemGroup>
 
 </Project>

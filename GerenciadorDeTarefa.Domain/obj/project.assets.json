@@ -2,31 +2,50 @@
   "version": 3,
   "targets": {
     "net6.0-windows8.0": {
-      "GerenciadorDeTarefa.Infra/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+      "linq2db/4.1.1": {
+        "type": "package",
         "compile": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
+          "lib/net6.0/linq2db.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
+          "lib/net6.0/linq2db.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "GerenciadorDeTarefa.Infra/1.0.0": {
-      "type": "project",
-      "path": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj",
-      "msbuildProject": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj"
+    "linq2db/4.1.1": {
+      "sha512": "s0/kByoS3qgQn/OHu8htt7m1plsAsRxNgXhYfXBRedy+SsRv0xuHA6w8X5J1WLWjXUjANRWtTNjCyD1lWZD69Q==",
+      "type": "package",
+      "path": "linq2db/4.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "MIT-LICENSE.txt",
+        "README.md",
+        "images/icon.png",
+        "lib/net45/linq2db.dll",
+        "lib/net45/linq2db.xml",
+        "lib/net46/linq2db.dll",
+        "lib/net46/linq2db.xml",
+        "lib/net472/linq2db.dll",
+        "lib/net472/linq2db.xml",
+        "lib/net6.0/linq2db.dll",
+        "lib/net6.0/linq2db.xml",
+        "lib/netcoreapp3.1/linq2db.dll",
+        "lib/netcoreapp3.1/linq2db.xml",
+        "lib/netstandard2.0/linq2db.dll",
+        "lib/netstandard2.0/linq2db.xml",
+        "lib/netstandard2.1/linq2db.dll",
+        "lib/netstandard2.1/linq2db.xml",
+        "linq2db.4.1.1.nupkg.sha512",
+        "linq2db.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows8.0": [
-      "GerenciadorDeTarefa.Infra >= 1.0.0"
+      "linq2db >= 4.1.1"
     ]
   },
   "packageFolders": {
@@ -64,11 +83,7 @@
       "frameworks": {
         "net6.0-windows8.0": {
           "targetAlias": "net6.0-windows8.0",
-          "projectReferences": {
-            "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.Infra\\GerenciadorDeTarefa.Infra.csproj": {
-              "projectPath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.Infra\\GerenciadorDeTarefa.Infra.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -80,6 +95,12 @@
     "frameworks": {
       "net6.0-windows8.0": {
         "targetAlias": "net6.0-windows8.0",
+        "dependencies": {
+          "linq2db": {
+            "target": "Package",
+            "version": "[4.1.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
