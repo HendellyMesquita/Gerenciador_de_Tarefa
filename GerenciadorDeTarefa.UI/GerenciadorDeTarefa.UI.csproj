@@ -20,6 +20,7 @@
     <None Remove="Icons\fonte.png" />
     <None Remove="Icons\Gerenciamento.ico" />
     <None Remove="Icons\Gerenciamento.png" />
+    <None Remove="Icons\ImportarImagem.png" />
     <None Remove="Icons\Italico.png" />
     <None Remove="Icons\Negrito.png" />
     <None Remove="Icons\novo-arquivo.png" />
@@ -54,6 +55,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GerenciadorDeTarefa.Domain\GerenciadorDeTarefa.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\ImportarImagem.png" />
   </ItemGroup>
 
   <ItemGroup>
