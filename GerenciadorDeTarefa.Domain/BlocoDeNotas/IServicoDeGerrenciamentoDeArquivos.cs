@@ -4,7 +4,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public interface IServicoDeGerrenciamentoDeArquivos
     {
-        void SalvarArquivo(RichTextBox tbAnotacao);
+        void SalvarArquivo(RichTextBox tbAnotacao, string tituloTarefa);
 
         RichTextBox AbrirArquivo(RichTextBox tbAnotacao);
 

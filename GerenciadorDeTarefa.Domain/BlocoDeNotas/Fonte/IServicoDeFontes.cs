@@ -15,5 +15,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte
         void DefinirCorTexto(RichTextBox TbAnotacao, NumericUpDown nUpTamanho, ColorDialog colorDialog);
 
         void Alinhamento(RichTextBox TbAnotacao, string moduloExecucao);
+
+        void AnexarImagem(RichTextBox TbAnotacao, OpenFileDialog openFileDialog);
     }
 }

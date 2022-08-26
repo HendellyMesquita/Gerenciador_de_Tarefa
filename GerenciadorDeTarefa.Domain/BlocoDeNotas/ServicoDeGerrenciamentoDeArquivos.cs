@@ -1,22 +1,20 @@
-﻿using GerenciadorDeTarefa.Domain.GerenciadorHoras;
-using System;
-using System.IO;
+﻿using System;
 using System.Windows.Forms;
 
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 {
     public class ServicoDeGerrenciamentoDeArquivos : IServicoDeGerrenciamentoDeArquivos
     {
-        GerenciamentoDeArquivo _gerenciamentoDeArquivo = new GerenciamentoDeArquivo();
         SaveFileDialog salvarArquivo = new SaveFileDialog();
         OpenFileDialog abrirArquivo = new OpenFileDialog();
 
-        public void SalvarArquivo(RichTextBox tbAnotacao)
+        public void SalvarArquivo(RichTextBox tbAnotacao, string tituloTarefa)
         {
             try
             {
                 salvarArquivo = new SaveFileDialog { Filter = @"Arquivos rtf.(*.rtf)|*.rtf", OverwritePrompt = true };
-                salvarArquivo.FileName = $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}.rtf";
+                salvarArquivo.FileName = !string.IsNullOrEmpty(tituloTarefa)
+                    ? tituloTarefa : $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}";
 
                 if (salvarArquivo.ShowDialog() == DialogResult.OK)
                 {
@@ -39,6 +37,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
                 if (abrirArquivo.ShowDialog() == DialogResult.OK)
                 {
                     tbAnotacao.LoadFile(abrirArquivo.FileName, RichTextBoxStreamType.RichText);
+                    
                 }
 
             }
@@ -76,7 +75,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
                     if (MessageBox.Show(mensagemAlerta, "Salvar?",
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        SalvarArquivo(tbAnotacao);
+                        SalvarArquivo(tbAnotacao, string.Empty);
                         MessageBox.Show("Salvo com Sucesso");
                     }
                 }
@@ -88,6 +87,6 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
 //TODO: Adicionar verificador ortografico
 //https://help-syncfusion-com.translate.goog/windowsforms/spell-checker/getting-started?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc
 
-//Criar tela de historico de notas
+//TODO: Criar tela de historico de notas
 
-//criar função notas fixcadas
+//TODO: criar função notas fixcadas

@@ -3,7 +3,6 @@ using GerenciadorDeTarefa.Domain.BlocoDeNotas;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
@@ -17,8 +16,6 @@ namespace GerenciadorDeTarefa.UI
         private IServicoDeGerrenciamentoDeArquivos _servicoDeGerrenciamentoDeArquivos;
         private IServicoDeFontes _servicoDeFontes;
         private GerenciadorHora _gerenciadorHora;
-        private GerenciamentoDeArquivo _gerenciamentoDeArquivo;
-        private Alerta _alerta;
         private FonteDeNota _fonte;
         private string salvarTexto;
         private int cont = 0;
@@ -31,8 +28,6 @@ namespace GerenciadorDeTarefa.UI
             IServicoDeGerrenciamentoDeArquivos servicoDeGerrenciamentoDeArquivos,
             IServicoDeFontes servicoDeFontes,
             GerenciadorHora gerenciadorHora,
-            GerenciamentoDeArquivo gerenciamentoDeArquivo,
-            Alerta alerta,
             FonteDeNota fonte)
         {
             InitializeComponent();
@@ -42,8 +37,6 @@ namespace GerenciadorDeTarefa.UI
             _servicoDeGerrenciamentoDeArquivos = servicoDeGerrenciamentoDeArquivos;
             _servicoDeFontes = servicoDeFontes;
             _gerenciadorHora = gerenciadorHora;
-            _gerenciamentoDeArquivo = gerenciamentoDeArquivo;
-            _alerta = alerta;
             _fonte = fonte;
         }
 
@@ -141,11 +134,10 @@ namespace GerenciadorDeTarefa.UI
                 timer1.Enabled = true;
                 ActiveControl = null;
 
-                ObterHorasEMinutos();
-                //   _servicoDeAlerta.ObterHorasEMinutos(teIntervalo.Text);
-
                 var intervalo = _servicoDeAlerta.ObterIntervaloDeHoras(teIntervalo.Time);
                 MessageBox.Show($" O Alerta disparará em {intervalo.ToString("hh' Horas e 'mm' Minutos'")}");
+
+                ObterHorasEMinutos();
 
             }
             catch (AlertaException ex)
@@ -163,9 +155,6 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                //TODO: Encontrar maneira para passar essa função para serviço
-                /**/
-                //  timer1.Enabled = _servicoDeAlerta.VerificaTimer(timer1.Enabled);
 
                 if (HoraIntervalo == DateTime.Now.Hour && MinutoIntervalo == DateTime.Now.Minute)
                 {
@@ -186,8 +175,6 @@ namespace GerenciadorDeTarefa.UI
                         MarcarHoraAtual();
                     }
                 }
-                /**/
-
             }
             catch (AlertaException ex)
             {
@@ -204,7 +191,7 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+                var moduloExecucao = sender.ToString();
                 _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto, TbAnotacao);
 
                 if (!string.IsNullOrEmpty(this.TbAnotacao.Text))
@@ -221,7 +208,7 @@ namespace GerenciadorDeTarefa.UI
         }
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+            var moduloExecucao = sender.ToString();
             _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto, TbAnotacao);
             TbAnotacao = _servicoDeGerrenciamentoDeArquivos.AbrirArquivo(TbAnotacao);
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
@@ -229,7 +216,8 @@ namespace GerenciadorDeTarefa.UI
         }
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao);
+
+            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao, txtTarefa.Text);
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
@@ -262,22 +250,12 @@ namespace GerenciadorDeTarefa.UI
 
         private void tsImagem_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "Images |*.bmp;*.jpg;*.png;*.gif;*.ico";
-            openFileDialog1.Multiselect = false;
-            openFileDialog1.FileName = "";
-            DialogResult resultado = openFileDialog1.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                Image img = Image.FromFile(openFileDialog1.FileName);
-                Clipboard.SetImage(img);
-                TbAnotacao.Paste();
-            }
+            _servicoDeFontes.AnexarImagem(TbAnotacao, openFileDialog1);
         }
 
         private void tsAlinhaCentro_Click(object sender, EventArgs e)
         {
-            var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+            var moduloExecucao = sender.ToString();
             _servicoDeFontes.Alinhamento(TbAnotacao, moduloExecucao);
         }
 
@@ -294,7 +272,7 @@ namespace GerenciadorDeTarefa.UI
                         return;
                     }
                 }
-                var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+                var moduloExecucao = sender.ToString();
                 _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto, TbAnotacao);
 
             }
@@ -332,6 +310,11 @@ namespace GerenciadorDeTarefa.UI
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             LimparFiltro();
+        }
+
+        private void lbEntrada1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

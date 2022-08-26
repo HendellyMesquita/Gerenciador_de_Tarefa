@@ -101,6 +101,21 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte
             var tamanho = (float)nUpTamanho.Value;
             TbAnotacao.SelectionFont = new Font(fonte, tamanho, _fonte.Sublinhado | _fonte.Negrito | _fonte.Italico);
         }
+
+        public void AnexarImagem(RichTextBox TbAnotacao, OpenFileDialog openFileDialog)
+        {
+            openFileDialog.Filter = "Images |*.bmp;*.jpg;*.png;*.gif;*.ico";
+            openFileDialog.Multiselect = false;
+            openFileDialog.FileName = "";
+            DialogResult resultado = openFileDialog.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                Image img = Image.FromFile(openFileDialog.FileName);
+                Clipboard.SetImage(img);
+                TbAnotacao.Paste();
+            }
+        }
     }
 }
 

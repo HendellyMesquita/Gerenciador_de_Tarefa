@@ -2,6 +2,7 @@ C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\bin\Deb
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\bin\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Infra.dll
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\bin\Debug\net6.0-windows8.0\ref\GerenciadorDeTarefa.Infra.dll
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\bin\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Infra.pdb
+C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Infra.csproj.AssemblyReference.cache
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Infra.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Infra.AssemblyInfoInputs.cache
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.Infra\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Infra.AssemblyInfo.cs
