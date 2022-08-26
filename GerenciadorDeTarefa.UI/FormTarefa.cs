@@ -2,8 +2,8 @@
 using GerenciadorDeTarefa.Domain.BlocoDeNotas;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
-using Microsoft.VisualBasic;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
@@ -113,26 +113,6 @@ namespace GerenciadorDeTarefa.UI
             }
         }
 
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _gerenciadorHora.Tarefa = Interaction.InputBox(
-                    "Informe Um Título Para A Tarefa Ou o " +
-                    "                                     " +
-                    "Nome Da Branch Do Projeto Atual: ",
-                    "Edição Título. Projeto BANCKPLUS");
-
-                if (!string.IsNullOrEmpty(_gerenciadorHora.Tarefa))
-                        lbTarefa.Text = _gerenciadorHora.Tarefa;
-            }
-            catch (EdicaoException ex)
-            {
-                throw new Exception($"Erro Ao Editar Titulo.  Erro:{ex}");
-
-            }
-        }
-
         private void btnEntrada_Click(object sender, EventArgs e)
         {
             try
@@ -224,8 +204,8 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                _gerenciamentoDeArquivo.Novo = true;
-                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
+                var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto, TbAnotacao);
 
                 if (!string.IsNullOrEmpty(this.TbAnotacao.Text))
                 {
@@ -241,15 +221,15 @@ namespace GerenciadorDeTarefa.UI
         }
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, sender.ToString(), salvarTexto);
-            TbAnotacao.Text = _servicoDeGerrenciamentoDeArquivos.AbrirArquivo();
+            var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
+            _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto, TbAnotacao);
+            TbAnotacao = _servicoDeGerrenciamentoDeArquivos.AbrirArquivo(TbAnotacao);
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
-            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao.Text, moduloExecucao);
+            _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao);
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
@@ -280,6 +260,21 @@ namespace GerenciadorDeTarefa.UI
             _servicoDeFontes.DefinirCorTexto(TbAnotacao, nUpTamanho, colorDialog1);
         }
 
+        private void tsImagem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Images |*.bmp;*.jpg;*.png;*.gif;*.ico";
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.FileName = "";
+            DialogResult resultado = openFileDialog1.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                Image img = Image.FromFile(openFileDialog1.FileName);
+                Clipboard.SetImage(img);
+                TbAnotacao.Paste();
+            }
+        }
+
         private void tsAlinhaCentro_Click(object sender, EventArgs e)
         {
             var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
@@ -300,7 +295,7 @@ namespace GerenciadorDeTarefa.UI
                     }
                 }
                 var moduloExecucao = _gerenciamentoDeArquivo.ModuloExecucao = sender.ToString();
-                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto);
+                _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto, TbAnotacao);
 
             }
             catch (ClousingException ex)
@@ -327,6 +322,16 @@ namespace GerenciadorDeTarefa.UI
                 return;
             }
             HorasContainer.Panel2Collapsed = true;
+        }
+
+        private void RelogioDigital_Tick(object sender, EventArgs e)
+        {
+            lbRelogioDigital.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparFiltro();
         }
     }
 }
