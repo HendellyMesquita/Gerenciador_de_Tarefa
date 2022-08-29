@@ -3,7 +3,6 @@ using GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
 using System;
-using System.IO;
 using System.Windows.Forms;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
@@ -17,11 +16,11 @@ namespace GerenciadorDeTarefa.UI
         private IServicoDeFontes _servicoDeFontes;
         private GerenciadorHora _gerenciadorHora;
         private FonteDeNota _fonte;
-        private string salvarTexto;
-        private int cont = 0;
         private int HoraIntervalo;
         private int MinutoIntervalo;
-        //private const string Separator = "\\";
+        private string salvarTexto;
+        private int cont = 0;
+        private string novaRota = "";
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
             IServicoDeAlerta servicoDeAlerta,
@@ -31,7 +30,6 @@ namespace GerenciadorDeTarefa.UI
             FonteDeNota fonte)
         {
             InitializeComponent();
-            MostrarEntradas();
             _servicoGerenciamento = servicoGerenciamento;
             _servicoDeAlerta = servicoDeAlerta;
             _servicoDeGerrenciamentoDeArquivos = servicoDeGerrenciamentoDeArquivos;
@@ -193,16 +191,15 @@ namespace GerenciadorDeTarefa.UI
         {
             lbRelogioDigital.Text = DateTime.Now.ToLongTimeString();
 
-            MostrarEntradas();
+            _servicoDeGerrenciamentoDeArquivos.MostrarEntradas(novaRota, LbAnotacoesAnteriores);
         }
-
 
         /*NOTAS*/
         private void ObterTituloDoArquivo(string tituloArquivo)
         {
             Text = $"{tituloArquivo}";
         }
-        
+
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -222,7 +219,7 @@ namespace GerenciadorDeTarefa.UI
                 throw new Exception($"Erro Ao Abrir Novo Arquivo. Erro:{ex}");
             }
         }
-        
+
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var moduloExecucao = sender.ToString();
@@ -231,52 +228,40 @@ namespace GerenciadorDeTarefa.UI
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
-        
+
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao, txtTarefa.Text);
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
 
-
-        private void LbAnotacoesAnteriores_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void btnListar_Click(object sender, EventArgs e)
         {
-            MostrarConteudoDoArquivo();
-        }
+            FolderBrowserDialog abrirPasta = new FolderBrowserDialog();
 
-        private void MostrarConteudoDoArquivo()
-        {
-            var linhaSelecionada = LbAnotacoesAnteriores.SelectedItems[0].Index;
-            var caminho = LbAnotacoesAnteriores.Items[linhaSelecionada].SubItems[2].Text;
-            TbAnotacao = _servicoDeGerrenciamentoDeArquivos.AbrirArquivo(TbAnotacao, caminho);
-
-        }
-
-        private void MostrarEntradas()
-        {
-            Arquivos arquivos = new Arquivos();
-        var listaArquivos = arquivos.GetArquivos();
-            LbAnotacoesAnteriores.Items.Clear();
-            foreach(var arquivo in listaArquivos)
+            if (abrirPasta.ShowDialog() != DialogResult.No)
             {
-                var item = new string[3];
-                item[0] = arquivo.Nome;
-                item[1] = arquivo.DataCriacao.ToString();
-                item[2] = arquivo.Caminho;
-
-                LbAnotacoesAnteriores.Items.Add(new ListViewItem(item));
+                novaRota = abrirPasta.SelectedPath;
             }
+
+        }
+
+        private void LbAnotacoesAnteriores_Click(object sender, EventArgs e)
+        {
+            var moduloExecucao = sender.ToString();
+            _servicoDeGerrenciamentoDeArquivos.VerificarSaveDoArquivo(TbAnotacao.Text, moduloExecucao, salvarTexto, TbAnotacao);
+            _servicoDeGerrenciamentoDeArquivos.MostrarConteudoDoArquivo(TbAnotacao, LbAnotacoesAnteriores);
+            ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
+            salvarTexto = TbAnotacao.Text;
         }
 
         private void ConfigurarGrade()
         {
-            LbAnotacoesAnteriores.Columns.Add("Arquivo",120);
-            LbAnotacoesAnteriores.Columns.Add("Data Modificaçao",140, HorizontalAlignment.Center);
-            LbAnotacoesAnteriores.Columns.Add("Caminho do arquivo", 250);
-         }
-
+            LbAnotacoesAnteriores.Columns.Add("Arquivo", 120);
+            LbAnotacoesAnteriores.Columns.Add("Data", 120, HorizontalAlignment.Center);
+            LbAnotacoesAnteriores.Columns.Add("Caminho", 250);
+        }
 
         /*FONTE*/
         private void tsNegrito_Click(object sender, EventArgs e)
@@ -317,7 +302,6 @@ namespace GerenciadorDeTarefa.UI
             _servicoDeFontes.Alinhamento(TbAnotacao, moduloExecucao);
         }
 
-
         /*FORMULÁRIO*/
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -341,7 +325,7 @@ namespace GerenciadorDeTarefa.UI
                 throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
             }
         }
-   
+
         private void splitter1_DoubleClick(object sender, EventArgs e)
         {
             if (GerenteContainer.Panel2Collapsed)
@@ -351,7 +335,7 @@ namespace GerenciadorDeTarefa.UI
             }
             GerenteContainer.Panel2Collapsed = true;
         }
-     
+
         private void splitter2_DoubleClick(object sender, EventArgs e)
         {
             if (HorasContainer.Panel2Collapsed)
@@ -365,12 +349,7 @@ namespace GerenciadorDeTarefa.UI
         private void FormTarefa_Load(object sender, EventArgs e)
         {
             ConfigurarGrade();
-            MostrarEntradas();
-        }
-
-        private void LbAnotacoesAnteriores_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            _servicoDeGerrenciamentoDeArquivos.MostrarEntradas(novaRota, LbAnotacoesAnteriores);
         }
     }
 }

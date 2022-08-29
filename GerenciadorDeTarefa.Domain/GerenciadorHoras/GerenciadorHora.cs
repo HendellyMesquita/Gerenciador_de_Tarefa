@@ -6,7 +6,7 @@ namespace GerenciadorDeTarefa.Domain.GerenciadorHoras
     {
         public string Tarefa { get; set; }
         public DateTime HoraAtual { get; set; }
-        public TimeSpan Total { get; set; }       
+        public TimeSpan Total { get; set; }
         public DateTime EntradaServico { get; set; }
         public DateTime EntradaAlmoco { get; set; }
         public DateTime EntradaReserva { get; set; }

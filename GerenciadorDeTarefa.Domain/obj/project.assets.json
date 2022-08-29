@@ -1,33 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows8.0": {
-      "GerenciadorDeTarefa.Infra/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
-      }
-    }
+    "net6.0-windows8.0": {}
   },
-  "libraries": {
-    "GerenciadorDeTarefa.Infra/1.0.0": {
-      "type": "project",
-      "path": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj",
-      "msbuildProject": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0-windows8.0": [
-      "GerenciadorDeTarefa.Infra >= 1.0.0"
-    ]
+    "net6.0-windows8.0": []
   },
   "packageFolders": {
     "C:\\Users\\usuario\\.nuget\\packages\\": {},
@@ -64,11 +42,7 @@
       "frameworks": {
         "net6.0-windows8.0": {
           "targetAlias": "net6.0-windows8.0",
-          "projectReferences": {
-            "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.Infra\\GerenciadorDeTarefa.Infra.csproj": {
-              "projectPath": "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.Infra\\GerenciadorDeTarefa.Infra.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

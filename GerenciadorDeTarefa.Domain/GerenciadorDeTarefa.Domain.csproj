@@ -12,8 +12,4 @@
     <None Remove="Message\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\GerenciadorDeTarefa.Infra\GerenciadorDeTarefa.Infra.csproj" />
-  </ItemGroup>
-
 </Project>

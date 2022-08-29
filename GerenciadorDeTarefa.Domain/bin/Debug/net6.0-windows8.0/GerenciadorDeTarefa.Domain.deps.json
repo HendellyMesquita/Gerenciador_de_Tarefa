@@ -7,27 +7,14 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "GerenciadorDeTarefa.Domain/1.0.0": {
-        "dependencies": {
-          "GerenciadorDeTarefa.Infra": "1.0.0"
-        },
         "runtime": {
           "GerenciadorDeTarefa.Domain.dll": {}
-        }
-      },
-      "GerenciadorDeTarefa.Infra/1.0.0": {
-        "runtime": {
-          "GerenciadorDeTarefa.Infra.dll": {}
         }
       }
     }
   },
   "libraries": {
     "GerenciadorDeTarefa.Domain/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "GerenciadorDeTarefa.Infra/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

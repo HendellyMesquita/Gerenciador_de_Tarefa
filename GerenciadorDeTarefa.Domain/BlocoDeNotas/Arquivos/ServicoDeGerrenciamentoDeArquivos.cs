@@ -9,8 +9,10 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
     {
         SaveFileDialog salvarArquivo = new SaveFileDialog();
         OpenFileDialog abrirArquivo = new OpenFileDialog();
-        FolderBrowserDialog abrirPasta = new FolderBrowserDialog();
-        public void SalvarArquivo(RichTextBox tbAnotacao, string tituloTarefa)
+        private const string rotaPadrao = @"C:\Users\usuario\Desktop\";
+        private const string limparCaminho = "";
+
+        public void SalvarArquivo(RichTextBox conteudoAnotacao, string tituloTarefa)
         {
             try
             {
@@ -20,7 +22,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
 
                 if (salvarArquivo.ShowDialog() == DialogResult.OK)
                 {
-                    tbAnotacao.SaveFile(salvarArquivo.FileName);
+                    conteudoAnotacao.SaveFile(salvarArquivo.FileName);
                 }
             }
             catch (Exception ex)
@@ -29,14 +31,15 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
             }
         }
 
-        public RichTextBox AbrirArquivo(RichTextBox tbAnotacao, string caminho)
+        public RichTextBox AbrirArquivo(RichTextBox conteudoAnotacao, string caminho)
         {
             try
             {
                 if (!string.IsNullOrEmpty(caminho))
                 {
-                    tbAnotacao.LoadFile(caminho, RichTextBoxStreamType.RichText);
-                    return tbAnotacao;
+                    abrirArquivo.FileName = caminho;
+                    conteudoAnotacao.LoadFile(abrirArquivo.FileName, RichTextBoxStreamType.RichText);
+                    return conteudoAnotacao;
                 }
 
                 abrirArquivo.DefaultExt = "*.rtf";
@@ -44,8 +47,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
 
                 if (abrirArquivo.ShowDialog() == DialogResult.OK)
                 {
-                    tbAnotacao.LoadFile(abrirArquivo.FileName, RichTextBoxStreamType.RichText);
-
+                    conteudoAnotacao.LoadFile(abrirArquivo.FileName, RichTextBoxStreamType.RichText);
                 }
 
             }
@@ -53,8 +55,8 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
             {
                 MessageBox.Show($"Houve um erro ao abrir o arquivo {abrirArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
             }
-            return tbAnotacao;
-        }      
+            return conteudoAnotacao;
+        }
 
         public string ObterNomeArquivo()
         {
@@ -64,10 +66,12 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
             var parts = nomeArquivo.Split('\\');
 
             var nomeEstencao = parts[parts.Length - 1].Split('.');
+            salvarArquivo.FileName = limparCaminho;
+            abrirArquivo.FileName = limparCaminho;
             return $"{nomeEstencao[0]} - Gerente de Horas";
         }
 
-        public void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto, RichTextBox tbAnotacao)
+        public void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto, RichTextBox conteudoAnotacao)
         {
             var MensagemNovo = "Deseja salvar suas Anotações antes de Criar um novo arquivo?";
             var MensagemClose = "Deseja salvar suas Anotações antes de Sair? Essa ação NÃO salvará o intervalo de horas do dia";
@@ -82,17 +86,58 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
                     if (MessageBox.Show(mensagemAlerta, "Salvar?",
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        SalvarArquivo(tbAnotacao, string.Empty);
+                        SalvarArquivo(conteudoAnotacao, string.Empty);
                         MessageBox.Show("Salvo com Sucesso");
                     }
                 }
+            }
+        }
+
+        public List<Arquivos> GetArquivos(string caminho)
+        {
+            var listaArquivos = new List<Arquivos>();
+            var diretorio = new DirectoryInfo(caminho);
+            var arquivos = diretorio.GetFiles("*.rtf");
+
+            foreach (var arquivo in arquivos)
+            {
+                var dataArquivo = new FileInfo(arquivo.FullName);
+
+                listaArquivos.Add(new Arquivos(arquivo.Name, dataArquivo.CreationTime, arquivo.FullName));
+            }
+            return listaArquivos;
+        }
+
+        public void MostrarConteudoDoArquivo(RichTextBox conteudoAnotacao, ListView listaAnotacoes)
+        {
+            try
+            {
+                var linhaSelecionada = listaAnotacoes.SelectedItems[0].Index;
+                var caminho = listaAnotacoes.Items[linhaSelecionada].SubItems[2].Text;
+                conteudoAnotacao = AbrirArquivo(conteudoAnotacao, caminho);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Houve um erro ao abrir o arquivo. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
+            }
+        }
+
+        public void MostrarEntradas(string rota, ListView listaAnotacoes)
+        {
+            Arquivos arquivos = new Arquivos();
+            var listaArquivos = GetArquivos(string.IsNullOrEmpty(rota) ? rotaPadrao : rota);
+            listaAnotacoes.Items.Clear();
+            foreach (var arquivo in listaArquivos)
+            {
+                var item = new string[3];
+                item[0] = arquivo.Nome;
+                item[1] = arquivo.DataCriacao.ToString();
+                item[2] = arquivo.Caminho;
+
+                listaAnotacoes.Items.Add(new ListViewItem(item));
             }
         }
     }
 }
 //TODO: Adicionar verificador ortografico
 //https://help-syncfusion-com.translate.goog/windowsforms/spell-checker/getting-started?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc
-
-//TODO: Criar tela de historico de notas
-
-//TODO: criar função notas fixcadas

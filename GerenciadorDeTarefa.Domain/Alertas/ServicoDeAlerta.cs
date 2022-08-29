@@ -15,7 +15,6 @@ namespace GerenciadorDeTarefa.Domain.Alertas
 
         public TimeSpan ObterIntervaloDeHoras(DateTime horaIntervalo)
         {
-
             TimeSpan intervalo = horaIntervalo - DateTime.Now;
 
             return intervalo;
@@ -25,7 +24,7 @@ namespace GerenciadorDeTarefa.Domain.Alertas
         {
             if (_alerta.HoraIntervalo == DateTime.Now.Hour && _alerta.MinutoIntervalo == DateTime.Now.Minute)
             {
-               timeAtivado = false;
+                timeAtivado = false;
                 if (MessageBox.Show($"Já são {DateTime.Now.ToString("t")}, Voce Fará uma pausa?", " Pausa Para Descanço",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 {

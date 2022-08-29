@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
 {
     public interface IServicoDeGerrenciamentoDeArquivos
     {
-        void SalvarArquivo(RichTextBox tbAnotacao, string tituloTarefa);
-
-        RichTextBox AbrirArquivo(RichTextBox tbAnotacao, string caminho = null);
-
         string ObterNomeArquivo();
 
-        void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto, RichTextBox tbAnotacao);
+        void SalvarArquivo(RichTextBox conteudoAnotacao, string tituloTarefa);
 
-       // List<Arquivos> GetArquivos();
+        RichTextBox AbrirArquivo(RichTextBox conteudoAnotacao, string caminho = null);
 
+        void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto, RichTextBox conteudoAnotacao);
+
+        void MostrarConteudoDoArquivo(RichTextBox conteudoAnotacao, ListView listaAnotacoes);
+
+        void MostrarEntradas(string rota, ListView listaAnotacoes);
     }
 }

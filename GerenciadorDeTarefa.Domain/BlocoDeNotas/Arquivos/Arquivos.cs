@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
 {
@@ -17,22 +15,6 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
             Nome = nome;
             DataCriacao = dataCriacao;
             Caminho = caminho;
-        }
-
-        public List<Arquivos> GetArquivos()
-        {
-
-            var listaArquivos = new List<Arquivos>();
-            var diretorio = new DirectoryInfo(@"C:\Users\usuario\Documents\Projetos\Diretorio IntBank\Z_Anotações");
-            var arquivos = diretorio.GetFiles("*.rtf");
-
-            foreach (var arquivo in arquivos)
-            {
-                var dataArquivo = new FileInfo(arquivo.FullName);
-
-                listaArquivos.Add(new Arquivos(arquivo.Name, dataArquivo.CreationTime, arquivo.FullName));
-            }
-            return listaArquivos;
         }
     }
 }

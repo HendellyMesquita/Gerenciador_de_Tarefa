@@ -1642,27 +1642,11 @@
       "GerenciadorDeTarefa.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "GerenciadorDeTarefa.Infra": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/GerenciadorDeTarefa.Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/GerenciadorDeTarefa.Domain.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
-      },
-      "GerenciadorDeTarefa.Infra/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WindowsForms"
@@ -4818,11 +4802,6 @@
       "type": "project",
       "path": "../GerenciadorDeTarefa.Domain/GerenciadorDeTarefa.Domain.csproj",
       "msbuildProject": "../GerenciadorDeTarefa.Domain/GerenciadorDeTarefa.Domain.csproj"
-    },
-    "GerenciadorDeTarefa.Infra/1.0.0": {
-      "type": "project",
-      "path": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj",
-      "msbuildProject": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj"
     }
   },
   "projectFileDependencyGroups": {
