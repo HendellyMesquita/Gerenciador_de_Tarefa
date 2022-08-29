@@ -1,8 +1,9 @@
 ﻿using GerenciadorDeTarefa.Domain.Alertas;
-using GerenciadorDeTarefa.Domain.BlocoDeNotas;
+using GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
 using System;
+using System.IO;
 using System.Windows.Forms;
 using static GerenciadorDeTarefa.Domain.Exceptions.GerenciadorDeFuncoesException;
 
@@ -10,7 +11,6 @@ namespace GerenciadorDeTarefa.UI
 {
     public partial class FormTarefa : Form
     {
-
         private IServicoGerenciamentoHora _servicoGerenciamento;
         private IServicoDeAlerta _servicoDeAlerta;
         private IServicoDeGerrenciamentoDeArquivos _servicoDeGerrenciamentoDeArquivos;
@@ -21,7 +21,7 @@ namespace GerenciadorDeTarefa.UI
         private int cont = 0;
         private int HoraIntervalo;
         private int MinutoIntervalo;
-
+        //private const string Separator = "\\";
         public FormTarefa(
             IServicoGerenciamentoHora servicoGerenciamento,
             IServicoDeAlerta servicoDeAlerta,
@@ -31,7 +31,7 @@ namespace GerenciadorDeTarefa.UI
             FonteDeNota fonte)
         {
             InitializeComponent();
-
+            MostrarEntradas();
             _servicoGerenciamento = servicoGerenciamento;
             _servicoDeAlerta = servicoDeAlerta;
             _servicoDeGerrenciamentoDeArquivos = servicoDeGerrenciamentoDeArquivos;
@@ -106,6 +106,11 @@ namespace GerenciadorDeTarefa.UI
             }
         }
 
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparFiltro();
+        }
+
         private void btnEntrada_Click(object sender, EventArgs e)
         {
             try
@@ -131,7 +136,7 @@ namespace GerenciadorDeTarefa.UI
         {
             try
             {
-                timer1.Enabled = true;
+                RelogioAlarme.Enabled = true;
                 ActiveControl = null;
 
                 var intervalo = _servicoDeAlerta.ObterIntervaloDeHoras(teIntervalo.Time);
@@ -145,20 +150,22 @@ namespace GerenciadorDeTarefa.UI
                 throw new Exception($"Erro Ao Salvar Alarme. Erro:{ex}");
             }
         }
+
         private void ObterHorasEMinutos()
         {
             string[] Horaintervalo = teIntervalo.Text.Split(':');
             HoraIntervalo = int.Parse(Horaintervalo[0]);
             MinutoIntervalo = int.Parse(Horaintervalo[1]);
         }
-        private void timer1_Tick(object sender, EventArgs e)
+
+        private void RelogioAlarme_Tick(object sender, EventArgs e)
         {
             try
             {
 
                 if (HoraIntervalo == DateTime.Now.Hour && MinutoIntervalo == DateTime.Now.Minute)
                 {
-                    timer1.Enabled = false;
+                    RelogioAlarme.Enabled = false;
                     if (MessageBox.Show($"Já são {DateTime.Now.ToString("t")}, Voce Fará uma pausa?", " Pausa Para Descanço",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
@@ -166,7 +173,7 @@ namespace GerenciadorDeTarefa.UI
 
                         MessageBox.Show($"Alarme Alterado para daqui 10 minutos, Proximo alarme acontecerá as" +
                             $" {DateTime.Now.AddMinutes(10).ToString("t")} Horas. ", " Pausa Para Descanço");
-                        timer1.Enabled = true;
+                        RelogioAlarme.Enabled = true;
                         return;
                     }
                     if (cont == 1 || cont == 3 || cont == 5)
@@ -182,11 +189,20 @@ namespace GerenciadorDeTarefa.UI
             }
         }
 
+        private void RelogioDigital_Tick(object sender, EventArgs e)
+        {
+            lbRelogioDigital.Text = DateTime.Now.ToLongTimeString();
+
+            MostrarEntradas();
+        }
+
+
         /*NOTAS*/
         private void ObterTituloDoArquivo(string tituloArquivo)
         {
             Text = $"{tituloArquivo}";
         }
+        
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -206,6 +222,7 @@ namespace GerenciadorDeTarefa.UI
                 throw new Exception($"Erro Ao Abrir Novo Arquivo. Erro:{ex}");
             }
         }
+        
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var moduloExecucao = sender.ToString();
@@ -214,6 +231,7 @@ namespace GerenciadorDeTarefa.UI
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
+        
         private void SalvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -221,6 +239,46 @@ namespace GerenciadorDeTarefa.UI
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
         }
+
+
+        private void LbAnotacoesAnteriores_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            MostrarConteudoDoArquivo();
+        }
+
+        private void MostrarConteudoDoArquivo()
+        {
+            var linhaSelecionada = LbAnotacoesAnteriores.SelectedItems[0].Index;
+            var caminho = LbAnotacoesAnteriores.Items[linhaSelecionada].SubItems[2].Text;
+            TbAnotacao = _servicoDeGerrenciamentoDeArquivos.AbrirArquivo(TbAnotacao, caminho);
+
+        }
+
+        private void MostrarEntradas()
+        {
+            Arquivos arquivos = new Arquivos();
+        var listaArquivos = arquivos.GetArquivos();
+            LbAnotacoesAnteriores.Items.Clear();
+            foreach(var arquivo in listaArquivos)
+            {
+                var item = new string[3];
+                item[0] = arquivo.Nome;
+                item[1] = arquivo.DataCriacao.ToString();
+                item[2] = arquivo.Caminho;
+
+                LbAnotacoesAnteriores.Items.Add(new ListViewItem(item));
+            }
+        }
+
+        private void ConfigurarGrade()
+        {
+            LbAnotacoesAnteriores.Columns.Add("Arquivo",120);
+            LbAnotacoesAnteriores.Columns.Add("Data Modificaçao",140, HorizontalAlignment.Center);
+            LbAnotacoesAnteriores.Columns.Add("Caminho do arquivo", 250);
+         }
+
+
+        /*FONTE*/
         private void tsNegrito_Click(object sender, EventArgs e)
         {
             _servicoDeFontes.DefinirTextoComoNegrito(TbAnotacao, nUpTamanho);
@@ -259,6 +317,8 @@ namespace GerenciadorDeTarefa.UI
             _servicoDeFontes.Alinhamento(TbAnotacao, moduloExecucao);
         }
 
+
+        /*FORMULÁRIO*/
         private void FormTarefa_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -281,8 +341,7 @@ namespace GerenciadorDeTarefa.UI
                 throw new Exception($"Erro Ao Encerrar Sistema. Erro:{ex}");
             }
         }
-
-        /*FORMULÁRIO*/
+   
         private void splitter1_DoubleClick(object sender, EventArgs e)
         {
             if (GerenteContainer.Panel2Collapsed)
@@ -292,6 +351,7 @@ namespace GerenciadorDeTarefa.UI
             }
             GerenteContainer.Panel2Collapsed = true;
         }
+     
         private void splitter2_DoubleClick(object sender, EventArgs e)
         {
             if (HorasContainer.Panel2Collapsed)
@@ -302,17 +362,13 @@ namespace GerenciadorDeTarefa.UI
             HorasContainer.Panel2Collapsed = true;
         }
 
-        private void RelogioDigital_Tick(object sender, EventArgs e)
+        private void FormTarefa_Load(object sender, EventArgs e)
         {
-            lbRelogioDigital.Text = DateTime.Now.ToLongTimeString();
+            ConfigurarGrade();
+            MostrarEntradas();
         }
 
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            LimparFiltro();
-        }
-
-        private void lbEntrada1_Click(object sender, EventArgs e)
+        private void LbAnotacoesAnteriores_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

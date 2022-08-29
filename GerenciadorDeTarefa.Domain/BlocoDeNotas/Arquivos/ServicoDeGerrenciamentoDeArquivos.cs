@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
-namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
+namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
 {
     public class ServicoDeGerrenciamentoDeArquivos : IServicoDeGerrenciamentoDeArquivos
     {
         SaveFileDialog salvarArquivo = new SaveFileDialog();
         OpenFileDialog abrirArquivo = new OpenFileDialog();
-
+        FolderBrowserDialog abrirPasta = new FolderBrowserDialog();
         public void SalvarArquivo(RichTextBox tbAnotacao, string tituloTarefa)
         {
             try
@@ -27,17 +29,23 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             }
         }
 
-        public RichTextBox AbrirArquivo(RichTextBox tbAnotacao)
+        public RichTextBox AbrirArquivo(RichTextBox tbAnotacao, string caminho)
         {
             try
             {
+                if (!string.IsNullOrEmpty(caminho))
+                {
+                    tbAnotacao.LoadFile(caminho, RichTextBoxStreamType.RichText);
+                    return tbAnotacao;
+                }
+
                 abrirArquivo.DefaultExt = "*.rtf";
                 abrirArquivo.Filter = "Arquivos rtf.(*.rtf)|*.rtf";
 
                 if (abrirArquivo.ShowDialog() == DialogResult.OK)
                 {
                     tbAnotacao.LoadFile(abrirArquivo.FileName, RichTextBoxStreamType.RichText);
-                    
+
                 }
 
             }
@@ -46,7 +54,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
                 MessageBox.Show($"Houve um erro ao abrir o arquivo {abrirArquivo}. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
             }
             return tbAnotacao;
-        }
+        }      
 
         public string ObterNomeArquivo()
         {
@@ -54,7 +62,6 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
             var nomeArquivo = heNovoArquivo ? salvarArquivo.FileName : abrirArquivo.FileName;
 
             var parts = nomeArquivo.Split('\\');
-            Console.WriteLine(parts);
 
             var nomeEstencao = parts[parts.Length - 1].Split('.');
             return $"{nomeEstencao[0]} - Gerente de Horas";
@@ -81,7 +88,6 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas
                 }
             }
         }
-
     }
 }
 //TODO: Adicionar verificador ortografico
