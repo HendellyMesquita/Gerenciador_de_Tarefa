@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FVLDKZuwoNSxUEalmMGV68gBf309JCpOhkFODBAJLkdszkaEiCIdvUu0RLBzdQ/QBmXeDRqbF2UKzfZLPkHwDQ==",
+  "dgSpecHash": "WVh96Y3hzlaYhrlIG1FPELixEPwFd0GwoetMz/bEX11OtLrm2BzKE09kKy7WoPNXT0LlZQpj61Jwy18ggm6hMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages\\devexpress.charts\\21.2.6\\devexpress.charts.21.2.6.nupkg.sha512",
     "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages\\devexpress.charts.core\\21.2.6\\devexpress.charts.core.21.2.6.nupkg.sha512",

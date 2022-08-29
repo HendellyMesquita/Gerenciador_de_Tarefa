@@ -1227,16 +1227,8 @@
         }
       },
       "GerenciadorDeTarefa.Domain/1.0.0": {
-        "dependencies": {
-          "GerenciadorDeTarefa.Infra": "1.0.0"
-        },
         "runtime": {
           "GerenciadorDeTarefa.Domain.dll": {}
-        }
-      },
-      "GerenciadorDeTarefa.Infra/1.0.0": {
-        "runtime": {
-          "GerenciadorDeTarefa.Infra.dll": {}
         }
       }
     }
@@ -1927,11 +1919,6 @@
       "hashPath": "system.windows.extensions.4.6.0.nupkg.sha512"
     },
     "GerenciadorDeTarefa.Domain/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "GerenciadorDeTarefa.Infra/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

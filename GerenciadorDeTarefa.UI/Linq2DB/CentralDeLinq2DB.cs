@@ -2,7 +2,7 @@
 using Ninject;
 using GerenciadorDeTarefa.Domain.GerenciadorHoras;
 using GerenciadorDeTarefa.Domain.Alertas;
-using GerenciadorDeTarefa.Domain.BlocoDeNotas;
+using GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos;
 using GerenciadorDeTarefa.Domain.BlocoDeNotas.Fonte;
 
 namespace GerenciadorDeTarefa.UI.Linq2DB

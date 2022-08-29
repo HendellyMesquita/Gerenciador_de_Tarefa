@@ -1642,27 +1642,11 @@
       "GerenciadorDeTarefa.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "GerenciadorDeTarefa.Infra": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/GerenciadorDeTarefa.Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/GerenciadorDeTarefa.Domain.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
-      },
-      "GerenciadorDeTarefa.Infra/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GerenciadorDeTarefa.Infra.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WindowsForms"
@@ -4818,11 +4802,6 @@
       "type": "project",
       "path": "../GerenciadorDeTarefa.Domain/GerenciadorDeTarefa.Domain.csproj",
       "msbuildProject": "../GerenciadorDeTarefa.Domain/GerenciadorDeTarefa.Domain.csproj"
-    },
-    "GerenciadorDeTarefa.Infra/1.0.0": {
-      "type": "project",
-      "path": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj",
-      "msbuildProject": "../GerenciadorDeTarefa.Infra/GerenciadorDeTarefa.Infra.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4840,11 +4819,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
       "projectName": "Gerente De Projeto",
-      "projectPath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
+      "projectPath": "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.UI\\GerenciadorDeTarefa.UI.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.UI\\obj\\",
+      "outputPath": "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -4868,8 +4847,8 @@
         "net6.0-windows8.0": {
           "targetAlias": "net6.0-windows8.0",
           "projectReferences": {
-            "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj": {
-              "projectPath": "C:\\Users\\usuario\\source\\repos\\GerentedeTarefas\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj"
+            "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj": {
+              "projectPath": "C:\\Users\\usuario\\source\\repos\\Gerenciador_de_Tarefa\\GerenciadorDeTarefa.Domain\\GerenciadorDeTarefa.Domain.csproj"
             }
           }
         }
