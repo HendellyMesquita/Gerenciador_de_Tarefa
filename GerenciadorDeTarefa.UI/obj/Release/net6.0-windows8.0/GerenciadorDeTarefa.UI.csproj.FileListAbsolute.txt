@@ -100,16 +100,18 @@ C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.UI\obj\Releas
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\Gerente De Projeto.pdb
 C:\Users\usuario\source\repos\GerentedeTarefas\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.genruntimeconfig.cache
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.exe
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.deps.json
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.runtimeconfig.json
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\ref\Gerente De Projeto.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.pdb
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Data.v21.2.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Data.Desktop.v21.2.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.SpellChecker.v21.2.Core.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Utils.v21.2.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraEditors.v21.2.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraSpellChecker.v21.2.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Ninject.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraCharts.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Charts.v21.2.Core.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.CodeParser.v21.2.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Data.v21.2.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Data.Desktop.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.DataAccess.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.DataAccess.v21.2.UI.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.DataVisualization.v21.2.Core.dll
@@ -128,11 +130,9 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\R
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraScheduler.v21.2.Core.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraScheduler.v21.2.Core.Desktop.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Sparkline.v21.2.Core.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.SpellChecker.v21.2.Core.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Spreadsheet.v21.2.Core.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraTreeMap.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.TreeMap.v21.2.Core.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Utils.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Utils.v21.2.UI.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraNavBar.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraWizard.v21.2.dll
@@ -144,7 +144,6 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\R
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraBars.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraDiagram.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraDialogs.v21.2.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraEditors.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraGantt.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraGauges.v21.2.Presets.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraGauges.v21.2.Win.dll
@@ -159,7 +158,6 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\R
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraScheduler.v21.2.Extensions.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraScheduler.v21.2.Reporting.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraScheduler.v21.2.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraSpellChecker.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraSpreadsheet.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraTreeList.v21.2.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.XtraTreeMap.v21.2.UI.dll
@@ -167,7 +165,6 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\R
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\DevExpress.Dialogs.v21.2.Core.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Ninject.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\System.Data.OleDb.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\System.Data.SqlClient.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\System.ServiceModel.Http.dll
@@ -183,7 +180,6 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\R
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\runtimes\win\lib\netstandard2.0\System.Private.ServiceModel.dll
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\GerenciadorDeTarefa.Domain.pdb
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.csproj.AssemblyReference.cache
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.FormTarefa.resources
@@ -193,8 +189,12 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\R
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.AssemblyInfoInputs.cache
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.AssemblyInfo.cs
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.csproj.CoreCompileInputs.cache
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.csproj.CopyComplete
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\Gerente De Projeto.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\ref\Gerente De Projeto.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\Gerente De Projeto.pdb
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.deps.json
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.runtimeconfig.json
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\ref\Gerente De Projeto.dll
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\bin\Release\net6.0-windows8.0\Gerente De Projeto.pdb
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.csproj.CopyComplete
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.UI\obj\Release\net6.0-windows8.0\GerenciadorDeTarefa.UI.genruntimeconfig.cache

@@ -191,13 +191,23 @@ namespace GerenciadorDeTarefa.UI
         {
             lbRelogioDigital.Text = DateTime.Now.ToLongTimeString();
 
+        }
+
+        private void AtualizaLista_Tick(object sender, EventArgs e)
+        {
             _servicoDeGerrenciamentoDeArquivos.MostrarEntradas(novaRota, LbAnotacoesAnteriores);
+
         }
 
         /*NOTAS*/
         private void ObterTituloDoArquivo(string tituloArquivo)
         {
-            Text = $"{tituloArquivo}";
+            Text = tituloArquivo != string.Empty
+                ? $"{tituloArquivo}" 
+                : "Sem Título - Gerente de Horas";
+
+            txtTarefa.Text = tituloArquivo != string.Empty 
+                ? Text.Split('-')[0] : txtTarefa.Text;
         }
 
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,6 +221,7 @@ namespace GerenciadorDeTarefa.UI
                 {
                     this.Text = "Sem Título - Gerente de Horas";
                     this.TbAnotacao.Text = string.Empty;
+                    txtTarefa.Text = string.Empty;
                     return;
                 }
             }
@@ -234,6 +245,7 @@ namespace GerenciadorDeTarefa.UI
             _servicoDeGerrenciamentoDeArquivos.SalvarArquivo(TbAnotacao, txtTarefa.Text);
             ObterTituloDoArquivo(_servicoDeGerrenciamentoDeArquivos.ObterNomeArquivo());
             salvarTexto = TbAnotacao.Text;
+            AtualizaLista_Tick(sender, e);
         }
 
         private void btnListar_Click(object sender, EventArgs e)
@@ -243,8 +255,8 @@ namespace GerenciadorDeTarefa.UI
             if (abrirPasta.ShowDialog() != DialogResult.No)
             {
                 novaRota = abrirPasta.SelectedPath;
+                AtualizaLista_Tick(sender, e);
             }
-
         }
 
         private void LbAnotacoesAnteriores_Click(object sender, EventArgs e)
@@ -258,9 +270,9 @@ namespace GerenciadorDeTarefa.UI
 
         private void ConfigurarGrade()
         {
-            LbAnotacoesAnteriores.Columns.Add("Arquivo", 120);
+            LbAnotacoesAnteriores.Columns.Add("Arquivo", 200);
             LbAnotacoesAnteriores.Columns.Add("Data", 120, HorizontalAlignment.Center);
-            LbAnotacoesAnteriores.Columns.Add("Caminho", 250);
+            LbAnotacoesAnteriores.Columns.Add("Caminho", 300);
         }
 
         /*FONTE*/
@@ -328,22 +340,24 @@ namespace GerenciadorDeTarefa.UI
 
         private void splitter1_DoubleClick(object sender, EventArgs e)
         {
-            if (GerenteContainer.Panel2Collapsed)
+            if (!GerenteContainer.Panel2Collapsed)
             {
-                GerenteContainer.Panel2Collapsed = false;
+                GerenteContainer.Panel2Collapsed = true;
                 return;
             }
-            GerenteContainer.Panel2Collapsed = true;
+            GerenteContainer.Panel2Collapsed = false;
         }
 
         private void splitter2_DoubleClick(object sender, EventArgs e)
         {
             if (HorasContainer.Panel2Collapsed)
             {
-                HorasContainer.Panel2Collapsed = false;
+                HorasContainer.Panel2Collapsed = true;
+                btnListar.Visible = false;
                 return;
             }
-            HorasContainer.Panel2Collapsed = true;
+            HorasContainer.Panel2Collapsed = false;
+            btnListar.Visible = true;
         }
 
         private void FormTarefa_Load(object sender, EventArgs e)

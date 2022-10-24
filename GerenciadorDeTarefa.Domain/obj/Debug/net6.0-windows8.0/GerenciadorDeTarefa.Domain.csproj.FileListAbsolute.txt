@@ -17,7 +17,6 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\b
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\bin\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\bin\Debug\net6.0-windows8.0\ref\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\bin\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.pdb
-C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.csproj.AssemblyReference.cache
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.AssemblyInfoInputs.cache
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.AssemblyInfo.cs
@@ -25,3 +24,4 @@ C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\o
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\ref\GerenciadorDeTarefa.Domain.dll
 C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.pdb
+C:\Users\usuario\source\repos\Gerenciador_de_Tarefa\GerenciadorDeTarefa.Domain\obj\Debug\net6.0-windows8.0\GerenciadorDeTarefa.Domain.csproj.AssemblyReference.cache

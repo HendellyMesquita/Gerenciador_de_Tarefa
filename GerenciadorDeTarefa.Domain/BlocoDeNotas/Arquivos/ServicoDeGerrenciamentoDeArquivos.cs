@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
@@ -9,8 +10,7 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
     {
         SaveFileDialog salvarArquivo = new SaveFileDialog();
         OpenFileDialog abrirArquivo = new OpenFileDialog();
-        private const string rotaPadrao = @"C:\Users\usuario\Desktop\";
-        private const string limparCaminho = "";
+        private const string rotaPadrao = @"C:\Users\usuario\Documents\Projetos\Diretorio IntBank\Z_Anotações\arquivos rtf";
 
         public void SalvarArquivo(RichTextBox conteudoAnotacao, string tituloTarefa)
         {
@@ -18,12 +18,15 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
             {
                 salvarArquivo = new SaveFileDialog { Filter = @"Arquivos rtf.(*.rtf)|*.rtf", OverwritePrompt = true };
                 salvarArquivo.FileName = !string.IsNullOrEmpty(tituloTarefa)
-                    ? tituloTarefa : $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}";
+                    ? tituloTarefa.TrimEnd().Replace(" ", "_").ToLower()
+                    : $"{DateTime.Today:ddMMyyyy}_{DateTime.Now:HHmmss}";
 
                 if (salvarArquivo.ShowDialog() == DialogResult.OK)
                 {
                     conteudoAnotacao.SaveFile(salvarArquivo.FileName);
+                    return;
                 }
+                salvarArquivo.FileName = string.Empty;
             }
             catch (Exception ex)
             {
@@ -66,9 +69,12 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
             var parts = nomeArquivo.Split('\\');
 
             var nomeEstencao = parts[parts.Length - 1].Split('.');
-            salvarArquivo.FileName = limparCaminho;
-            abrirArquivo.FileName = limparCaminho;
-            return $"{nomeEstencao[0]} - Gerente de Horas";
+            salvarArquivo.FileName = string.Empty;
+            abrirArquivo.FileName = string.Empty;
+
+            return nomeEstencao[0] != string.Empty
+                ? $"{nomeEstencao[0]} - Gerente de Horas"
+                : string.Empty;
         }
 
         public void VerificarSaveDoArquivo(string texto, string moduloExecucao, string salvarTexto, RichTextBox conteudoAnotacao)
@@ -116,9 +122,9 @@ namespace GerenciadorDeTarefa.Domain.BlocoDeNotas.Arquivos
                 var caminho = listaAnotacoes.Items[linhaSelecionada].SubItems[2].Text;
                 conteudoAnotacao = AbrirArquivo(conteudoAnotacao, caminho);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"Houve um erro ao abrir o arquivo. Erro: {ex}", "ERRO", MessageBoxButtons.OK);
+                MessageBox.Show($"Houve uma exceção Inesperada, Favor Tente Novamente", "ERRO", MessageBoxButtons.OK);
             }
         }
 

@@ -81,6 +81,8 @@ namespace GerenciadorDeTarefa.UI
             this.GerenteContainer = new System.Windows.Forms.SplitContainer();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.HorasContainer = new System.Windows.Forms.SplitContainer();
+            this.btnListar = new System.Windows.Forms.Button();
+            this.separatorControl3 = new DevExpress.XtraEditors.SeparatorControl();
             this.separatorControl2 = new DevExpress.XtraEditors.SeparatorControl();
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.lbRelogioDigital = new System.Windows.Forms.Label();
@@ -101,12 +103,11 @@ namespace GerenciadorDeTarefa.UI
             this.lbEntrada2 = new System.Windows.Forms.Label();
             this.lbEntrada1 = new System.Windows.Forms.Label();
             this.lbTotalHora = new System.Windows.Forms.Label();
-            this.btnListar = new System.Windows.Forms.Button();
+            this.separatorControl4 = new DevExpress.XtraEditors.SeparatorControl();
+            this.separatorControl5 = new DevExpress.XtraEditors.SeparatorControl();
             this.LbAnotacoesAnteriores = new System.Windows.Forms.ListView();
             this.RelogioDigital = new System.Windows.Forms.Timer(this.components);
-            this.separatorControl3 = new DevExpress.XtraEditors.SeparatorControl();
-            this.separatorControl5 = new DevExpress.XtraEditors.SeparatorControl();
-            this.separatorControl4 = new DevExpress.XtraEditors.SeparatorControl();
+            this.AtualizaLista = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nUpTamanho)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GerenteContainer)).BeginInit();
@@ -117,12 +118,12 @@ namespace GerenciadorDeTarefa.UI
             this.HorasContainer.Panel1.SuspendLayout();
             this.HorasContainer.Panel2.SuspendLayout();
             this.HorasContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teIntervalo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -142,7 +143,7 @@ namespace GerenciadorDeTarefa.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TbAnotacao.AutoWordSelection = true;
             this.TbAnotacao.EnableAutoDragDrop = true;
-            this.TbAnotacao.Font = new System.Drawing.Font("Sylfaen", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TbAnotacao.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TbAnotacao.Location = new System.Drawing.Point(3, 35);
             this.TbAnotacao.Name = "TbAnotacao";
             this.TbAnotacao.ShowSelectionMargin = true;
@@ -187,7 +188,7 @@ namespace GerenciadorDeTarefa.UI
             this.nUpTamanho.Size = new System.Drawing.Size(63, 23);
             this.nUpTamanho.TabIndex = 71;
             this.nUpTamanho.Value = new decimal(new int[] {
-            12,
+            14,
             0,
             0,
             0});
@@ -451,7 +452,7 @@ namespace GerenciadorDeTarefa.UI
             // HorasContainer.Panel1
             // 
             this.HorasContainer.Panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.HorasContainer.Panel1.Controls.Add(this.separatorControl5);
+            this.HorasContainer.Panel1.Controls.Add(this.btnListar);
             this.HorasContainer.Panel1.Controls.Add(this.separatorControl3);
             this.HorasContainer.Panel1.Controls.Add(this.separatorControl2);
             this.HorasContainer.Panel1.Controls.Add(this.separatorControl1);
@@ -475,19 +476,40 @@ namespace GerenciadorDeTarefa.UI
             this.HorasContainer.Panel1.Controls.Add(this.lbEntrada1);
             this.HorasContainer.Panel1.Controls.Add(this.lbTotalHora);
             this.HorasContainer.Panel1.Controls.Add(this.separatorControl4);
+            this.HorasContainer.Panel1.Controls.Add(this.separatorControl5);
             this.HorasContainer.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             // 
             // HorasContainer.Panel2
             // 
             this.HorasContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.HorasContainer.Panel2.Controls.Add(this.btnListar);
             this.HorasContainer.Panel2.Controls.Add(this.LbAnotacoesAnteriores);
             this.HorasContainer.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.HorasContainer.Panel2Collapsed = true;
             this.HorasContainer.Size = new System.Drawing.Size(413, 501);
             this.HorasContainer.SplitterDistance = 228;
             this.HorasContainer.SplitterWidth = 3;
             this.HorasContainer.TabIndex = 0;
+            // 
+            // btnListar
+            // 
+            this.btnListar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnListar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnListar.Location = new System.Drawing.Point(22, 192);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(62, 25);
+            this.btnListar.TabIndex = 138;
+            this.btnListar.Text = "Listar";
+            this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Visible = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
+            // separatorControl3
+            // 
+            this.separatorControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.separatorControl3.LineOrientation = System.Windows.Forms.Orientation.Vertical;
+            this.separatorControl3.Location = new System.Drawing.Point(327, 115);
+            this.separatorControl3.Name = "separatorControl3";
+            this.separatorControl3.Size = new System.Drawing.Size(19, 68);
+            this.separatorControl3.TabIndex = 135;
             // 
             // separatorControl2
             // 
@@ -545,7 +567,7 @@ namespace GerenciadorDeTarefa.UI
             this.splitter2.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.splitter2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 494);
+            this.splitter2.Location = new System.Drawing.Point(0, 221);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(411, 5);
             this.splitter2.TabIndex = 126;
@@ -636,7 +658,7 @@ namespace GerenciadorDeTarefa.UI
             // 
             this.teIntervalo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.teIntervalo.EditValue = DateTime.Today;
-            this.teIntervalo.Location = new System.Drawing.Point(85, 196);
+            this.teIntervalo.Location = new System.Drawing.Point(173, 196);
             this.teIntervalo.Name = "teIntervalo";
             this.teIntervalo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -672,7 +694,7 @@ namespace GerenciadorDeTarefa.UI
             this.lbIntAlmoco.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbIntAlmoco.AutoSize = true;
             this.lbIntAlmoco.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lbIntAlmoco.Location = new System.Drawing.Point(14, 197);
+            this.lbIntAlmoco.Location = new System.Drawing.Point(102, 197);
             this.lbIntAlmoco.Name = "lbIntAlmoco";
             this.lbIntAlmoco.Size = new System.Drawing.Size(62, 18);
             this.lbIntAlmoco.TabIndex = 121;
@@ -711,22 +733,27 @@ namespace GerenciadorDeTarefa.UI
             this.lbTotalHora.TabIndex = 119;
             this.lbTotalHora.Text = "00:00";
             // 
-            // btnListar
+            // separatorControl4
             // 
-            this.btnListar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnListar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnListar.Location = new System.Drawing.Point(357, 250);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(52, 23);
-            this.btnListar.TabIndex = 1;
-            this.btnListar.Text = "Listar";
-            this.btnListar.UseVisualStyleBackColor = true;
-            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            this.separatorControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.separatorControl4.Location = new System.Drawing.Point(5, 218);
+            this.separatorControl4.Name = "separatorControl4";
+            this.separatorControl4.Size = new System.Drawing.Size(402, 18);
+            this.separatorControl4.TabIndex = 137;
+            // 
+            // separatorControl5
+            // 
+            this.separatorControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.separatorControl5.LineOrientation = System.Windows.Forms.Orientation.Vertical;
+            this.separatorControl5.Location = new System.Drawing.Point(85, 115);
+            this.separatorControl5.Name = "separatorControl5";
+            this.separatorControl5.Size = new System.Drawing.Size(19, 108);
+            this.separatorControl5.TabIndex = 136;
             // 
             // LbAnotacoesAnteriores
             // 
             this.LbAnotacoesAnteriores.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbAnotacoesAnteriores.Font = new System.Drawing.Font("Sylfaen", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.LbAnotacoesAnteriores.Font = new System.Drawing.Font("Sylfaen", 9.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             this.LbAnotacoesAnteriores.Location = new System.Drawing.Point(0, 0);
             this.LbAnotacoesAnteriores.Name = "LbAnotacoesAnteriores";
             this.LbAnotacoesAnteriores.Size = new System.Drawing.Size(411, 268);
@@ -741,31 +768,11 @@ namespace GerenciadorDeTarefa.UI
             this.RelogioDigital.Interval = 1000;
             this.RelogioDigital.Tick += new System.EventHandler(this.RelogioDigital_Tick);
             // 
-            // separatorControl3
+            // AtualizaLista
             // 
-            this.separatorControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorControl3.LineOrientation = System.Windows.Forms.Orientation.Vertical;
-            this.separatorControl3.Location = new System.Drawing.Point(327, 115);
-            this.separatorControl3.Name = "separatorControl3";
-            this.separatorControl3.Size = new System.Drawing.Size(19, 68);
-            this.separatorControl3.TabIndex = 135;
-            // 
-            // separatorControl5
-            // 
-            this.separatorControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorControl5.LineOrientation = System.Windows.Forms.Orientation.Vertical;
-            this.separatorControl5.Location = new System.Drawing.Point(85, 115);
-            this.separatorControl5.Name = "separatorControl5";
-            this.separatorControl5.Size = new System.Drawing.Size(19, 68);
-            this.separatorControl5.TabIndex = 136;
-            // 
-            // separatorControl4
-            // 
-            this.separatorControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorControl4.Location = new System.Drawing.Point(5, 218);
-            this.separatorControl4.Name = "separatorControl4";
-            this.separatorControl4.Size = new System.Drawing.Size(402, 18);
-            this.separatorControl4.TabIndex = 137;
+            this.AtualizaLista.Enabled = true;
+            this.AtualizaLista.Interval = 60000;
+            this.AtualizaLista.Tick += new System.EventHandler(this.AtualizaLista_Tick);
             // 
             // FormTarefa
             // 
@@ -778,7 +785,7 @@ namespace GerenciadorDeTarefa.UI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormTarefa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gerente de Horas";
+            this.Text = "Sem Título - Gerente de Horas";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTarefa_FormClosing);
             this.Load += new System.EventHandler(this.FormTarefa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nUpTamanho)).EndInit();
@@ -794,12 +801,12 @@ namespace GerenciadorDeTarefa.UI
             this.HorasContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.HorasContainer)).EndInit();
             this.HorasContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teIntervalo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -860,9 +867,10 @@ namespace GerenciadorDeTarefa.UI
         private System.Windows.Forms.ListView LbAnotacoesAnteriores;
         private DevExpress.XtraEditors.SeparatorControl separatorControl2;
         private DevExpress.XtraEditors.SeparatorControl separatorControl1;
-        private System.Windows.Forms.Button btnListar;
         private DevExpress.XtraEditors.SeparatorControl separatorControl5;
         private DevExpress.XtraEditors.SeparatorControl separatorControl3;
         private DevExpress.XtraEditors.SeparatorControl separatorControl4;
+        private System.Windows.Forms.Button btnListar;
+        private System.Windows.Forms.Timer AtualizaLista;
     }
 }
